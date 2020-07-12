@@ -9,10 +9,15 @@ var mCanvas=document.getElementById('mCanvas'),
 	cursorP={x:0,y:0, grab: {x: 0, y:0} },
 	contextData=[false,0,0],
 	startOpen=false,
-	desktopProps={bgValue: 'img/wallpaper.png'};
+	desktopProps={bgValue: 'img/wallpaper/b.png'};
 
 mCanvas.addEventListener('keyDown', e=>{
 	this.focus();
+});
+
+mCanvas.addEventListener('paste', e=>{
+	var paste = (event.clipboardData || window.clipboardData).getData('text');
+	
 });
 
 mCanvas.contentEditable = true;
@@ -48,34 +53,32 @@ function testWhite(x) {
 };
 
 class cele {
-	constructor(zindex, x, y, width, height, callback, cursor){
+	constructor(zindex, x, y, width, height, callback, cursor, eleID){
 		this.zindex=zindex;
 		this.width=width;
 		this.height=height;
 		this.x = x;
 		this.y = y;
-		this.eleID = moLs.length;
-		if(typeof callback == 'undefined')this.callback=()=>{}
+		if(eleID != null)this.eleID = eleID
+		else this.eleID = moLs.length;
+		if(typeof callback != 'function')this.callback=()=>{}
 		else this.callback = callback;
+
+		if(typeof cursor == 'undefined')this.cursor = {hover : 'pointer', pressed: 'pointer'}
+		else this.cursor = cursor;
 		
 		this.callbackee = (type, e)=>{
 			var ele = moLs[this.eleID];
 			
-			if(cursor != null){
-				if(ele.pressed){
-					cursorN = cursor.pressed;
-				}else if(ele.hover){
-					cursorN = cursor.hover;
-				}
-			}else{
-				if(ele.hover){
-					cursorN = 'pointer';
-				}
+			if(ele.pressed){
+				cursorN = ele.cursor.pressed;
+			}else if(ele.hover){
+				cursorN = ele.cursor.hover
 			}
 		}
 		
 		
-		moLs[moLs.length]={
+		moLs[this.eleID]={
 			zindex: this.zindex,
 			xpos: this.x,
 			ypos: this.y,
@@ -89,7 +92,8 @@ class cele {
 			destroy : ()=>{ // TODO: make more efficient with memory
 				moLs[this.eleID] = null;
 				moLs[this.eleID] = null;
-			}
+			},
+			cursor: this.cursor
 		}
 		
 	}
@@ -170,11 +174,12 @@ class cwin {
 		if(typeof posY == 'undefined')this.posY = msize.h/2;
 		else this.posY = posY
 		
+		if(src == null)this.src = ''
+		else this.src=src;
+		
 		if(typeof bgColor == 'undefined')this.bgColor = '#ccc'
 		else this.bgColor = bgColor;
 		
-		
-		this.windowIcon=false;
 		this.eleID = moLs.length;
 		this.closeEleID = moLs.length+1;
 		this.contentsEleID=moLs.length+2
@@ -188,7 +193,7 @@ class cwin {
 			}
 		}, {hover : 'pointer', pressed: 'move'} );
 		
-		var closeButton = new cele(moLs.length, this.posX, this.posY, 17, 17, (type, e)=>{
+		var closeButton = new cele(moLs.length, this.posX, this.posY, 18, 18, (type, e)=>{
 			if(type == 'mouseUpLeft'){
 				if(typeof onClose != 'undefined')onClose(e);
 				
@@ -219,12 +224,6 @@ class cwin {
 				
 				moLs[this.contentsEle.eleID].xpos = grabX;
 				moLs[this.contentsEle.eleID].ypos = grabY + 30;
-				
-				
-			} else if(ele.hover){
-				// cursorN='link';
-			}else{
-				// cursorN='pointer';
 			}
 			
 			// window contents
@@ -252,9 +251,8 @@ class cwin {
 			
 			// icon
 			
-			if(this.windowIcon){
-				mctx.drawImage(icon, ele.xpos + 6, windowBar.ypos + 6, 20, 20);
-			}
+			mctx.drawImageURL(this.src, ele.xpos + 6, ele.ypos + 6, 20, 20);
+			
 			
 			// title
 			
@@ -264,18 +262,6 @@ class cwin {
 			
 			if(typeof onRender != 'undefined')onRender(ele);
 		});
-		
-		if(typeof src != 'undefined' && src != null){ // window icon
-			var ele=moLs[winBar.eleID],
-				windowBar=moLs[winBar.eleID];
-			
-			var icon=new Image();
-			icon.src=src;
-			
-			icon.addEventListener('load', ()=>{
-				this.windowIcon=true; // icon is ready
-			});
-		}
 			
 		// close button
 		
@@ -292,13 +278,21 @@ class cwin {
 			}else{
 				mctx.fillStyle='#8a8a8a';
 			}
-			// console.log(windowBar.height)
+			
 			moLs[closeButton.eleID].xpos = windowBar.xpos + windowBar.width - 30;
 			moLs[closeButton.eleID].ypos = windowBar.ypos + 6;
 			
+			// draw the image/icon now
 			
-			mctx.fillRect(ele.xpos,  ele.ypos, ele.width, ele.height);
+			// mctx.fillRect(ele.xpos,  ele.ypos, ele.width, ele.height);
 			
+			if(!ele.hover && !ele.pressed){
+				mctx.drawImageURL('img/window/close_idle.png', ele.xpos, ele.ypos, ele.width, ele.height)
+			}else if(ele.hover && !ele.pressed){
+				mctx.drawImageURL('img/window/close_hover.png', ele.xpos, ele.ypos, ele.width, ele.height)
+			}else if(ele.pressed){
+				mctx.drawImageURL('img/window/close_press.png', ele.xpos, ele.ypos, ele.width, ele.height)
+			}
 		});
 		
 	}
@@ -334,7 +328,6 @@ mCanvas.addEventListener('contextmenu', e=>{
 			inYRange=(e.layerY >= yRangeMin && e.layerY <= yRangeMax);
 		
 		
-		// console.log(ee);
 		
 		if(inXRange && inYRange){
 			if(e.button==2)type='mouseDownRight'
@@ -360,8 +353,6 @@ mCanvas.addEventListener('contextmenu', e=>{
 		});
 	}
 	
-	// console.log(e);
-	
 	if(found == null){
 		// this on the desktop or a window that isnt registered 
 		contextData=[true, e.layerX, e.layerY];
@@ -384,9 +375,7 @@ mCanvas.addEventListener('mousemove', e=>{
 			inXRange=(e.layerX >= xRangeMin && e.layerX <= xRangeMax),
 			inYRange=(e.layerY >= yRangeMin && e.layerY <= yRangeMax);
 		
-		
-		// console.log(ee);
-		
+			
 		if(inXRange && inYRange){
 			if(typeof ee.callback != 'undefined'){
 				ee.callback('mouseHover',e); // callback is called when cursor is inside range of element
@@ -412,7 +401,6 @@ mCanvas.addEventListener('mousemove', e=>{
 });
 
 mCanvas.addEventListener('mousedown', e=>{
-	// console.log(e);
 	
 	var found=null,
 		type=null,
@@ -433,9 +421,6 @@ mCanvas.addEventListener('mousedown', e=>{
 			yRangeMax=ee.ypos+ee.height,
 			inXRange=(e.layerX >= xRangeMin && e.layerX <= xRangeMax),
 			inYRange=(e.layerY >= yRangeMin && e.layerY <= yRangeMax);
-		
-		
-		// console.log(ee);
 		
 		if(inXRange && inYRange){
 			if(e.button==2)type='mouseDownRight'
@@ -517,7 +502,7 @@ setInterval(()=>{
 	}else if(desktopProps.bgValue.match(/^(?!#)[\D]*?$/g) ){ // is image
 		mctx.drawImageURL(desktopProps.bgValue, 0, 0, msize.w, msize.h);
 	}
-	mCanvas.style.cursor = 'url("./cursor/'+cursorN+'.cur"), none';
+	mCanvas.style.cursor = 'url("img/cursor/'+cursorN+'.cur"), none';
 
 	renderQ.forEach((e,i)=>{
 		e(); // run all render operations in order

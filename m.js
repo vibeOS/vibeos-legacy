@@ -68,12 +68,6 @@ class cele {
 			}
 		}
 		
-		this.destroy = ()=>{
-			moLs[this.eleID]={
-				xpos : 10000,
-				ypos : 10000,
-			}
-		}
 		
 		moLs[moLs.length]={
 			zindex: this.zindex,
@@ -85,7 +79,11 @@ class cele {
 			pressed: false,
 			id: this.eleID,
 			callback: this.callback,
-			callbackee: this.callbackee
+			callbackee: this.callbackee,
+			destroy : ()=>{
+				moLs[this.eleID] = null;
+				moLs[this.eleID] = null;
+			}
 		}
 		
 	}
@@ -173,6 +171,7 @@ class cwin {
 		this.windowIcon=false;
 		this.eleID = moLs.length;
 		this.closeEleID = moLs.length+1;
+		this.contentsEleID=moLs.length+2
 		
 		var winBar = new cele(moLs.length, this.posX, this.posY, this.width, 30, (type,e)=>{
 			var ele=moLs[this.eleID];
@@ -190,21 +189,15 @@ class cwin {
 				
 				// temp non memory efficient solution but it wont interfere
 				
-				console.log(moLs[this.eleID]);
-				
-				moLs[this.closeEleID] = null;
-				moLs[this.eleID] = null;
-				
-				renderQ[this.eleID] = (()=>{});
-				renderQ[winBar.eleID] = (()=>{});
-				
-				console.log(moLs[this.eleID]);
+				moLs[this.closeEleID].destroy();
+				moLs[this.eleID].destroy();
+				moLs[this.contentsEleID].destroy();
 				
 				return;
 			}
 		});
 		
-		this.contentsEle=new cele(moLs.length, this.posX, this.posY + 30, this.width, this.height);
+		this.contentsEle=new cele(this.contentsEleID, this.posX, this.posY + 30, this.width, this.height);
 		
 		renderQ[winBar.eleID]=(()=>{
 			var ele=moLs[winBar.eleID];

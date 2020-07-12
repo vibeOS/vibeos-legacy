@@ -11,6 +11,12 @@ var mCanvas=document.getElementById('mCanvas'),
 	startOpen=false,
 	desktopProps={bgValue: 'img/wallpaper.png'};
 
+mCanvas.addEventListener('keyDown', e=>{
+	this.focus();
+});
+
+mCanvas.contentEditable = true;
+
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';
     var newLineStr = "\n"; done = false; res = '';

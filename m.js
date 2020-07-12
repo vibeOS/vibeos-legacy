@@ -9,7 +9,7 @@ var mCanvas=document.getElementById('mCanvas'),
 	cursorP={x:0,y:0, grab: {x: 0, y:0} },
 	contextData=[false,0,0],
 	startOpen=false,
-	desktopProps={bgColor: '#2e7ac7'};
+	desktopProps={bgValue: 'img/wallpaper.png'};
 
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';
@@ -42,7 +42,7 @@ function testWhite(x) {
 };
 
 class cele {
-	constructor(zindex, x, y, width, height, callback){
+	constructor(zindex, x, y, width, height, callback, cursor){
 		this.zindex=zindex;
 		this.width=width;
 		this.height=height;
@@ -51,6 +51,29 @@ class cele {
 		this.eleID = moLs.length;
 		if(typeof callback == 'undefined')this.callback=()=>{}
 		else this.callback = callback;
+		
+		this.callbackee = (type, e)=>{
+			var ele = moLs[this.eleID];
+			
+			if(cursor != null){
+				if(ele.pressed){
+					cursorN = cursor.pressed;
+				}else if(ele.hover){
+					cursorN = cursor.hover;
+				}
+			}else{
+				if(ele.hover){
+					cursorN = 'pointer';
+				}
+			}
+		}
+		
+		this.destroy = ()=>{
+			moLs[this.eleID]={
+				xpos : 10000,
+				ypos : 10000,
+			}
+		}
 		
 		moLs[moLs.length]={
 			zindex: this.zindex,
@@ -61,10 +84,30 @@ class cele {
 			hover: false,
 			pressed: false,
 			id: this.eleID,
-			callback: this.callback
+			callback: this.callback,
+			callbackee: this.callbackee
 		}
 		
 	}
+}
+
+var images = {};
+
+CanvasRenderingContext2D.prototype.drawImageURL = function(src, sx , sy, swidth, sheight, width, height){
+	if(images[src] == null){
+		// add a new image to the array with the url as a key
+		images[src] = new Image();
+		images[src].src = src;
+
+		images[src].addEventListener('load', ()=>{
+			this.drawImage(images[src], sx, sy, swidth, sheight);
+		});
+
+	} else {
+		this.drawImage(images[src], sx, sy, swidth, sheight);
+	}
+	
+	// image should exist here
 }
 
 CanvasRenderingContext2D.prototype.roundRect = function (x,y,width,height,radius) {
@@ -138,7 +181,7 @@ class cwin {
 				moLs[this.eleID].ogxpos = ele.xpos
 				moLs[this.eleID].ogypos = ele.ypos
 			}
-		});
+		}, {hover : 'pointer', pressed: 'move'} );
 		
 		var closeButton = new cele(moLs.length, this.posX, this.posY, 17, 17, (type, e)=>{
 			if(type == 'mouseUpLeft'){
@@ -346,7 +389,10 @@ mCanvas.addEventListener('mousemove', e=>{
 		// console.log(ee);
 		
 		if(inXRange && inYRange){
-			if(typeof ee.callback != 'undefined')ee.callback('mouseHover',e); // callback is called when cursor is inside range of element
+			if(typeof ee.callback != 'undefined'){
+				ee.callback('mouseHover',e); // callback is called when cursor is inside range of element
+				ee.callbackee('mouseHover',e); // callback is called when cursor is inside range of element
+			}
 			if(moLsIndex <= ee.zindex)moLsIndex = ii;
 		}else{
 			if(typeof ee.callback != 'undefined')ee.callback('mouseLeft', e);
@@ -412,6 +458,7 @@ mCanvas.addEventListener('mousedown', e=>{
 		moLs[moLsIndex].pressed = true;
 		moLs[moLsIndex].focused = true;
 		moLs[moLsIndex].callback(type,e); // callback is called when cursor is inside range of element and we are clicking
+		moLs[moLsIndex].callbackee(type,e);
 	}
 	
 	if(found == null){
@@ -452,6 +499,7 @@ mCanvas.addEventListener('mouseup', e=>{
 		moLs.forEach((ee,i)=>{
 			if(i != moLsIndex || ee == null)return;
 			ee.callback('mouseHover',e); // callback is called when cursor is inside range of element and we are clicking
+			ee.callbackee('mouseHover',e); // callback is called when cursor is inside range of element and we are clicking
 			ee.callback('mouseUpLeft',e);
 		});
 	}
@@ -461,9 +509,15 @@ mCanvas.addEventListener('mouseup', e=>{
 	}
 });
 
+var bgImage = new Image();
+
 setInterval(()=>{
-	mctx.fillStyle=desktopProps.bgColor;
-	mctx.fillRect(0,0,msize.w,msize.h);
+	if(desktopProps.bgValue.match(/^(?:[a-z]*?|#\d{3,})$/g) ){ // is color
+		mctx.fillStyle=desktopProps.bgValue;
+		mctx.fillRect(0,0,msize.w,msize.h);
+	}else if(desktopProps.bgValue.match(/^(?!#)[\D]*?$/g) ){ // is image
+		mctx.drawImageURL(desktopProps.bgValue, 0, 0, msize.w, msize.h);
+	}
 	mCanvas.style.cursor = 'url("./cursor/'+cursorN+'.cur"), none';
 
 	renderQ.forEach((e,i)=>{

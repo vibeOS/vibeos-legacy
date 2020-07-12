@@ -3,7 +3,7 @@ var initStats=(async()=>{
 	
 	ip=await JSON.parse(ip.html).ip;
 	
-	new cwin(moLs.length+1, 500 , 250, 'Enviornment Information', async (ele)=>{ // called after rendering
+	new cwin(moLs.length+1, 500 , 300, 'Enviornment Information', async (ele)=>{ // called after rendering
 		var lines=[],
 			linesWrapped=[],
 			writeLine=0;;
@@ -22,9 +22,9 @@ var initStats=(async()=>{
 
 		lines.forEach((e,i)=>{
 			wordWrap(e, ele.width / 7).split('\n').forEach((ee,ii)=>{
-				writeLine++;
 				linesWrapped.push(ee);
 			});
+			linesWrapped.push('\n');
 		});
 		linesWrapped.forEach((e,i)=>{
 			mctx.fillText(e, ele.xpos + 10 , ele.ypos + 50 + i*20);

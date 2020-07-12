@@ -7,7 +7,6 @@ var initStats=(async()=>{
 		var lines=[],
 			linesWrapped=[],
 			writeLine=0;;
-		console.log(ip);
 		
 		mctx.fillStyle='#000';
 		mctx.font = "16px Arial";

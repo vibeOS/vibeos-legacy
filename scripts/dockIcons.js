@@ -11,8 +11,6 @@ var dockIndex=0,
 			});
 		icon.src=src;
 		
-		console.log(element);
-		
 		icon.addEventListener('load', ()=>{
 			highRenderQ.push(()=>{
 				var ele = moLs[element.eleID];

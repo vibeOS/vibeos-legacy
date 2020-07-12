@@ -31,7 +31,7 @@ var initStats=(async()=>{
 
 	}, (ele)=>{ // on closing
 		
-	}, msize.w/4, msize.h/2, 'img/info.png');
+	}, msize.w/4, msize.h/2, 'img/status/dialog-question.png');
 });
 
-addDockIcon('img/info.png', 'System info', initStats);
+addDockIcon('img/status/dialog-question.png', 'System info', initStats);

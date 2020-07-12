@@ -121,12 +121,17 @@ var proxy='https://ldm.sys32.dev/',
 			
 				clearInterval(blinkInterval);
 			
-			}, msize.w/3, msize.h/4, 'img/web.png'),
+			}, msize.w/3, msize.h/4, 'img/apps/web-browser.png'),
 			responseHTML='',
 			urlValue='',
-			urlBar=new cele(moLs.length, 0, 0, 470, 24); // define urlbar after window has made for correct order of stuff
+			urlBar=new cele(moLs.length, 0, 0, 470, 24, null, {pressed : 'text', hover : 'text'}); // define urlbar after window has made for correct order of stuff
 		
 		setInterval(blinkInterval, 1000);
+			
+		mCanvas.addEventListener('paste', e=>{
+			var paste = (event.clipboardData || window.clipboardData).getData('text');
+			urlValue=urlValue+paste;
+		});
 		
 		document.addEventListener('keydown', async e=>{
 			var ele=moLs[urlBar.eleID];
@@ -211,4 +216,4 @@ var proxy='https://ldm.sys32.dev/',
 		});
 	});
 
-addDockIcon('img/web.png', 'Web browser', initBrowser);
+addDockIcon('img/apps/web-browser.png', 'Web browser', initBrowser);

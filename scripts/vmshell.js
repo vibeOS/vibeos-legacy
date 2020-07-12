@@ -26,7 +26,7 @@ var initLinuxVM=(()=>{
 		
 		stopped=true;
 		clearInterval(blinkInterval);
-	}, msize.w/15, msize.h/6, 'img/terminal.png', '#000');
+	}, msize.w/15, msize.h/6, 'img/apps/utilities-terminal.png', '#000');
 
 	// define input bar after main window class
 

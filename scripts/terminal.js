@@ -26,7 +26,7 @@ var initTerminal=(()=>{
 		
 		stopped=true;
 		clearInterval(blinkInterval);
-	}, msize.w/15, msize.h/6, 'img/terminal.png', '#000');
+	}, msize.w/15, msize.h/6, 'img/apps/utilities-terminal.png', '#000');
 
 	// define input bar after main window class
 
@@ -34,7 +34,12 @@ var initTerminal=(()=>{
 	
 	setInterval(blinkInterval,1000);
 	
-	document.addEventListener('keydown', e=>{
+	mCanvas.addEventListener('paste', e=>{
+		var paste = (event.clipboardData || window.clipboardData).getData('text');
+		termStr=termStr+paste;
+	});
+	
+	mCanvas.addEventListener('keydown', e=>{
 		var ele=moLs[inputBar.eleID];
 		
 		if(ele.focused){
@@ -64,13 +69,12 @@ var initTerminal=(()=>{
 					
 					break
 				default:
-					var keyyy=e.key
-					termStr=termStr+keyyy;
+					termStr=termStr+e.key;
 					break
 			}
 		}
 	});
-
+	
 	renderQ[inputBar.eleID]=(()=>{
 		mctx.fillStyle='#fff';
 		mctx.font = "16px Source Code Pro";
@@ -131,4 +135,4 @@ var initTerminal=(()=>{
 	lines.push(Date.now()+' : This is a reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly long string!');
 });
 
-addDockIcon('img/terminal.png', 'Terminal app', initTerminal);
+addDockIcon('img/apps/utilities-terminal.png', 'Terminal app', initTerminal);

@@ -3,7 +3,12 @@ var startEntries=[
 			name: 'Graphics',
 			type: 'folder',
 			contents: [
-			
+				{
+					name: 'Paint',
+					type: 'shortcut',
+					icon: 'img/categories/graphics.png',
+					func: initPaint,
+				},
 			],
 		},
 		{
@@ -13,20 +18,26 @@ var startEntries=[
 				{
 					name: 'Terminal',
 					type: 'shortcut',
-					icon: 'img/terminal.png',
+					icon: 'img/apps/utilities-terminal.png',
 					func: initTerminal,
 				},
 				{
 					name: 'Linux VM',
 					type: 'shortcut',
-					icon: 'img/virtual-shell.png',
+					icon: 'img/apps/virtual-shell.png',
 					func: initLinuxVM,
 				},
 				{
 					name: 'System Info',
 					type: 'shortcut',
-					icon: 'img/info.png',
+					icon: 'img/status/dialog-question.png',
 					func: initStats,
+				},
+				{
+					name: 'VibeOS Settings',
+					type: 'shortcut',
+					icon: 'img/categories/system.png',
+					func: initSettings,
 				},
 			],
 		},
@@ -37,7 +48,7 @@ var startEntries=[
 				{
 					name: 'VibeBrowser',
 					type: 'shortcut',
-					icon: 'img/web.png',
+					icon: 'img/apps/web-browser.png',
 					func: initBrowser,
 				},
 			],
@@ -45,7 +56,6 @@ var startEntries=[
 	],
 	initDock=(()=>{
 		var startButton=new cele(102312312200, 0, 0, 75, 25, (type, e, cum)=>{
-				//console.log(type);
 				if(type == 'mouseDownLeft'){
 					startOpen=!startOpen
 					startEntries.forEach((folder,index)=>{
@@ -75,8 +85,6 @@ var startEntries=[
 				}
 			});
 			folder.contents.forEach((item, itemindex)=>{
-				item.image = new Image();
-				item.image.src= item.icon;
 				item.cele = new cele(100, ele.xpos+150, ele.ypos + 25 + index*25 + itemindex*25, 0, 30, (type, e)=>{
 					if(type == 'mouseDownLeft' && folder.open == true){
 						item.func();
@@ -86,9 +94,6 @@ var startEntries=[
 				var itemEle=moLs[item.cele.eleID];
 			});
 		});
-		
-		var folderIcon=new Image();
-		folderIcon.src='img/folder.png';
 		
 		highRenderQ.push(()=>{
 			var ele=moLs[startButton.eleID];
@@ -130,7 +135,7 @@ var startEntries=[
 					mctx.font = '16px Arial';
 					mctx.fillText(folder.name, ele.xpos + 27, ele.ypos + 45 + index*25 );
 					
-					mctx.drawImage(folderIcon, ele.xpos+5, ele.ypos + 30 + index*25, 18, 18);
+					mctx.drawImageURL('img/places/folder.png', ele.xpos+5, ele.ypos + 30 + index*25, 18, 18);
 					
 					if(folder.open){ // folder has been clicked on
 						moLs[folder.cele.eleID].width = 150;
@@ -146,7 +151,7 @@ var startEntries=[
 							mctx.fillStyle='#000';
 							mctx.font = '16px Arial';
 							mctx.fillText(item.name, ele.xpos + 177, ele.ypos + 45 + index*25 + itemindex*25 );
-							mctx.drawImage(item.image, ele.xpos+155, ele.ypos + 30 + index*25 + itemindex*25, 18, 18);
+							mctx.drawImageURL(item.icon, ele.xpos+155, ele.ypos + 30 + index*25 + itemindex*25, 18, 18);
 						});
 					}else{
 						folder.contents.forEach((item, itemindex)=>{

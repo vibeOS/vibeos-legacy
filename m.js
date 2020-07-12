@@ -80,7 +80,7 @@ class cele {
 			id: this.eleID,
 			callback: this.callback,
 			callbackee: this.callbackee,
-			destroy : ()=>{
+			destroy : ()=>{ // TODO: make more efficient with memory
 				moLs[this.eleID] = null;
 				moLs[this.eleID] = null;
 			}

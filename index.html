@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ose</title>
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro&display=swap');
+body {
+	background: black;
+	margin: 0;
+}
+
+#mCanvas {
+	width: 1280px;
+	height: 720px;
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+		</style>
+	</head>
+	<body>
+		<canvas width='1280' height='720' id='mCanvas'></canvas>
+		
+		<script src='m.js'></script>
+		<script src='scripts/dockIcons.js'></script>
+		<script src='scripts/desktop.js'></script>
+		
+		<!-- base apps -->
+		<script src='scripts/terminal.js'></script>
+		<script src='scripts/web.js'></script>
+		<script src='scripts/stats.js'></script>
+		<script src='scripts/vmshell.js'></script>
+		
+		<script src='scripts/ct.js'></script>
+		<script src='scripts/yoc.js'></script>
+		
+		<!-- system desktop stuff -->
+		<script src='scripts/dock.js'></script>
+	</body>
+</html>

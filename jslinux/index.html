@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>JSLinux</title>
+<link href="style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1>JSLinux</h1>
+
+Run Linux or other Operating Systems in your browser!
+<p>
+The following emulated systems are available:
+
+<table id="os_table">
+  <tr><th>CPU<th>OS<th>User<br>Interface<th><a href="https://vfsync.org">VFsync</a><br>access<th>Startup<br>Link<th><a href="/tinyemu">TEMU</a><br>Config<th>Comment
+      <tr><td>x86<td>Alpine Linux 3.12.0<td>Console<td>Yes
+        <td><a href="vm.html?url=alpine-x86.cfg&mem=256">click here</a>
+        <td><a href="alpine-x86.cfg">url</a>
+        <td>
+      </tr>
+
+      <tr><td>x86<td>Alpine Linux 3.12.0<td>X Window<td>Yes
+        <td><a href="vm.html?url=alpine-x86-xwin.cfg&mem=256&graphic=1">click here</a>
+        <td><a href="alpine-x86-xwin.cfg">url</a>
+        <td class="os_comment">Right mouse button for the menu.
+      </tr>
+
+      <tr><td>x86<td>Buildroot (Linux)<td>Console<td>Yes
+        <td><a href="vm.html?url=buildroot-x86.cfg">click here</a>
+        <td><a href="buildroot-x86.cfg">url</a>
+        <td>
+      </tr>
+
+      <tr><td>x86<td>Buildroot (Linux)<td>X Window<td>Yes
+        <td><a href="vm.html?url=buildroot-x86-xwin.cfg&graphic=1">click here</a>
+        <td><a href="buildroot-x86-xwin.cfg">url</a>
+        <td class="os_comment">Right mouse button for the menu.
+      </tr>
+
+      <tr><td>x86<td>Windows 2000<td>Graphical<td>No
+        <td><a href="vm.html?url=win2k.cfg&mem=192&graphic=1&w=1024&h=768">click here</a>
+        <td><a href="win2k.cfg">url</a>
+        <td class="os_comment"><a href="disclaimer.html">Disclaimer.</a>
+      </tr>
+
+      <tr><td>x86<td>FreeDOS<td>VGA Text<td>No
+        <td><a href="vm.html?url=freedos.cfg&mem=64&graphic=1&w=720&h=400">click here</a>
+        <td><a href="freedos.cfg">url</a>
+        <td>
+      </tr>
+      
+      <tr><td>riscv64<td>Buildroot (Linux)<td>Console<td>Yes
+        <td><a href="vm.html?cpu=riscv64&url=buildroot-riscv64.cfg&mem=256">click here</a>
+        <td><a href="buildroot-riscv64.cfg">url</a>
+        <td class="os_comment">
+      </tr>
+
+      <tr><td>riscv64<td>Buildroot (Linux)<td>X Window<td>Yes
+        <td><a href="vm.html?cpu=riscv64&url=buildroot-riscv64-xwin.cfg&graphic=1&mem=256">click here</a>
+        <td><a href="buildroot-riscv64-xwin.cfg">url</a>
+        <td class="os_comment">Right mouse button for the menu.
+        </tr>
+        
+      <tr><td>riscv64<td>Fedora 29 (Linux)<td>Console<td>Yes
+        <td><a href="vm.html?cpu=riscv64&url=fedora29-riscv-2.cfg&mem=256">click here</a>
+        <td><a href="fedora29-riscv-2.cfg">url</a>
+        <td class="os_comment">Warning: longer boot time.
+      </tr>
+        
+      <tr><td>riscv64<td>Fedora 29 (Linux)<td>X Window<td>Yes
+        <td><a href="vm.html?cpu=riscv64&url=fedora29-riscv-xwin.cfg&graphic=1&mem=256">click here</a>
+        <td><a href="fedora29-riscv-xwin.cfg">url</a>
+        <td class="os_comment">Warning: longer boot time. Right mouse button for the menu.
+      </tr>
+
+</table>
+
+<div id="copyright">&copy; 2011-2020 Fabrice Bellard - <a href="news.html">News</a> - <a href="index.html">VM list</a> - <a href="faq.html">FAQ</a> - <a href="tech.html">Technical notes</a></div>
+</body>
+</html>

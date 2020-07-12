@@ -6,12 +6,12 @@
 // a security incident and report all information.
 
 var nonprog_CTOpenCodeData = {
-	project: tnos,
-	file: ct,
-	lang: javascript,
-	owner: ctaetcsh,
-	authuser1: vibedivide,
-	confidential: yes
+	project: 'tnos',
+	file: 'ct',
+	lang: 'javascript',
+	owner: 'ctaetcsh',
+	authuser1: 'vibedivide',
+	confidential: true
 }
 
 // NOTE (ctaetcsh): Important Information

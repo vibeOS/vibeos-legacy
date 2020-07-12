@@ -10,7 +10,7 @@ var proxy='https://ldm.sys32.dev/',
 					solve({html: xhttp.responseText, url: xhttp.responseURL  });
 				}
 			});
-			xhttp.open(methodd,proxy+encodeURI(url), true);
+			xhttp.open(methodd,encodeURI(url), true);
 			xhttp.send();
 		});
 	}),
@@ -82,7 +82,7 @@ var proxy='https://ldm.sys32.dev/',
 		});
 		
 		var window=new cwin(moLs.length+1, maxLineLength*16, rewroteLines.length*26, fullTitle, (type, ele)=>{ // info panel
-				// on cursor stuff
+				// render
 			}, (ele)=>{ // on closing
 				
 			}, 100, 200, 'img/html.png');
@@ -151,7 +151,7 @@ var proxy='https://ldm.sys32.dev/',
 							output=err;
 						}
 						
-						var response = await request(addproto(urlValue), 'GET');
+						var response = await request(proxy+addproto(urlValue), 'GET');
 						
 						renderWebPage(response.html, response.url );
 						

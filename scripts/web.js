@@ -60,9 +60,20 @@ var proxy='https://ldm.sys32.dev/',
 						lineData.color = 'blue'
 						break
 				}
+				
+				if(lineData.str.match(/&[\S]*?;/gi) !=null)lineData.str.match(/&[\S]*?;/gi).forEach((e,i)=>{
+					if(e.startsWith('&#')){
+						var charCode=e.replace(/\D/gi, ''), // remove all non-digits
+							chare=String.fromCharCode(Number(charCode)); // convert charcode to a character
+						
+						lineData.str = lineData.str.replace(e, chare);
+					}
+				});
+				
 				lineData.str = lineData.str
 				.replace(/<[\s\S]*?>/gi, '') // hide tags
 				.replace(/[<>]/gi, '') // hide tags pt 2
+				.replace(/&[\S]*?;/gi, '') // hide escaped characters
 				;
 				if(lineData.str.match(/(^$|^<\s*?$)/gi))lineData.str='';
 				
@@ -110,7 +121,7 @@ var proxy='https://ldm.sys32.dev/',
 			
 				clearInterval(blinkInterval);
 			
-			}, msize.w/2, msize.h/2, 'img/web.png'),
+			}, msize.w/3, msize.h/4, 'img/web.png'),
 			responseHTML='',
 			urlValue='',
 			urlBar=new cele(moLs.length, 0, 0, 470, 24); // define urlbar after window has made for correct order of stuff

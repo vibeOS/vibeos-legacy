@@ -3,7 +3,7 @@ var initStats=(async()=>{
 	
 	ip=await JSON.parse(ip.html).ip;
 	
-	new cwin(moLs.length+1, 500 , 300, 'Enviornment Information', async (ele)=>{ // called after rendering
+	new cwin(moLs.length+1, 500 , 400, 'Enviornment Information', async (ele)=>{ // called after rendering
 		var lines=[],
 			linesWrapped=[],
 			writeLine=0;;

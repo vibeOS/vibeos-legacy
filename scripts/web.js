@@ -2,14 +2,19 @@ var proxy='https://ldm.sys32.dev/',
 	regProxy=new RegExp(`^`+proxy.replace(/\./gi, '\\.').replace(/\//gi, '\\/'), 'gi'),
 	request=((url, method, data)=>{
 		return new Promise( (solve, reject)=>{
-			var methodd='GET';
+			var methodd='GET',
+				success=false;
 			if(method.toLowerCase=='post')methodd='POST';
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange=((e)=>{
 				if(xhttp.readyState == 4 && xhttp.status == 200){
+					success=true;
 					solve({html: xhttp.responseText, url: xhttp.responseURL  });
 				}
 			});
+			setTimeout(()=>{
+				if(!success)reject('Timed out..');
+			}, 5000);
 			xhttp.open(methodd,encodeURI(url), true);
 			xhttp.send();
 		});
@@ -18,202 +23,151 @@ var proxy='https://ldm.sys32.dev/',
 		if (!/^(?:f|ht)tps?\:\/\//.test(url))url = "https://" + url;
 		return url;
 	}),
-	renderWebPage=((html, url)=>{
-		console.log(html);
-		
-		var lines=html.replace(/[\s\S]*?<body[\s\S]*?>([\s\S]*?)<\/\s*?body\s*?>[\s\S]*?/gi, '$1').split('\n'),
-			rewroteLines=[],
-			htmlTitle=html.match(/<title>([\s\S]*?)<\/title>/i)[1],
-			fullTitle=`${htmlTitle} - ${url.replace(regProxy, '')}` // hide proxy portion in url
-			longestStr='',
-			maxLineLength=50;
-		
-		this.closed=false;
-		
-		lines.forEach((e,i)=>{
-			if(longestStr.length <= e.length)longestStr = e;
-			
-			/*wordWrap(e, maxLineLength).split('\n').forEach((e,i)=>{
-				rewroteLines.push(e);
-			});*/
-			
-			e.split('<').forEach((ee,ii)=>{
-				var lineData={str: '<'+ee, size: 16, color: '#000', weight: 'normal'},
-					tag=lineData.str.match(/<([^\s]*) ?[\s\S]*?>/i);
+	output='',
+	rewroteLines = [],
+	links = [],
+	initBrowser=(async()=>{
+		var lines = [],
+			winEle = {},
+			winID = moLs.length,
+			ib = {},
+			responseHTML='',
+			window=new cwin(winID, 600 , 250, 'VibeBrowser', (ele)=>{
+				winEle = ele;
 				
-				if(tag != null && tag[1] != null)tag=tag[1].toLowerCase()
-				else if(tag == null)tag='';
-				
-				console.log(tag);
-				
-				switch(tag){
-					case'p':
-					default:
-						lineData.size = 16;
-						break
+				ib.setPos(ele.xpos + 30, ele.ypos + 35);
+
+				rewroteLines.forEach((e,i)=>{
+					// if(ele == 'null' || ele == null)return;
+
+					mctx.fillStyle=e.color;
+					mctx.font = e.size+'px Arial';
+					mctx.fillText(e.str, ele.xpos + 15 , ele.ypos + 80 + i*20);
 					
-					case'h1':
-						lineData.size = 32;
-						break
-					
-					case'a':
-						lineData.color = 'blue'
-						break
-				}
-				
-				if(lineData.str.match(/&[\S]*?;/gi) !=null)lineData.str.match(/&[\S]*?;/gi).forEach((e,i)=>{
-					if(e.startsWith('&#')){
-						var charCode=e.replace(/\D/gi, ''), // remove all non-digits
-							chare=String.fromCharCode(Number(charCode)); // convert charcode to a character
+					if(e.href != null){
+						var linkEle = moLs[e.linkEleID],
+							winEle = moLs[winID];
 						
-						lineData.str = lineData.str.replace(e, chare);
+						linkEle.xpos = ele.xpos + 15;
+						linkEle.ypos = ele.ypos + 70 + i*20;
+						
+						mctx.fillRect(linkEle.xpos, linkEle.ypos, linkEle.width, linkEle.height);
 					}
 				});
 				
-				lineData.str = lineData.str
-				.replace(/<[\s\S]*?>/gi, '') // hide tags
-				.replace(/[<>]/gi, '') // hide tags pt 2
-				.replace(/&[\S]*?;/gi, '') // hide escaped characters
-				;
-				if(lineData.str.match(/(^$|^<\s*?$)/gi))lineData.str='';
-				
-				if(lineData.str!='')rewroteLines.push(lineData);
-			});
-		});
-		
-		var window=new cwin(moLs.length+1, maxLineLength*16, rewroteLines.length*26, fullTitle, (type, ele)=>{ // info panel
-				// render
-			}, (ele)=>{ // on closing
-				
-			}, 100, 200, 'img/html.png');
-		
-		rewroteLines.forEach((e,i)=>{
-			
-			renderQ.push(()=>{
-				var ele=moLs[window.eleID];
-				if(ele == 'null' || ele == null)return;
-				
-				mctx.fillStyle=e.color;
-				mctx.font = e.size+'px Arial';
-				mctx.fillText(e.str, ele.xpos + 10 , ele.ypos + 60 + i*20);
-			});
-		});
-		
-	}),
-	initBrowser=(async()=>{
-		var blinkStr='',
-			lines=[],
-			blinkInterval=()=>{
-				var ele=moLs[urlBar.eleID];
-				
-				if(typeof ele == 'undefined')return;
-				
-				if(ele.focused){
-					if(blinkStr=='')blinkStr='|'
-					else blinkStr='';
-				}else{
-					blinkStr='';
-				}
-			},
-			window=new cwin(moLs.length, 500 , 250, 'VibeBrowser', (ele)=>{ // info panel
-				
+				/*
+				mctx.fillStyle='#000';
+				mctx.font = "16px Roboto";
+				mctx.fillText(`Enter a URL for the application to visit`, ele.xpos + 6, ele.ypos + 70 );
+				*/
 			}, (ele)=>{ // on closing
 			
-				clearInterval(blinkInterval);
-			
-			}, msize.w/3, msize.h/4, 'img/apps/web-browser.png'),
-			responseHTML='',
-			urlValue='',
-			urlBar=new cele(moLs.length, 0, 0, 470, 24, null, {pressed : 'text', hover : 'text'}); // define urlbar after window has made for correct order of stuff
+			}, msize.w/3, msize.h/4, 'img/apps/web-browser.png');
 		
-		setInterval(blinkInterval, 1000);
+		ib = new inputbar(winID + 2, 0, 0, 425, 24, 'placeholder ig',
+		(key, string)=>{ // on change
 			
-		mCanvas.addEventListener('paste', e=>{
-			var paste = (event.clipboardData || window.clipboardData).getData('text');
-			urlValue=urlValue+paste;
+		},
+		async str => { // on submit
+			var response = await request(proxy+addproto(str), 'GET');
+			
+			renderWebPage(response.html, response.url );
 		});
-		
-		document.addEventListener('keydown', async e=>{
-			var ele=moLs[urlBar.eleID];
+
+		renderWebPage=((html, url)=>{
+			var lines=html.replace(/[\s\S]*?<body[\s\S]*?>([\s\S]*?)<\/\s*?body\s*?>[\s\S]*?/gi, '$1').split('\n'),
+				htmlTitle=html.match(/<title>([\s\S]*?)<\/title>/i)[1],
+				fullTitle=`${htmlTitle} - ${url.replace(regProxy, '')}` // hide proxy portion in url
+				longestStr='',
+				maxLineLength=50;
 			
-			if(ele.focused){
+			// reset values
+			rewroteLines=[];
+			
+			links.forEach((e,i)=>{
+				e.destroy();
+			});
+			
+			links = []; 
+			
+			this.closed=false;
+			
+			lines.forEach((e,i)=>{
+				if(longestStr.length <= e.length)longestStr = e;
 				
-				switch(e.keyCode){
-					case 8: // backspace
-						urlValue=urlValue.substr(0,urlValue.length-1);
-						break
-					case 38: // up arrow
-						urlValue=prevTermStr;
-						break
-					case 16: case 20:case 36:case 144:case 93:case 17:case 27:case 9:case 91:case 18:case 46:case 35:case 34:case 45:case 33:case 40:case 39:case 37:
-						break
-					case 13: // enter key
-						// lines.push('https://'+urlValue);
-						var output='';
-						try {
-							output=eval(urlValue);
-						}catch(err){
-							output=err;
+				wordWrap(e, maxLineLength).split('\n').forEach((e,i)=>{
+					// rewroteLines.push(e);
+				});
+				
+				e.split('<').forEach((ee,ii)=>{
+					var lineData={str: '<'+ee, size: 16, color: '#000', weight: 'normal'},
+						tag=lineData.str.match(/<([^\s]*) ?[\s\S]*?>/i);
+					
+					if(tag != null && tag[1] != null)tag=tag[1].toLowerCase()
+					else if(tag == null)tag='';
+					
+					switch(tag){
+						case'p':
+						default:
+							lineData.size = 16;
+							break
+						
+						case'h1':
+							lineData.size = 32;
+							break
+						
+						case'a':
+							lineData.color = 'blue'
+							var hrefMatched = lineData.str.match(/<[\s\S]*?href\s*=\s*(?:"|')([\s\S]*?)(?:"|')/i);
+							
+							if(hrefMatched != null){
+								var linkEleID = moLs.length,
+									linkEle = new cele(linkEleID, 10000, 100000, lineData.str.length, lineData.size, async(type, e)=>{
+										// if the type is a click then redirect 
+										console.log(type);
+										if(type == 'mouseDownLeft'){
+											// hrefMatched[1]
+											var response = await request(proxy+addproto(hrefMatched[1]), 'GET');
+											
+											renderWebPage(response.html, response.url );
+											
+											lines.push(output);
+										}
+									}, )
+									// { hover : 'link', pressed : 'link' }),
+									ele = moLs[linkEleID],
+									winEle = moLs[winID];
+								
+
+								
+								lineData.href = hrefMatched[1];
+								lineData.linkEleID = linkEleID;
+							}
+							
+							break
+					}
+					
+					if(lineData.str.match(/&[\S]*?;/gi) !=null)lineData.str.match(/&[\S]*?;/gi).forEach((e,i)=>{
+						if(e.startsWith('&#')){
+							var charCode=e.replace(/\D/gi, ''), // remove all non-digits
+								chare=String.fromCharCode(Number(charCode)); // convert charcode to a character
+							
+							lineData.str = lineData.str.replace(e, chare);
 						}
-						
-						var response = await request(proxy+addproto(urlValue), 'GET');
-						
-						renderWebPage(response.html, response.url );
-						
-						prevTermStr=urlValue;
-						urlValue='';
-						
-						lines.push(output);
-						
-						break
-					default:
-						var keyyy=e.key
-						urlValue=urlValue+keyyy;
-						break
-				}
-			}
+					});
+					
+					lineData.str = lineData.str
+					.replace(/<[\s\S]*?>/gi, '') // hide tags
+					.replace(/[<>]/gi, '') // hide tags pt 2
+					.replace(/&[\S]*?;/gi, '') // hide escaped characters
+					;
+					if(lineData.str.match(/(^$|^<\s*?$)/gi))lineData.str='';
+					
+					if(lineData.str!='')rewroteLines.push(lineData);
+				});
+			});
 		});
-		
-		renderQ[urlBar.eleID]=(()=>{
-			var ele=moLs[urlBar.eleID],
-				winBar=moLs[window.eleID];
-			
-			if(typeof ele == 'undefined' || typeof winBar == 'undefined' || winBar == null)return renderQ.splice(urlBar.eleID, 1);
-			
-			if(ele.focused){
-				mctx.fillStyle='#fff';
-			}else if(ele.hover){
-				mctx.fillStyle='#bdbdbd';
-			}else{
-				mctx.fillStyle='#8a8a8a';
-			}
-			
-			moLs[urlBar.eleID].xpos = winBar.xpos+15;
-			moLs[urlBar.eleID].ypos = winBar.ypos + 240;
-			
-			mctx.fillRect(ele.xpos, ele.ypos, ele.width, ele.height);
-			
-			mctx.fillStyle='#000';
-			mctx.fillRect(ele.xpos+2, ele.ypos+2, ele.width-4, ele.height-4);
-			
-			mctx.fillStyle='#000';
-			mctx.font = "16px Roboto";
-			mctx.fillText(`Enter a URL for the application to visit`, ele.xpos + 3 , ele.ypos - 20 );
-			
-			mctx.fillStyle='#fff';
-			mctx.font = "14px Roboto";
-			
-			if(urlValue.length <= 0 && ele.focused==true){
-				mctx.fillStyle='#8c8c8c';
-				mctx.fillText(blinkStr, ele.xpos + 10 , ele.ypos +  ele.height/2 + 5 );
-			}else if(urlValue.length <= 0){
-				mctx.fillStyle='#8c8c8c';
-				mctx.fillText('https://example.org', ele.xpos + 10 , ele.ypos +  ele.height/2 + 5 );
-			}else{
-				mctx.fillText(urlValue+blinkStr, ele.xpos + 10 , ele.ypos +  ele.height/2 + 5 );
-			}
-			
-		});
+
 	});
 
 addDockIcon('img/apps/web-browser.png', 'Web browser', initBrowser);

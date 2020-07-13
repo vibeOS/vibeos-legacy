@@ -70,10 +70,14 @@ class cele {
 		this.callbackee = (type, e)=>{
 			var ele = moLs[this.eleID];
 			
-			if(ele.pressed){
-				cursorN = ele.cursor.pressed;
-			}else if(ele.hover){
-				cursorN = ele.cursor.hover
+			if(type == 'mouseUpLeft'){
+				cursorN = 'pointer';
+			}else if(type == 'mouseHover' || type == 'mouseDownLeft'){
+				if(ele.pressed == true){
+					cursorN = ele.cursor.pressed;
+				}else if(ele.hover == true){
+					cursorN = ele.cursor.hover
+				}
 			}
 		}
 		
@@ -391,12 +395,14 @@ mCanvas.addEventListener('mousemove', e=>{
 		
 	});
 	
-	if(moLsIndex != false){
+	if(moLsIndex != 0){
 		moLs[moLsIndex].hover = true;
 		moLs.forEach((e,i)=>{
 			if(e==null)return;
 			if(i != moLsIndex)e.hover = false;
 		});
+	}else{
+		cursorN = 'Pointer';
 	}
 });
 
@@ -485,11 +491,13 @@ mCanvas.addEventListener('mouseup', e=>{
 			ee.callback('mouseHover',e); // callback is called when cursor is inside range of element and we are clicking
 			ee.callbackee('mouseHover',e); // callback is called when cursor is inside range of element and we are clicking
 			ee.callback('mouseUpLeft',e);
+			ee.callbackee('mouseUpLeft',e);
 		});
 	}
 	
 	if(found == null){
 		startOpen=false;
+		cursorN = 'pointer';
 	}
 });
 

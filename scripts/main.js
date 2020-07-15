@@ -423,6 +423,12 @@ overlay.addEventListener('mousedown', e=>{
 		
 		if(entry.hover){
 			interactables[index].setValue('pressed', true);
+			
+			if(e.which == 3){ // right click
+				// do right click business here
+				// return
+			}
+			
 			entry.clickstart(e);
 			
 			cursor.focus = index;

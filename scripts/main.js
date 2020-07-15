@@ -475,13 +475,29 @@ setInterval(()=>{
 		mctx.drawImageURL('tango/'+background.value, 0, 0, msize.w, msize.h);
 	}
 	
-	renq.forEach((e,i)=>{
-		e(); // run all render operations in order
-	});
-	
-	highRenq.forEach((e,i)=>{ // desktop and stuff
-		e();
-	});
+	if(window.outerWidth < msize.w || window.outerHeight < msize.h){ // window is smaller than the current resolution
+		mctx.fillStyle = '#fff';
+		mctx.fillRect(0, 0, msize.w, msize.h);
+		
+		// center text
+		
+		mctx.textAlign = 'center';
+		
+		mctx.fillStyle = '#000';
+		mctx.font = '14px Open Sans';
+		
+		mctx.fillText(`Your browser window is smaller than the minimum size of ${msize.w}x${msize.h}! (the window is ${window.outerWidth}x${window.outerHeight})`, window.outerWidth / 2, window.outerHeight / 2 - 14);
+		
+		mctx.textAlign = 'start';
+	}else{
+		renq.forEach((e,i)=>{
+			e(); // run all render operations in order
+		});
+		
+		highRenq.forEach((e,i)=>{ // desktop and stuff
+			e();
+		});
+	}
 	
 	// RENDER CURSOR OR SET IT AFTER GOING THROUGH THE RENQ
 	

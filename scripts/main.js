@@ -459,11 +459,11 @@ overlay.addEventListener('wheel', e=>{
 	
 });
 
-window.addEventListener('focus', e=>{
+overlay.addEventListener('focus', e=>{
 	mfocus = true;
 });
 
-window.addEventListener('blur', e=>{
+overlay.addEventListener('blur', e=>{
 	mfocus = false;
 });
 

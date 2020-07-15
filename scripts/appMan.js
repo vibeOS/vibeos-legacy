@@ -89,6 +89,13 @@ var startEntries = [
 					},
 				},
 				{
+					value: 'Bing',
+					icon: 'mimetypes/16/html.png',
+					func: ()=>{
+						initWebView('DuckDuckGo', 'mimetypes/16/html.png', 'https://bing.com/', 800, 600, false)
+					},
+				},
+				{
 					value: 'Discord (broken)',
 					icon: 'mimetypes/16/html.png',
 					func: ()=>{

@@ -45,8 +45,10 @@ class webview {
 }
 
 var initWebView = ((title, icon, url, width, height, proxy)=>{
+			if(typeof proxy == 'boolean' && proxy == false)this.url = url
+			else this.url = globalProxy + url;
 			
-			var vWebview = new webview(proxy ? globalProxy + url : url, 'bing' + Date.now()),
+			var vWebview = new webview(this.url, 'bing' + Date.now()),
 				window = new cwindow('webview-bing', 50, 50, (window)=>{
 					// render business happens here
 					

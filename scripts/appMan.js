@@ -238,17 +238,27 @@ var startEntries = [
 							e.interactable.width = 1920 / 15
 							e.interactable.height = 1080 / 15
 							
+							mctx.filter = 'blur(2px)';
+							
+							for(var i=0;i<9;i++){
+								mctx.drawImageURL('tango/' + e.value, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+							}
+							
+							mctx.filter = 'blur(0px)';
+							
+							mctx.lineJoin = 'miter';
+							mctx.lineWidth = '2';
+							
 							if(e.interactable.hover){
-								mctx.fillStyle = '#fff'
-								mctx.fillRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+								mctx.strokeStyle = '#fff'
+								mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
 							}
 							
 							if(e.value == background.value){
-								mctx.fillStyle = '#000'
-								mctx.fillRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+								mctx.strokeStyle = '#000'
+								mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
 							}
 							
-							mctx.drawImageURL('tango/' + e.value, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height)
 						});
 					});
 				

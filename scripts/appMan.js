@@ -224,6 +224,11 @@ var startEntries = [
 			icon: 'apps/16/preferences-desktop-wallpaper.png',
 			func: initWallpaperPicker,
 		},
+		{
+			value: 'JS Terminal',
+			icon: 'apps/16/bash.png',
+			func: initJsTerm,
+		},
 	];
 
 hoverGrad.addColorStop(0, '#5DA9F9');

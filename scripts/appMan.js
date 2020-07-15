@@ -429,7 +429,7 @@ highRenq.push(()=>{
 					});
 				}else{
 					e.entries.forEach((entry,index)=>{
-						entry.disabled = true;
+						entry.interactable.disabled = true;
 					});
 				}
 			}

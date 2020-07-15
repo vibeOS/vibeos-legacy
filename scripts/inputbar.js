@@ -1,22 +1,22 @@
 class inputbar {
-	constructor(zindex, x, y, width, height, placeholder, onChange, onSubmit){
-		this.zindex = this.eleID = Number(zindex);
+	constructor(width, height, placeholder, onChange, onSubmit){ // caller needs to set interactable index to get anything working as intended
+		this.index = 12;
 		
-		this.blinkStr = '';
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.interactable = new interactable('inputbar' + Date.now(), width, height,
+		()=>{
+			// hoverstart
+		},
+		()=>{
+			// hoverend
+		}
+		);
+		
 		this.value = '';
 		this.preValue = '';
-		this.valueBar = new cele(this.zindex, this.x, this.y, this.width, this.height, null, {pressed : 'text', hover : 'text'});
+		this.blinkStr = '';
 		
 		setInterval(()=>{
-			var ele=moLs[this.eleID];
-			
-			if(typeof ele == 'undefined')return;
-			
-			if(ele.focused){
+			if(cursor.focus == this.interactable.id){
 				if(this.blinkStr=='')this.blinkStr='|'
 				else this.blinkStr='';
 			}else{
@@ -25,33 +25,19 @@ class inputbar {
 			
 		}, 1000);
 		
-		this.setPos = (x,y)=>{
-			var ele=moLs[this.eleID];
-			this.x = x;
-			this.y = y;
-			moLs[this.zindex].xpos = x;
-			moLs[this.zindex].ypos = y;
-			
-			moLs[this.zindex].width = this.width;
-			moLs[this.zindex].height = this.height;
-			
-			this.valueBar.x = x;
-			this.valueBar.y = y;
-			
-		}
-		
 		if(placeholder != null)this.placeholder = placeholder
-		else this.placeholder = 'Text'
+		else this.placeholder = 'Input field'
 		
-		mCanvas.addEventListener('paste', e=>{
+		window.addEventListener('paste', e=>{
+			if(cursor.focus != this.interactable.id)return;
 			var paste = (event.clipboardData || window.clipboardData).getData('text');
 			this.value += paste;
 		});
 		
-		mCanvas.addEventListener('keydown', e=>{
-			var ele=moLs[this.eleID];
+		window.addEventListener('keydown', e=>{
 			
-			if(!ele.focused)return;
+			if(cursor.focus != this.interactable.id)return;
+			
 			switch(e.keyCode){
 				case 8: // backspace
 					this.value = this.value.substr(0,this.value.length-1);
@@ -67,7 +53,7 @@ class inputbar {
 					
 					this.preValue=this.value; // set previous value for uparrow presses
 					
-					this.value='';
+					// this.value='';
 					
 					break
 				default:
@@ -78,41 +64,43 @@ class inputbar {
 					break
 			}
 		});
-		renderQ[this.eleID]=(()=>{
-			var ele=moLs[this.eleID];
+		
+		this.render = ()=>{ // let the caller do this part because we absolutely should not push to the renderq on our own
 			
-			// if(typeof ele == 'undefined' || typeof winBar == 'undefined' || winBar == null)return renderQ[this.eleID] = ()=>{};
-			
-			if(ele.focused){
+			if(cursor.focus == this.interactable.id){
 				mctx.fillStyle='#fff';
-			}else if(ele.hover){
+			}else if(this.interactable.hover){
 				mctx.fillStyle='#bdbdbd';
 			}else{
 				mctx.fillStyle='#8a8a8a';
 			}
 			
-			mctx.fillRect(this.x, this.y, this.width, this.height);
+			mctx.fillRect(this.interactable.x, this.interactable.y, this.interactable.width, this.interactable.height);
 			
 			mctx.fillStyle='#000';
-			mctx.fillRect(this.x+2, this.y+2, this.width-4, this.height-4);
+			mctx.fillRect(this.interactable.x+2, this.interactable.y+2, this.interactable.width-4, this.interactable.height-4);
 			
+			/*
 			mctx.fillStyle='#000';
 			mctx.font = "16px Roboto";
-			mctx.fillText(this.placeholder, this.xpos + 3 , this.ypos - 20 );
+			mctx.fillText(this.placeholder, this.interactable.x + 3 , this.interactable.y - 20 );
+			*/
 			
-			mctx.fillStyle='#fff';
-			mctx.font = "14px Roboto";
 			
-			if(this.value.length <= 0 && ele.focused==true){
+			mctx.font = '14px Open Sans';
+			
+			if(cursor.focus == this.interactable.id){ // focused and has value
+				
+				mctx.fillStyle='#fff';
+				mctx.fillText(this.value + this.blinkStr, this.interactable.x + 10 , this.interactable.y +  this.interactable.height/2 + 5 );
+				
+			}else if(this.value.length >= 1 ){ // not focused
 				mctx.fillStyle='#8c8c8c';
-				mctx.fillText(this.blinkStr, this.x + 10 , this.y +  this.height/2 + 5 );
-			}else if(this.value.length <= 0){
-				mctx.fillStyle='#8c8c8c';
-				mctx.fillText('https://example.org', this.x + 10 , this.y +  this.height/2 + 5 );
-			}else{
-				mctx.fillText(this.value+this.blinkStr, this.x + 10 , this.y +  this.height/2 + 5 );
+				
+				mctx.fillText(this.value, this.interactable.x + 10 , this.interactable.y +  this.interactable.height/2 + 5 );
+				
+				mctx.fillText(this.blinkStr, this.interactable.x + 10 , this.interactable.y +  this.interactable.height/2 + 5 );
 			}
-			
-		});
+		}
 	}
 }

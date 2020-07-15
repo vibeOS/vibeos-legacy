@@ -359,7 +359,7 @@ class cwindow {
 	}
 }
 
-overlay.addEventListener('mousemove', e=>{
+var mouseMoveHandler = (e)=>{
 	e.preventDefault();
 	
 	// set cursor positions
@@ -407,10 +407,14 @@ overlay.addEventListener('mousemove', e=>{
 		entry.hoverstart();
 	
 	}
-});
+}
+
+overlay.addEventListener('mousemove', mouseMoveHandler);
 
 overlay.addEventListener('mousedown', e=>{
 	e.preventDefault();
+	
+	mouseMoveHandler(e); // incase some business happened 
 	
 	cursor.down = true;
 	
@@ -465,15 +469,39 @@ overlay.addEventListener('wheel', e=>{
 	
 });
 
-overlay.addEventListener('focus', e=>{
+window.addEventListener('focus', e=>{
 	mfocus = true;
 });
 
-overlay.addEventListener('blur', e=>{
+window.addEventListener('blur', e=>{
 	mfocus = false;
 });
 
+if(localStorage.getItem('background') != null){
+	background = JSON.parse(localStorage.getItem('background'));
+}else{
+	localStorage.setItem('background', JSON.stringify(background, null, '\t') )
+}
+
 setInterval(()=>{
+	if(JSON.parse(localStorage.getItem('background'))!= background){
+		localStorage.setItem('background', JSON.stringify(background));
+	}
+	
+	if(mCanvas.getAttribute('width') != msize.w){
+		mCanvas.setAttribute('width', msize.w);
+		mCanvas.style.width = msize.w + 'px';
+		mCanvas.style.height = msize.h + 'px';
+		
+		overlay.setAttribute('width', msize.w);
+		overlay.style.width = msize.w + 'px';
+		overlay.style.height = msize.h + 'px';
+	}
+	
+	if(mCanvas.getAttribute('height') != msize.h){
+	mCanvas.setAttribute('height', msize.h);
+	}
+	
 	if(background.value.match(/^(?:[a-z]*?|#\d{3,})$/g) ){ // is color
 		mctx.fillStyle=background.value;
 		mctx.fillRect(0,0,msize.w,msize.h);

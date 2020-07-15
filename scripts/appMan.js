@@ -260,6 +260,11 @@ contextMenuEntries.forEach((e,i)=>{
 });
 
 highRenq.push(()=>{
+	desktop.width = msize.w
+	desktop.height = msize.h
+	
+	taskBar.width = msize.w
+	
 	if(desktop.contextOpen){
 		// mctx.fillStyle = '#FCFCFC';
 		// mctx.fillRect(desktop.contextX, desktop.contextY, 160, 25 * 5);
@@ -451,7 +456,7 @@ highRenq.push(()=>{
 		mctx.fillRect(applications.x, applications.y, applications.width, applications.height);
 	}
 	
-	if(!startOpen){
+	if(!startOpen || startOpen == false){
 		startEntries.forEach((e,i)=>{
 			e.open = false;
 			e.interactable.disabled = true;

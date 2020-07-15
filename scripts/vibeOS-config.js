@@ -6,6 +6,10 @@ var initSettings = ()=>{
 				sysinfo: new button('System Info', 100, 50),
 				about: new button('About', 100, 50),
 			},
+			screenResButtons = {
+				'1280x720': new button('720p', 100, 50),
+				'1920x1080': new button('1080p', 100, 50),
+			}
 			
 			activeTab = 'general',
 			
@@ -21,7 +25,26 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('General Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
+						
+						mctx.textAlign = 'start';
+						mctx.font = '16px Open Sans';
+						mctx.fillText('Screen resolution:', remainingX + 16, ele.y + 150);
+						
+						// todo: dropdown menu and radio buttons
+						
+						Object.entries(screenResButtons).forEach((e,i)=>{
+							if(e[1] == null)return;
+							
+							e[1].this().interactable.x = remainingX + 16 + i * 120
+							
+							e[1].this().interactable.y = ele.y + 175
+					
+							e[1].this().interactable.index = ele.contentBox.index + 1 + i;
+							
+							e[1].this().render();
+						});
+						
 						break
 					case'accounts':
 						mctx.fillStyle = '#000' // font color
@@ -29,7 +52,7 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('Accoutns Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 						break
 					case'proxy':
 						mctx.fillStyle = '#000' // font color
@@ -37,7 +60,7 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('Proxy Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 						
 						break
 					case 'sysinfo':
@@ -86,7 +109,7 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('vibeOS', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 						
 						// description
 						
@@ -95,7 +118,7 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('Basically a fucking OS in your web browser', remainingX + remainingWidth / 2, ele.y + 110);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 						
 						// black line seperating text
 						
@@ -116,7 +139,7 @@ var initSettings = ()=>{
 						mctx.fillText('Future Spot', remainingX + remainingWidth / 2, ele.y + 250);
 						mctx.font = 'bold 15px Open Sans';
 						mctx.fillText('Future Developer', remainingX + remainingWidth / 2, ele.y + 270);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 
 						mctx.font = '15px Open Sans';
 						mctx.fillRect(remainingX + 15, ele.y + 285, remainingWidth - 25, 2);
@@ -127,7 +150,7 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans';
 						mctx.fillText('TitaniumNetwork', remainingX + remainingWidth / 2, ele.y + 330);
 						mctx.fillText('IStealYourMemes', remainingX + remainingWidth / 2, ele.y + 350);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 
 						// footer
 						
@@ -136,7 +159,7 @@ var initSettings = ()=>{
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('vibeOS is In Development', remainingX + remainingWidth / 2, ele.y + ele.height);
-						mctx.textAlign = 'end';
+						mctx.textAlign = 'start';
 						
 						break
 				}
@@ -157,7 +180,7 @@ var initSettings = ()=>{
 					
 					e[1].this().interactable.y = ele.y + 45 + i * 65
 			
-					e[1].this().interactable.index = window.contentBox.index + 1 + i;
+					e[1].this().interactable.index = ele.contentBox.index + 1 + i;
 					
 					e[1].this().render();
 				});
@@ -170,6 +193,18 @@ var initSettings = ()=>{
 			e[1].this().interactable.clickend = ()=>{
 				if(e[1].this().interactable.hover != true)return;
 				activeTab = e[0];
+			}
+		});
+		
+		Object.entries(screenResButtons).forEach((e,i)=>{
+			if(e[1] == null)return;
+			
+			e[1].this().interactable.clickend = ()=>{
+				if(e[1].this().interactable.hover != true)return;
+				var res = e[0].split('x'); // [1920, 1080]
+				
+				msize.w = res[0];
+				msize.h = res[1];
 			}
 		});
 		

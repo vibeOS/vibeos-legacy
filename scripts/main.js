@@ -11,11 +11,18 @@ var mCanvas = document.getElementById('mCanvas'),
 	interactables = {},
 	emptyFunction = ()=>{},
 	hiddenContainer=document.createElement('div'),
-	globalProxy = 'https://ldm.sys32.dev/';
+	globalProxy = 'https://ldm.sys32.dev/',
+	ip = '';
 
 document.body.appendChild(hiddenContainer);
 hiddenContainer.style.display = 'none';
 hiddenContainer.style.position = 'absolute';
+
+(async ()=>{
+	ip = await window.fetch('https://api.ipify.org?format=json');
+	ip = await ip.json();
+	ip = await ip.ip;
+})();
 
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';

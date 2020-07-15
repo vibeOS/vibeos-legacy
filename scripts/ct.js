@@ -3,5 +3,5 @@ function dnctfthetruth() {
 }
 
 function global_getclientip() {
-    return 'Not sufficentely pogged yet, sorry.'
+    return ip;
 }

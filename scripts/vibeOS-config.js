@@ -54,23 +54,39 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans'
 
 						var progvalues = {
-							name: 'vibeOS',
-							version: '1.0',
-							extra: 'Development Version'
-						}
+								name: 'vibeOS',
+								version: '1.0',
+								extra: 'Development Version'
+							},
+							lines = [],
+							blines = [], // temp variable
+							lineHeight = 16,
+							textSize = 15;
 
-						mctx.fillText(`Version: ${progvalues.version} ${progvalues.extra}`, ele.x + 150, ele.y + 60); // version line 1
-						mctx.fillText(`Platform: ${navigator.platform}`, ele.x + 150, ele.y + 80); // platform line 2
-						mctx.fillText(`Screen Resolution: ${screen.width}x${screen.height}`, ele.x + 150, ele.y + 100); // screen res line 3
-						mctx.fillText(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`, ele.x + 150, ele.y + 120); // window res line 4
-						mctx.fillText(`Enviornment Resolution: ${msize.w}x${msize.h}`, ele.x + 150, ele.y + 140); // enviornment res line 5
-						mctx.fillText(`IP Address: ${global_getclientip()}`, ele.x + 150, ele.y + 160); // ip address line 6
-						mctx.fillText(`URL: ${unescape(location.href)}`, ele.x + 150, ele.y + 180); // url line 7 this might need to be wrapped...
-						mctx.fillText(`User Agent: ${navigator.userAgent}`, ele.x + 150, ele.y + 220); // useragent line 8 ct: DIVIDE WRAP THIS!!!
+						lines.push(`Version: ${progvalues.version} ${progvalues.extra}`); // version line 1
+						lines.push(`Platform: ${navigator.platform}`); // platform line 2
+						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
+						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
+						lines.push(`Enviornment Resolution: ${msize.w}x${msize.h}`); // enviornment res line 5
+						lines.push(`IP Address: ${global_getclientip()}`); // ip address line 6
+						lines.push(`URL: ${unescape(location.href)}`); // url line 7 this might need to be wrapped...
+						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8 ct: DIVIDE WRAP THIS!!! div: cheems
 
-						mctx.fillText(`imagine a button here`, ele.x + 150, ele.y + 300); // imagineee
+						lines.push(`imagine a button here`); // imagineee
 
-
+						lines.forEach((e,i)=>{
+							wordWrap(e, remainingWidth / 7.6).split('\n').forEach((ee,ii)=>{
+								blines.push(ee);
+							});
+						});
+						
+						blines.forEach((e,i)=>{
+							// if(clines.length >= window.height / textSize - 4 + (textSize - lineHeight) )clines.shift();
+							mctx.fillStyle='#000';
+							mctx.font = textSize+'px Open Sans';
+							mctx.fillText(e, remainingX + 15 , window.y + 50 + i*1.5*lineHeight);
+						});
+						
 						break
 					case'about': // the tab is on about stuff
 						

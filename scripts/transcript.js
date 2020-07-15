@@ -20,6 +20,7 @@ var initTranscript=()=>{
 					mctx.font = textSize+'px Open Sans';
 					mctx.fillText(e, window.x + 15 , window.y + 50 + i*lineHeight);
 				});
+				
 				var newHeight = textSize + 12 + blines.length * lineHeight;
 				if(window.minHeight <= newHeight)window.height = newHeight
 				else window.height = window.minHeight

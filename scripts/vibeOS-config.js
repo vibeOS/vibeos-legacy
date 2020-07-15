@@ -8,7 +8,7 @@ var initSettings = ()=>{
 				about: new button('About', 100, 50),
 			},
 			
-			activeTab = 'about',
+			activeTab = 'general',
 			
 			window = new cwindow('wallpaper-picker', 50, 50, (ele)=>{
 				var remainingX = ele.x + 130,
@@ -17,20 +17,58 @@ var initSettings = ()=>{
 				switch(activeTab){
 					case'general':
 						// do rendering stuff for general tab
+						mctx.fillStyle = '#000' // font color
+						mctx.font = 'bolder 30px Open Sans' // font and size
 						
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.fillText('General Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.textAlign = 'end';
 						break
 					case'accounts':
+						mctx.fillStyle = '#000' // font color
+						mctx.font = 'bolder 30px Open Sans' // font and size
 						
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.fillText('Accoutns Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.textAlign = 'end';
 						break
 					case'proxy':
+						mctx.fillStyle = '#000' // font color
+						mctx.font = 'bolder 30px Open Sans' // font and size
 						
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.fillText('Proxy Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.textAlign = 'end';
 						
 						break
 					case 'providers':
-
+						mctx.fillStyle = '#000' // font color
+						mctx.font = 'bolder 30px Open Sans' // font and size
+						
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.fillText('Providers Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.textAlign = 'end';
 						break
 					case 'sysinfo':
+						mctx.fillStyle = '#000'
+						mctx.font = '15px Open Sans'
 
+						var progvalues = {
+							name: 'vibeOS',
+							version: '1.0',
+							extra: 'Development Version'
+						}
+
+						mctx.fillText(`Version: ${progvalues.version} ${progvalues.extra}`, ele.x + 150, ele.y + 60); // version line 1
+						mctx.fillText(`Platform: ${navigator.platform}`, ele.x + 150, ele.y + 80); // platform line 2
+						mctx.fillText(`Screen Resolution: ${screen.width}x${screen.height}`, ele.x + 150, ele.y + 100); // screen res line 3
+						mctx.fillText(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`, ele.x + 150, ele.y + 120); // window res line 4
+						mctx.fillText(`Enviornment Resolution: ${msize.w}x${msize.h}`, ele.x + 150, ele.y + 140); // enviornment res line 5
+						mctx.fillText(`IP Address: ${global_getclientip()}`, ele.x + 150, ele.y + 160); // ip address line 6
+						mctx.fillText(`URL: ${unescape(location.href)}`, ele.x + 150, ele.y + 180); // url line 7 this might need to be wrapped...
+						mctx.fillText(`User Agent: ${navigator.userAgent}`, ele.x + 150, ele.y + 220); // useragent line 8 ct: DIVIDE WRAP THIS!!!
+
+						mctx.fillText(`imagine a button here`, ele.x + 150, ele.y + 300); // imagineee
 
 
 						break
@@ -131,7 +169,7 @@ var initSettings = ()=>{
 		});
 		
 		window.width = 500
-		window.height = 400
+		window.height = 418
 		
 		window.icon = 'categories/24/package_settings.png'
 		window.title = 'vibeOS settings'

@@ -3,6 +3,8 @@ var initSettings = ()=>{
 				general: new button('General', 100, 50),
 				accounts: new button('Accounts', 100, 50),
 				proxy: new button('Proxy', 100, 50),
+				providers: new button('Providers', 100, 50),
+				sysinfo: new button('System Info', 100, 50),
 				about: new button('About', 100, 50),
 			},
 			
@@ -23,6 +25,14 @@ var initSettings = ()=>{
 					case'proxy':
 						
 						
+						break
+					case 'providers':
+
+						break
+					case 'sysinfo':
+
+
+
 						break
 					case'about': // the tab is on about stuff
 						
@@ -48,13 +58,41 @@ var initSettings = ()=>{
 						
 						mctx.fillRect(remainingX + 15, ele.y + 125, remainingWidth - 25, 2);
 						
+						mctx.fillStyle = '#000'
+						mctx.font = '15px Open Sans'
+
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);
+						mctx.font = 'bold 15px Open Sans';
+						mctx.fillText('Divide | Github: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);
+						mctx.font = '15px Open Sans';
+						mctx.fillText('Assistant Developer & Design', remainingX + remainingWidth / 2, ele.y + 200);
+						mctx.font = 'bold 15px Open Sans';
+						mctx.fillText('Nathan Mendenhall | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);
+						mctx.font = '15px Open Sans';
+						mctx.fillText('Future Spot', remainingX + remainingWidth / 2, ele.y + 250);
+						mctx.font = 'bold 15px Open Sans';
+						mctx.fillText('Future Developer', remainingX + remainingWidth / 2, ele.y + 270);
+						mctx.textAlign = 'end';
+
+						mctx.font = '15px Open Sans';
+						mctx.fillRect(remainingX + 15, ele.y + 285, remainingWidth - 25, 2);
+
+						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.font = 'bold 15px Open Sans';
+						mctx.fillText('vibeOS was created with help from:', remainingX + remainingWidth / 2, ele.y + 310);
+						mctx.font = '15px Open Sans';
+						mctx.fillText('TitaniumNetwork', remainingX + remainingWidth / 2, ele.y + 330);
+						mctx.fillText('IStealYourMemes', remainingX + remainingWidth / 2, ele.y + 350);
+						mctx.textAlign = 'end';
+
 						// footer
 						
 						mctx.fillStyle = '#000'
 						mctx.font = '13px Open Sans'
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('vibeOS™, in development', remainingX + remainingWidth / 2, ele.y + ele.height);
+						mctx.fillText('vibeOS is In Development', remainingX + remainingWidth / 2, ele.y + ele.height);
 						mctx.textAlign = 'end';
 						
 						break

@@ -3,7 +3,6 @@ var initSettings = ()=>{
 				general: new button('General', 100, 50),
 				accounts: new button('Accounts', 100, 50),
 				proxy: new button('Proxy', 100, 50),
-				providers: new button('Providers', 100, 50),
 				sysinfo: new button('System Info', 100, 50),
 				about: new button('About', 100, 50),
 			},
@@ -41,14 +40,6 @@ var initSettings = ()=>{
 						mctx.textAlign = 'end';
 						
 						break
-					case 'providers':
-						mctx.fillStyle = '#000' // font color
-						mctx.font = 'bolder 30px Open Sans' // font and size
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Providers Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'end';
-						break
 					case 'sysinfo':
 						mctx.fillStyle = '#000'
 						mctx.font = '15px Open Sans'
@@ -58,22 +49,20 @@ var initSettings = ()=>{
 								version: '1.0',
 								extra: 'Development Version'
 							},
-							lines = [],
-							blines = [], // temp variable
-							lineHeight = 16,
-							textSize = 15;
+						lines = [],
+						blines = [], // temp variable
+						lineHeight = 16,
+						textSize = 15;
 
 						lines.push(`Version: ${progvalues.version} ${progvalues.extra}`); // version line 1
 						lines.push(`Platform: ${navigator.platform}`); // platform line 2
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
 						lines.push(`Enviornment Resolution: ${msize.w}x${msize.h}`); // enviornment res line 5
-						lines.push(`IP Address: ${global_getclientip()}`); // ip address line 6
-						lines.push(`URL: ${unescape(location.href)}`); // url line 7 this might need to be wrapped...
-						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8 ct: DIVIDE WRAP THIS!!! div: cheems
-
-						lines.push(`imagine a button here`); // imagineee
-
+						lines.push(`IP Address: ${ip}`); // ip address line 6
+						lines.push(`URL: ${unescape(location.href)}`); // url line 7
+						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8
+						
 						lines.forEach((e,i)=>{
 							wordWrap(e, remainingWidth / 7.6).split('\n').forEach((ee,ii)=>{
 								blines.push(ee);
@@ -188,5 +177,5 @@ var initSettings = ()=>{
 		window.height = 418
 		
 		window.icon = 'categories/24/package_settings.png'
-		window.title = 'vibeOS settings'
+		window.title = 'vibeOS Settings'
 	}

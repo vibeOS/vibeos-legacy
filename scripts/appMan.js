@@ -83,6 +83,13 @@ var startEntries = [
 						initWebView('DuckDuckGo', 'mimetypes/16/html.png', 'https://duckduckgo.com/', 800, 600)
 					},
 				},
+				{
+					value: 'Discord (broken)',
+					icon: 'mimetypes/16/html.png',
+					func: ()=>{
+						initWebView('Discord (via PowerMouse)', 'mimetypes/16/html.png', 'https://discord.com/login', 800, 600, true)
+					},
+				},
 			],
 		},
 		{

@@ -21,7 +21,7 @@ elementA.appendChild(elementC);
 	},
 	network_relay_url: 'wss://relay.widgetry.org/',
 	autostart: false,
-});*/
+});a*/
 
 var initLinuxVM = (()=>{ // TODO: replace bios and linux images with blob urls
 		var emulator = window.emulator = new V86Starter({
@@ -61,7 +61,7 @@ var initLinuxVM = (()=>{ // TODO: replace bios and linux images with blob urls
 					size: 10232633,
 				},
 				baseurl: 'https://ldm.sys32.dev/arceh/',*/
-				baseurl: 'https://ldm.sys32.dev/arceh/',
+				baseurl: 'https://ldm.sys32.dev/arch/',
 				basefs: 'https://sys32.dev/assets/v86/images/fs.json',
 			},
 			

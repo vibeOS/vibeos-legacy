@@ -355,3 +355,92 @@ class cswitch {
 		}
 	}
 }
+
+class cradio {
+	constructor(label, wh, value){
+		this.value = value; // starting value
+		
+		this.split = 2
+		
+		this.label = label
+		
+		this.interactable = new interactable('buttonveee' + Date.now() + Object.entries(interactables).length , wh, wh,
+			()=>{
+				// hoverstart
+			},
+			()=>{
+				// hoverend
+			},
+			()=>{
+				// clickstart
+			},
+			()=>{
+				// clickend
+				this.value = !this.value
+			}
+		);
+		
+		this.this = ()=>{
+			return this
+		}
+		
+		this.render = ()=>{ // never push to renq in a constructor
+			
+			// content
+			
+			this.grad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			this.bgGrad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			if(this.interactable.pressed){
+				this.grad.addColorStop(0, '#d2692a');
+			}else if(this.interactable.hover){
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(0.8, '#d2612a');
+				this.grad.addColorStop(1, '#d2612a');
+			}else{
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(1, '#d2612a');
+			}
+			
+			this.bgGrad.addColorStop(0, '#DDDDDD');
+			this.bgGrad.addColorStop(1, '#D1D1D1');
+			
+			// background border
+			
+			mctx.fillStyle = 'transparent'
+			mctx.strokeStyle = '#A8A8A8'
+			
+			mctx.roundRect(this.interactable.x, this.interactable.y, this.interactable.width, this.interactable.height, 50);
+			
+			// background
+			
+			mctx.fillStyle = 'transparent'
+			mctx.strokeStyle = this.bgGrad
+			
+			mctx.roundRect(this.interactable.x + 1, this.interactable.y + 1, this.interactable.width - 2, this.interactable.height - 2, 40);
+			
+			// content 
+			
+			if(this.value){ // enabled
+				mctx.fillStyle = this.grad
+				mctx.strokeStyle = this.grad
+				
+				mctx.roundRect(
+					this.interactable.x + this.interactable.width / 4,
+					this.interactable.y + this.interactable.width / 4,
+					this.interactable.width / 2,
+					this.interactable.height / 2,
+					40
+				);
+			}else{ //probably disabled
+				
+			}
+			
+			mctx.fillStyle='#000';
+			mctx.font = "14px Open Sans";
+			mctx.fillText(this.label, this.interactable.x + this.interactable.width + 8, this.interactable.y + this.interactable.height - 8);
+			
+		}
+	}
+}

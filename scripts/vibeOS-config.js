@@ -28,25 +28,24 @@ var initSettings = ()=>{
 				switch(activeTab){
 					case'general':
 						// do rendering stuff for general tab
-						mctx.fillStyle = '#000' // font color
-						mctx.font = 'bolder 30px Open Sans' // font and size
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('General Settings', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'start';
-						
+
+						mctx.fillStyle = '#000';						
 						mctx.textAlign = 'start';
 						mctx.font = '16px Open Sans';
-						mctx.fillText('Screen resolution:', remainingX + 16, ele.y + 150);
+						mctx.fillText(`Your Screen Resolution: ${screen.width}x${screen.height}`, remainingX + 16, ele.y + 60)
+						mctx.fillText(`Current Enviornment Resolution: ${msize.w}x${msize.h}`, remainingX + 16, ele.y + 80);
+						mctx.font = 'bold 16px Open Sans';
+						mctx.fillText(`WARNING: Do not set your EnvRes to`, remainingX + 16, ele.y + 100);
+						mctx.fillText(`lower then your ScreenRes!`, remainingX + 16, ele.y + 115);
 						
 						// todo: dropdown menu and radio buttons
 						
 						Object.entries(cradios).forEach((e,i)=>{
 							if(e[1] == null)return;
 							
-							e[1].this().interactable.x = remainingX + 16
+							e[1].this().interactable.x = remainingX + 20
 							
-							e[1].this().interactable.y = ele.y + 175 + i * 60
+							e[1].this().interactable.y = ele.y + 130 + i * 30
 					
 							e[1].this().interactable.index = ele.contentBox.index + 3 + i;
 							

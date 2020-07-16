@@ -1,4 +1,23 @@
-var initWallpaperPicker = ()=>{
+var wallpapers={
+		solids : [
+		
+		],
+		images : [
+			{
+				value: 'wallpapers/a.png',
+				interactable: null,
+			},
+			{
+				value: 'wallpapers/b.png',
+				interactable: null,
+			},
+			{
+				value: 'wallpapers/c.png',
+				interactable: null,
+			},
+		],
+	},
+	initWallpaperPicker = ()=>{
 		wallpapers.images.forEach((e,i)=>{
 			e.interactable =  new interactable('desktop_contextBox_' + e.value.toLowerCase().trim(), 1920 / 15, 1080 / 15,
 				emptyFunction,

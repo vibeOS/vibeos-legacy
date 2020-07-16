@@ -5,9 +5,10 @@ var mCanvas = document.getElementById('mCanvas'),
 	mfocus = false,
 	renq = [],
 	highRenq = [],
+	above_high_renq = [],
 	images = {},
 	cursor = {img: 'pointer', grab: {} },
-	background = {value : 'wallpapers/a.png'},
+	background = {value : 'wallpapers/c.png'},
 	interactables = {},
 	emptyFunction = ()=>{},
 	hiddenContainer=document.createElement('div'),
@@ -159,7 +160,13 @@ class interactable {
 }
 
 class cwindow {
-	constructor(id, x, y, afterRender){
+	constructor(id, x, y, afterRender, whichRenq){
+		
+		// whichRenq should be renq by default unless set
+		
+		if(whichRenq == null)this.whichRenq = renq
+		else this.whichRenq = whichRenq
+		
 		// let the caller define the title, width, and height?
 		
 		if(Object.entries(interactables).some((e,i)=> e[0].startsWith(id)))id = id + Date.now()
@@ -210,9 +217,9 @@ class cwindow {
 			
 		});
 		
-		this.renqID = renq.length;
+		this.renqID = this.whichRenq.length;
 		
-		this.titleBar.index = renq.length;
+		this.titleBar.index = this.whichRenq.length;
 		
 		this.contentBox = new interactable(id + '_contentbox', this.width, this.height,
 		emptyFunction,
@@ -256,17 +263,21 @@ class cwindow {
 			if(this.closeButton.pressed && this.closeButton.hover){
 				// todo: closing stuff
 				
-				renq.splice(this.renqID, 1);
-				
-				this.closing();
-				this.contentBox.delete();
-				this.closeButton.delete();
-				this.titleBar.delete();
+				this.close();
 			}
 		});
 		
-		this.contentBox.index = renq.length + 1;
-		this.closeButton.index = renq.length + 2;
+		this.close = ()=>{ // get rid of window nicely 
+			this.whichRenq.splice(this.renqID, 1);
+			
+			this.closing();
+			this.contentBox.delete();
+			this.closeButton.delete();
+			this.titleBar.delete();
+		}
+		
+		this.contentBox.index = this.whichRenq.length + 1;
+		this.closeButton.index = this.whichRenq.length + 2;
 		
 		this.renderFunc = ()=>{
 			
@@ -355,7 +366,7 @@ class cwindow {
 			afterRender(this);
 		}
 		
-		renq[this.renqID] = this.renderFunc;
+		this.whichRenq[this.renqID] = this.renderFunc;
 	}
 }
 
@@ -532,6 +543,10 @@ setInterval(()=>{
 			e();
 		});
 	}
+	
+	above_high_renq.forEach((e,i)=>{ // super high stuff like above display level
+		e();
+	});
 	
 	// RENDER CURSOR OR SET IT AFTER GOING THROUGH THE RENQ
 	

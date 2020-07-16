@@ -203,21 +203,6 @@ var startEntries = [
 		}
 	),
 	hoverGrad = mctx.createLinearGradient(0, 0, 25 * 10, 0),
-	wallpapers={
-		solids : [
-		
-		],
-		images : [
-			{
-				value: 'wallpapers/a.png',
-				interactable: null,
-			},
-			{
-				value: 'wallpapers/b.png',
-				interactable: null,
-			},
-		],
-	},
 	contextMenuEntries=[
 		{
 			value: 'Change wallpaper',
@@ -488,12 +473,12 @@ setInterval(()=>{
 	dateStr=new Intl.DateTimeFormat('en-US',{day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date());
 }, 100);
 
-timeBox.width = 145;
-timeBox.x = msize.w - timeBox.width;
-timeBox.height = taskBar.height;
-
 highRenq.push(()=>{
-	
+
+	timeBox.width = 145;
+	timeBox.x = msize.w - timeBox.width;
+	timeBox.height = taskBar.height;
+
 	taskBarButtonStyle(timeBox.id);
 	
 	mctx.fillStyle='#F2F2F2';

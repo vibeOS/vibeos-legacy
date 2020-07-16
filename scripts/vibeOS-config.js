@@ -1,3 +1,92 @@
+class cradio {
+	constructor(label, wh, value){
+		this.value = value; // starting value
+		
+		this.split = 2
+		
+		this.label = label
+		
+		this.interactable = new interactable('buttonveee' + Date.now() + Object.entries(interactables).length , wh, wh,
+			()=>{
+				// hoverstart
+			},
+			()=>{
+				// hoverend
+			},
+			()=>{
+				// clickstart
+			},
+			()=>{
+				// clickend
+				this.value = !this.value
+			}
+		);
+		
+		this.this = ()=>{
+			return this
+		}
+		
+		this.render = ()=>{ // never push to renq in a constructor
+			
+			// content
+			
+			this.grad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			this.bgGrad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			if(this.interactable.pressed){
+				this.grad.addColorStop(0, '#d2692a');
+			}else if(this.interactable.hover){
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(0.8, '#d2612a');
+				this.grad.addColorStop(1, '#d2612a');
+			}else{
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(1, '#d2612a');
+			}
+			
+			this.bgGrad.addColorStop(0, '#DDDDDD');
+			this.bgGrad.addColorStop(1, '#D1D1D1');
+			
+			// background border
+			
+			mctx.fillStyle = 'transparent'
+			mctx.strokeStyle = '#A8A8A8'
+			
+			mctx.roundRect(this.interactable.x, this.interactable.y, this.interactable.width, this.interactable.height, 50);
+			
+			// background
+			
+			mctx.fillStyle = 'transparent'
+			mctx.strokeStyle = this.bgGrad
+			
+			mctx.roundRect(this.interactable.x + 1, this.interactable.y + 1, this.interactable.width - 2, this.interactable.height - 2, 40);
+			
+			// content 
+			
+			if(this.value){ // enabled
+				mctx.fillStyle = this.grad
+				mctx.strokeStyle = this.grad
+				
+				mctx.roundRect(
+					this.interactable.x + this.interactable.width / 4,
+					this.interactable.y + this.interactable.width / 4,
+					this.interactable.width / 2,
+					this.interactable.height / 2,
+					40
+				);
+			}else{ //probably disabled
+				
+			}
+			
+			mctx.fillStyle='#000';
+			mctx.font = "14px Open Sans";
+			mctx.fillText(this.label, this.interactable.x + this.interactable.width + 8, this.interactable.y + this.interactable.height - 8);
+			
+		}
+	}
+}
+
 var initSettings = ()=>{
 		var navButtons = {
 				general: new button('General', 100, 50),
@@ -9,7 +98,15 @@ var initSettings = ()=>{
 			screenResButtons = {
 				'1280x720': new button('720p', 100, 50),
 				'1920x1080': new button('1080p', 100, 50),
-			}
+			},
+			switches = {
+				'pee': new cswitch(50, 25, false),
+			},
+			cradios = {
+				'1280x720': new cradio('1280x720', 25, false),
+				'1366x768': new cradio('1366x768', 25, false),
+				'1920x1080': new cradio('1920x1080', 25, false),
+			},
 			
 			activeTab = 'general',
 			
@@ -24,7 +121,7 @@ var initSettings = ()=>{
 						mctx.font = 'bolder 30px Open Sans' // font and size
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('General Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.fillText('General Settings', remainingX + remainingWidth / 2, ele.y + 75);
 						mctx.textAlign = 'start';
 						
 						mctx.textAlign = 'start';
@@ -33,14 +130,14 @@ var initSettings = ()=>{
 						
 						// todo: dropdown menu and radio buttons
 						
-						Object.entries(screenResButtons).forEach((e,i)=>{
+						Object.entries(cradios).forEach((e,i)=>{
 							if(e[1] == null)return;
 							
-							e[1].this().interactable.x = remainingX + 16 + i * 120
+							e[1].this().interactable.x = remainingX + 16
 							
-							e[1].this().interactable.y = ele.y + 175
+							e[1].this().interactable.y = ele.y + 175 + i * 60
 					
-							e[1].this().interactable.index = ele.contentBox.index + 1 + i;
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;
 							
 							e[1].this().render();
 						});
@@ -61,6 +158,20 @@ var initSettings = ()=>{
 						mctx.textAlign = 'center'; // use these for near perfect centering
 						mctx.fillText('Proxy Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
 						mctx.textAlign = 'start';
+						
+						
+						Object.entries(switches).forEach((e,i)=>{
+							if(e[1] == null)return;
+							
+							e[1].this().interactable.x = remainingX + 16 + i * 120
+							
+							e[1].this().interactable.y = ele.y + 175
+					
+							e[1].this().interactable.index = ele.contentBox.index + 1 + i;
+							
+							e[1].this().render();
+						});
+						
 						
 						break
 					case 'sysinfo':
@@ -196,17 +307,30 @@ var initSettings = ()=>{
 			}
 		});
 		
-		Object.entries(screenResButtons).forEach((e,i)=>{
+		Object.entries(cradios).forEach((e,i)=>{
 			if(e[1] == null)return;
 			
+			var prevFunc = e[1].this().interactable.clickend; // have this somewhere since we overwrite it
+			
 			e[1].this().interactable.clickend = ()=>{
-				if(e[1].this().interactable.hover != true)return;
+				// prevFunc();
+				
+				Object.entries(cradios).forEach((ee,ii)=>{
+					ee[1].this().value = false;
+				});
+				
+				e[1].this().value = true
+				
+				// if(e[1].this().value != true)return;
+				
 				var res = e[0].split('x'); // [1920, 1080]
 				
 				msize.w = res[0];
 				msize.h = res[1];
 			}
 		});
+		
+		
 		
 		window.width = 500
 		window.height = 418

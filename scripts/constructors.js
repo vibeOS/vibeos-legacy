@@ -259,3 +259,99 @@ class button {
 		}
 	}
 }
+
+class cswitch {
+	constructor(width, height, value){
+		this.value = value; // starting value
+		
+		this.split = 2
+		
+		this.interactable = new interactable('button' + Object.entries(interactables).length , width, height,
+			()=>{
+				// hoverstart
+			},
+			()=>{
+				// hoverend
+			},
+			()=>{
+				// clickstart
+			},
+			()=>{
+				// clickend
+				this.value = !this.value
+			}
+		);
+		
+		this.this = ()=>{
+			return this
+		}
+		
+		this.width = width
+		
+		this.render = ()=>{ // never push to renq in a constructor
+			
+			// content
+			
+			this.grad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			this.bgGrad = mctx.createLinearGradient(this.interactable.x, this.interactable.y, this.interactable.x, this.interactable.y + this.interactable.height)
+			
+			if(this.interactable.pressed){
+				this.grad.addColorStop(0, '#d2692a');
+			}else if(this.interactable.hover){
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(0.8, '#d2612a');
+				this.grad.addColorStop(1, '#d2612a');
+			}else{
+				this.grad.addColorStop(0, '#de985b');
+				this.grad.addColorStop(1, '#d2612a');
+			}
+			
+			this.bgGrad.addColorStop(0, '#DDDDDD');
+			this.bgGrad.addColorStop(1, '#D1D1D1');
+			
+			this.switchX = (this.value ? (this.interactable.x + this.interactable.width - this.interactable.width / this.split) : this.interactable.x)
+			
+			// background border
+			
+			mctx.fillStyle = 'transparent';
+			mctx.strokeStyle = '#A8A8A8';
+			
+			mctx.roundRect(this.interactable.x, this.interactable.y, this.interactable.width, this.interactable.height, 15);
+			
+			// background
+			
+			mctx.fillStyle = this.bgGrad;
+			mctx.strokeStyle = this.bgGrad;
+			mctx.roundRect(this.interactable.x + 1, this.interactable.y + 1, this.interactable.width - 2, this.interactable.height - 2, 15);
+			
+			// border
+			
+			mctx.fillStyle = 'transparent';
+			mctx.strokeStyle = '#c95528';
+			
+			mctx.roundRect(this.switchX, this.interactable.y, this.interactable.width / this.split, this.interactable.height, 15);
+			
+			// content 
+			
+			mctx.fillStyle = this.grad;
+			mctx.strokeStyle = this.grad;
+			mctx.roundRect(this.switchX + 1, this.interactable.y + 1, (this.interactable.width - 2) / this.split, this.interactable.height - 2, 15);
+			
+			if(this.value){ // enabled
+
+			}else{ //probably disabled
+				
+			}
+			/*
+			mctx.fillStyle = '#fff'
+			mctx.font = '14px Open Sans';
+			mctx.textAlign = 'center'; 
+			
+			mctx.fillText(this.text, this.interactable.x + this.interactable.width / 2, this.interactable.y + this.interactable.height / 2  + 4);
+			
+			mctx.textAlign = 'start'; 
+			*/
+		}
+	}
+}

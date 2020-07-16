@@ -148,24 +148,24 @@ var initSettings = ()=>{
 						mctx.fillStyle = '#000'
 						mctx.font = '15px Open Sans'
 
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);
+						mctx.textAlign = 'center';
+						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);          // DIVIDE TITLE HEAR
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Divide | Github: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);
+						mctx.fillText('Divide | Github: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);        // DIVIDE NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Assistant Developer & Design', remainingX + remainingWidth / 2, ele.y + 200);
+						mctx.fillText('Developer & Designer', remainingX + remainingWidth / 2, ele.y + 200);              // CTAETCSH TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Nathan Mendenhall | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);
+						mctx.fillText('Nathan Mendenhall | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);  // CTAETCSH NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Future Spot', remainingX + remainingWidth / 2, ele.y + 250);
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                         // LINUXTERM TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Future Developer', remainingX + remainingWidth / 2, ele.y + 270);
+						mctx.fillText('LinuxTerm | linuxterm.xyz', remainingX + remainingWidth / 2, ele.y + 270);         // LINUXTERM NAME HERE
 						mctx.textAlign = 'start';
 
 						mctx.font = '15px Open Sans';
 						mctx.fillRect(remainingX + 15, ele.y + 285, remainingWidth - 25, 2);
 
-						mctx.textAlign = 'center'; // use these for near perfect centering
+						mctx.textAlign = 'center';
 						mctx.font = 'bold 15px Open Sans';
 						mctx.fillText('vibeOS was created with help from:', remainingX + remainingWidth / 2, ele.y + 310);
 						mctx.font = '15px Open Sans';
@@ -179,7 +179,7 @@ var initSettings = ()=>{
 						mctx.font = '13px Open Sans'
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('vibeOS is In Development', remainingX + remainingWidth / 2, ele.y + ele.height);
+						mctx.fillText('vibeOS is Closed Source while in early development.', remainingX + remainingWidth / 2, ele.y + ele.height);
 						mctx.textAlign = 'start';
 						
 						break

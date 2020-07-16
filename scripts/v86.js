@@ -21,7 +21,7 @@ elementA.appendChild(elementC);
 	},
 	network_relay_url: 'wss://relay.widgetry.org/',
 	autostart: false,
-});*/
+});a*/
 
 var initLinuxVM = (()=>{ // TODO: replace bios and linux images with blob urls
 		var emulator = window.emulator = new V86Starter({

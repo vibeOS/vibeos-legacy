@@ -444,3 +444,71 @@ class cradio {
 		}
 	}
 }
+
+class cPrompt {
+	constructor(title, value, onTrue, onFalse, onRender, whichRenq){
+		if(whichRenq == null)this.whichRenq = highRenq
+		else this.whichRenq = whichRenq
+		
+		if(title == null)this.title = 'Prompt'
+		else this.title = title;
+		
+		if(value == null)this.value = 'Undefined'
+		else this.value = value;
+		
+		this.onRender = (onRender == null ? emptyFunction : onRender);
+		
+		this.buttons = [
+			[ new button('Yes', 100, 50), onTrue ],
+			[ new button('No', 100, 50), onFalse ],
+		]
+		
+		this.closed = false;
+		
+		this.buttons.forEach((entry, index)=>{
+			entry[0].interactable.clickend = ()=>{
+				if(entry[0].interactable.hover != true)return; // user has moved cursor off button but released 
+				entry[1](); // run callback
+				
+				this.window.close();
+				this.closed = true;
+			}
+		});
+		
+		if(this.value.length > 161){
+			this.value = this.value.substr(0,156) + '...'
+		}
+		
+		this.window = new cwindow(this.title, 200, 50, (window)=>{ // on render
+			window.title = this.title
+			
+			// description of window
+			
+			mctx.fillStyle = '#000'
+			mctx.font = '15px Open Sans';
+			
+			mctx.fillWrapText(this.value, this.window.x + 8, this.window.contentBox.y + 16, this.window.contentBox.width - 8, 18);
+			
+			// button crap
+			
+			this.buttons.forEach((entry,index)=>{
+				entry[0].interactable.x = this.window.x + this.window.width - entry[0].interactable.width - 10 - index * 120
+				
+				entry[0].interactable.y = this.window.y + this.window.height - 40
+		
+				entry[0].interactable.index = this.window.contentBox.index + 3 + index;
+				
+				entry[0].render();
+			});
+			
+			this.onRender(this);
+		},
+		whichRenq);
+		
+		this.window.width = 325
+		this.window.height = 150
+		
+		this.window.x = (msize.w / 2) - this.window.width / 2
+		this.window.y = (msize.h / 2) - this.window.height / 2
+	}
+}

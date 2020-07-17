@@ -90,7 +90,7 @@ var initSettings = ()=>{
 
 						var progvalues = {
 								name: 'vibeOS',
-								version: '1.0',
+								version: 'NA',
 								extra: 'Development Version'
 							},
 						lines = [],
@@ -149,37 +149,32 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans'
 
 						mctx.textAlign = 'center';
-						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);          // DIVIDE TITLE HEAR
+						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);                  // DIVIDE TITLE HEAR
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Divide | Github: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);        // DIVIDE NAME HERE
+						mctx.fillText('Divide | GitHub: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);                // DIVIDE NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer & Designer', remainingX + remainingWidth / 2, ele.y + 200);              // CTAETCSH TITLE HERE
+						mctx.fillText('Developer & Designer', remainingX + remainingWidth / 2, ele.y + 200);                      // CTAETCSH TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Nathan Mendenhall | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);  // CTAETCSH NAME HERE
+						mctx.fillText('Nathan M. | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);          // CTAETCSH NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                         // LINUXTERM TITLE HERE
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                                 // LINUXTERM TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('LinuxTerm | linuxterm.xyz', remainingX + remainingWidth / 2, ele.y + 270);         // LINUXTERM NAME HERE
+						mctx.fillText('LinuxTerm | linuxterm.xyz', remainingX + remainingWidth / 2, ele.y + 270);                 // LINUXTERM NAME HERE
+						mctx.font = '15px Open Sans';
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 300);                                 // DUCE TITLE HERE
+						mctx.font = 'bold 15px Open Sans';
+						mctx.fillText('SexyDuceDuce | GitHub: shawtylikesmelody', remainingX + remainingWidth / 2, ele.y + 320);  // DUCE NAME HERE
 						mctx.textAlign = 'start';
 
 						mctx.font = '15px Open Sans';
-						mctx.fillRect(remainingX + 15, ele.y + 285, remainingWidth - 25, 2);
+						mctx.fillRect(remainingX + 15, ele.y + 335, remainingWidth - 25, 2);
 
 						mctx.textAlign = 'center';
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('vibeOS was created with help from:', remainingX + remainingWidth / 2, ele.y + 310);
+						mctx.fillText('vibeOS was created with help from:', remainingX + remainingWidth / 2, ele.y + 360);
 						mctx.font = '15px Open Sans';
-						mctx.fillText('TitaniumNetwork', remainingX + remainingWidth / 2, ele.y + 330);
-						mctx.fillText('IStealYourMemes', remainingX + remainingWidth / 2, ele.y + 350);
-						mctx.textAlign = 'start';
-
-						// footer
-						
-						mctx.fillStyle = '#000'
-						mctx.font = '13px Open Sans'
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('vibeOS is Closed Source while in early development.', remainingX + remainingWidth / 2, ele.y + ele.height);
+						mctx.fillText('TitaniumNetwork', remainingX + remainingWidth / 2, ele.y + 380);
+						mctx.fillText('IStealYourMemes', remainingX + remainingWidth / 2, ele.y + 400);
 						mctx.textAlign = 'start';
 						
 						break

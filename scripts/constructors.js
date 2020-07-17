@@ -467,11 +467,14 @@ class cPrompt {
 		
 		this.buttons.forEach((entry, index)=>{
 			entry[0].interactable.clickend = ()=>{
+				if(this.closed == true)return;
+				
 				if(entry[0].interactable.hover != true)return; // user has moved cursor off button but released 
 				entry[1](); // run callback
 				
 				this.window.close();
 				this.closed = true;
+				entry.delete();
 			}
 		});
 		
@@ -510,5 +513,153 @@ class cPrompt {
 		
 		this.window.x = (msize.w / 2) - this.window.width / 2
 		this.window.y = (msize.h / 2) - this.window.height / 2
+	}
+}
+
+class windowOptions {
+	constructor(elements){
+		this.interactable = new interactable('windowOptions' + Object.entries(interactables).length , 250, 20,
+			()=>{
+				// hoverstart
+			},
+			()=>{
+				// hoverend
+			},
+			()=>{
+				// clickstart
+			},
+			()=>{
+				// clickend
+			}
+		);
+		
+		this.elements = elements;
+		
+		this.elements.forEach((e,i)=>{ // add interactable elements
+			e.interactable = new interactable('windowOptions' + Object.entries(interactables).length , 50, 24,
+				()=>{
+					// hoverstart
+				},
+				()=>{
+					// hoverend
+				},
+				()=>{
+					// clickstart
+				},
+				()=>{
+					// clickend
+					e.open = !e.open
+				}
+			);
+			
+			e.contents.forEach((entry,index)=>{
+				entry.interactable = new interactable('windowOptions_contents_' + Object.entries(interactables).length, e.value.length * 18, 24,
+					()=>{
+						// hoverstart
+					},
+					()=>{
+						// hoverend
+					},
+					()=>{
+						// clickstart
+					},
+					()=>{
+						// clickend
+						entry.func(); // run callback
+					}
+				);
+				entry.interactable.disabled = true
+			});
+		});
+		
+		this.render = (window)=>{
+			this.interactable.width = window.width
+			this.interactable.height = 25
+			this.interactable.x = window.x
+			this.interactable.y = window.y + 30
+			
+			mctx.fillStyle = '#404040'
+			mctx.fillRect(this.interactable.x, this.interactable.y, this.interactable.width, this.interactable.height);
+			
+			// draw elements
+			
+			this.elements.forEach((e,i)=>{
+				e.interactable.index = window.contentBox.index + 232
+				
+				e.interactable.x = this.interactable.x + 10 + i * e.interactable.width - 4
+				e.interactable.y = this.interactable.y
+		
+				// border
+			
+				if(e.interactable.hover){
+					mctx.fillStyle = '#2D557F';
+					mctx.fillRect(e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+					
+					mctx.fillStyle = '#4890DA';
+					mctx.fillRect(e.interactable.x + 1, e.interactable.y + 1, e.interactable.width - 1, e.interactable.height - 2);
+					
+					mctx.fillStyle = '#287CD5';
+					mctx.fillRect(e.interactable.x + 2, e.interactable.y + 2, e.interactable.width - 3, e.interactable.height - 4);
+				
+				}else{
+					mctx.fillStyle = 'transparent';
+					mctx.fillRect(e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+				}
+				
+				mctx.fillStyle = '#fff'
+				mctx.textAlign = 'center'
+				
+				mctx.font = 'normal 13px Open Sans'
+				
+				mctx.fillText(e.value, e.interactable.x + e.interactable.width / 2, e.interactable.y + 16);
+				
+				mctx.textAlign = 'start'
+				
+				if(cursor.down && cursor.focus != e.interactable.id)e.open = false;
+				
+				if(e.open){
+					e.contents.forEach((entry,index)=>{
+						entry.interactable.disabled = false
+						
+						entry.interactable.index = window.contentBox.index + 233
+						
+						entry.interactable.width = 125 // e.interactable.width
+						
+						entry.interactable.x = e.interactable.x
+						entry.interactable.y = e.interactable.y + (index+1) * entry.interactable.height
+				
+						// border
+					
+						if(entry.interactable.hover){
+							mctx.fillStyle = '#2D557F';
+							mctx.fillRect(entry.interactable.x, entry.interactable.y, entry.interactable.width, entry.interactable.height);
+							
+							mctx.fillStyle = '#4890DA';
+							mctx.fillRect(entry.interactable.x + 1, entry.interactable.y + 1, entry.interactable.width - 1, entry.interactable.height - 2);
+							
+							mctx.fillStyle = '#287CD5';
+							mctx.fillRect(entry.interactable.x + 2, entry.interactable.y + 2, entry.interactable.width - 4, entry.interactable.height - 4);
+						
+						}else{
+							mctx.fillStyle = '#404040';
+							mctx.fillRect(entry.interactable.x, entry.interactable.y, entry.interactable.width, entry.interactable.height);
+						}
+						
+						mctx.fillStyle = '#fff'
+						mctx.textAlign = 'center'
+						
+						mctx.font = 'normal 13px Open Sans'
+						
+						mctx.fillText(entry.value, entry.interactable.x + entry.interactable.width / 2, entry.interactable.y + 16);
+						
+						mctx.textAlign = 'start'					
+					});
+				}else{
+					e.contents.forEach((entry,index)=>{
+						entry.interactable.disabled = true
+					});
+				}
+			});
+		}
 	}
 }

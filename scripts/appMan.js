@@ -22,7 +22,7 @@ var startEntries = [
 			type: 'folder',
 			entries: [
 				{
-					value: 'Linux VM',
+					value: 'Emulator',
 					icon: 'apps/16/bash.png',
 					func: initLinuxVM,
 				},

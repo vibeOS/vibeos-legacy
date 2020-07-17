@@ -262,7 +262,7 @@ var initSettings = ()=>{
 
 				
 				
-				confirmPrompt = new cPrompt('Confirm screen resolution', 'The resolution will revert automatically in [VALUE]..',
+				confirmPrompt = new cPrompt('Confirm screen resolution', 'ee',
 					()=>{
 						// on true
 						
@@ -278,7 +278,7 @@ var initSettings = ()=>{
 					(cPrompt)=>{
 						// on render
 						
-						cPrompt.value = `The resolution will revert automatically in ${countdownStr} seconds..`;
+						cPrompt.value = `Keep selected resolution? Will revert in ${countdownStr}...`;
 					},
 					above_high_renq // define this since we want it to show above EVERYTHING
 				)

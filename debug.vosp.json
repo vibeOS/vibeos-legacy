@@ -1,0 +1,11 @@
+{
+    "type": "VibeOS Profile",
+    "version": "NA",
+
+    "name": "debug",
+    "uuid": "646cd2e2-692d-463e-8630-9b7e36c6e996",
+
+    "resolution": 3,
+    "background": "d.png"
+
+}

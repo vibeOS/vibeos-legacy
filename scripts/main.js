@@ -19,6 +19,8 @@ document.body.appendChild(hiddenContainer);
 hiddenContainer.style.display = 'none';
 hiddenContainer.style.position = 'absolute';
 
+mctx.imageSmoothingEnabled = true;
+
 (async ()=>{
 	ip = await window.fetch('https://api.ipify.org?format=json');
 	ip = await ip.json();

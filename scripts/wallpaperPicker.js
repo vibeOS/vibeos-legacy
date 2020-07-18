@@ -18,7 +18,7 @@ var wallpapers={
 		],
 	},
 	initWallpaperPicker = ()=>{
-		wallpapers.images.forEach((e,i)=>{
+		wallpapers.images.forEach(async(e,i)=>{
 			e.interactable =  new interactable('desktop_contextBox_' + e.value.toLowerCase().trim(), 1920 / 15, 1080 / 15,
 				emptyFunction,
 				emptyFunction,
@@ -35,6 +35,10 @@ var wallpapers={
 			);
 			
 			e.interactable.index = Object.entries(interactables).length
+			e.image = new Image();
+			e.image.src = 'tango/' + e.value
+			
+			e.image = await downscale(e.image, 1920 / 15, 1080 / 15);
 		});
 		
 		var window = new cwindow('wallpaper-picker', 50, 50, (ele)=>{
@@ -52,13 +56,7 @@ var wallpapers={
 					e.interactable.width = 1920 / 15
 					e.interactable.height = 1080 / 15
 					
-					mctx.filter = 'blur(2px)';
-					
-					for(var i=0;i<9;i++){
-						mctx.drawImageURL('tango/' + e.value, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
-					}
-					
-					mctx.filter = 'blur(0px)';
+					mctx.drawImageURL(e.image, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
 					
 					mctx.lineJoin = 'miter';
 					mctx.lineWidth = '2';

@@ -474,7 +474,7 @@ class cPrompt {
 				
 				this.window.close();
 				this.closed = true;
-				entry.delete();
+				entry[0].interactable.delete();
 			}
 		});
 		

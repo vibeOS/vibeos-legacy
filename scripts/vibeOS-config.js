@@ -8,7 +8,6 @@ var initSettings = ()=>{
 			},
 			screenResButtons = {
 				'1280x720': new button('720p', 100, 50),
-				'1200x900': new cradio('1200x900', 25, false),
 				'1920x1080': new button('1080p', 100, 50),
 			},
 			switches = {
@@ -16,7 +15,6 @@ var initSettings = ()=>{
 			},
 			cradios = {
 				'1280x720': new cradio('1280x720', 25, false),
-				'1200x900': new cradio('1200x900', 25, false),
 				'1366x768': new cradio('1366x768', 25, false),
 				'1920x1080': new cradio('1920x1080', 25, false),
 			},
@@ -161,7 +159,7 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans';
 						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                                 // LINUXTERM TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('LinuxTerm | linuxterm.xyz', remainingX + remainingWidth / 2, ele.y + 270);                 // LINUXTERM NAME HERE
+						mctx.fillText('LinuxTerm | linuxterm.net', remainingX + remainingWidth / 2, ele.y + 270);                 // LINUXTERM NAME HERE
 						mctx.font = '15px Open Sans';
 						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 300);                                 // DUCE TITLE HERE
 						mctx.font = 'bold 15px Open Sans';

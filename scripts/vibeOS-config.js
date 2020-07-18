@@ -58,7 +58,7 @@ var initSettings = ()=>{
 						mctx.font = 'bolder 30px Open Sans' // font and size
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Accoutns Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.fillText('Accounts Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
 						mctx.textAlign = 'start';
 						break
 					case'proxy':
@@ -138,7 +138,7 @@ var initSettings = ()=>{
 						mctx.font = 'italic 13px Open Sans' // we need to make the font a bit smaller and have italics
 						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Basically a fucking OS in your web browser', remainingX + remainingWidth / 2, ele.y + 110);
+						mctx.fillText('Basically a OS in your web browser', remainingX + remainingWidth / 2, ele.y + 110);
 						mctx.textAlign = 'start';
 						
 						// black line seperating text

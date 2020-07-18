@@ -56,7 +56,7 @@ var wallpapers={
 					e.interactable.width = 1920 / 15
 					e.interactable.height = 1080 / 15
 					
-					if(navigator.userAgent.match(/firefox\//gi)){
+					if(navigator.userAgent.match(/firefox\//gi)){ // on chrome, the downscale script will return undefined
 						mctx.drawImageURL(e.imageDownscale, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
 					}else{
 						mctx.drawImage(e.image, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);

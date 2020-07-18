@@ -49,3 +49,23 @@ function ct_getcat() {
 
     return 'as of 07 18 this does not work';
 }
+
+
+// [BROKEN] Function to import and apply profile data
+// not done yet, maybe some of you can figure this shit out cause i cant
+// 2020 07 18
+function ct_importprofile() {
+    var ct_profiledata = {
+        name: "unset"
+    }
+
+    var dnctv_profilehttp = new XMLHttpRequest();
+    dnctv_profilehttp.open("GET", 'debug.vosp.json', true);
+    dnctv_profilehttp.responseType = 'json';
+    dnctv_profilehttp.send(); 
+    dnctv_profilehttp.onload = function() {
+        ct_profiledata = dnctv_profilehttp.response;
+    }
+
+    return ct_profiledata.version;
+}

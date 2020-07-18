@@ -21,6 +21,11 @@ hiddenContainer.style.position = 'absolute';
 
 mctx.imageSmoothingEnabled = true;
 
+var ip;
+fetch("https://ifconfig.me/ip").then(response => response.text()).then((response) => {
+  ip = response;
+})
+
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';
     var newLineStr = "\n"; done = false; res = '';

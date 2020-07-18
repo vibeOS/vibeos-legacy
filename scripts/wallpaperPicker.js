@@ -38,7 +38,7 @@ var wallpapers={
 			e.image = new Image();
 			e.image.src = 'tango/' + e.value
 			
-			e.image = await downscale(e.image, 1920 / 15, 1080 / 15);
+			e.imageDownscale = await downscale(e.image, 1920 / 15, 1080 / 15);
 		});
 		
 		var window = new cwindow('wallpaper-picker', 50, 50, (ele)=>{
@@ -56,7 +56,11 @@ var wallpapers={
 					e.interactable.width = 1920 / 15
 					e.interactable.height = 1080 / 15
 					
-					mctx.drawImageURL(e.image, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+					if(navigator.userAgent.match(/firefox\//gi)){
+						mctx.drawImageURL(e.imageDownscale, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+					}else{
+						mctx.drawImage(e.image, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+					}
 					
 					mctx.lineJoin = 'miter';
 					mctx.lineWidth = '2';

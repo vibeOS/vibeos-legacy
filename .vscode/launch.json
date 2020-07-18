@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch VibeOS",
+            "name": "Launch vibeOS",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,

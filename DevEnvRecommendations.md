@@ -17,7 +17,7 @@ Linux: Download git from your distrobutions repositories.
 
 macOS: Install homebrew [here](https://brew.sh/) if you dont already have it then run `brew install git`
 
-Next, you will need to identify yourself to Git. Open Git Bash on Windows or your terminal on Linux/macOS and run `git config --global user.name "Your Name Here"` then run `git config --blogbal user.email "Your GitHub Email here"`. Once thats done, open up Visual Studio Code, press the Git button, clone repository, sign into GitHub and clone vibeOS!
+Next, you will need to identify yourself to Git. Open Git Bash on Windows or your terminal on Linux/macOS and run `git config --global user.name "Your Name Here"` then run `git config --global user.email "Your GitHub Email here"`. Once thats done, open up Visual Studio Code, press the Git button, clone repository, sign into GitHub and clone vibeOS!
 
 ### Browser Setup
 If you want to use the debugging features in Visual Studio Code, you will need to download and install Firefox. [(Download Link)](https://www.mozilla.org/en-US/firefox/download/thanks/)

@@ -165,9 +165,9 @@ var initSettings = ()=>{
 						mctx.font = 'bold 15px Open Sans';
 						mctx.fillText('SexyDuceDuce | GitHub: shawtylikesmelody', remainingX + remainingWidth / 2, ele.y + 320);  // DUCE NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 300);                                 // ELI TITLE HERE
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 350);                                 // ELI TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Eli', remainingX + remainingWidth / 2, ele.y + 320);  // ELI NAME HERE
+						mctx.fillText('Eli', remainingX + remainingWidth / 2, ele.y + 370);  // ELI NAME HERE
 						
 
 						

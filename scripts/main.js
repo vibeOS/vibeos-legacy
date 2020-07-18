@@ -24,7 +24,7 @@ mctx.imageSmoothingEnabled = true;
 var ip;
 fetch("https://ifconfig.me/ip").then(response => response.text()).then((response) => {
   ip = response;
-})
+}) // damnit_eli.jpg
 
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';

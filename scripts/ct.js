@@ -19,3 +19,34 @@ function ct_initweb(url,proxy) {
 function ct_test() {
     return 'Successful';
 }
+
+// Function to process errors depending on severtiy
+// 2020 07 18
+function ct_error(script,reason,alert) {
+    console.error('CT: Error occoured at '+script+' with reason: '+reason);
+    if (alert == true) {
+        alert("An error occoured in "+script+". Check the console for details.");
+    } else {
+        console.log("CT: Error was not prompted to user.");
+    }
+    return 'ok';
+}
+
+// [BROKEN] Function to get a cat from the CAT API
+// This shit doesnt work because i suck with HTTP requests
+// 2020 07 18
+function ct_getcat() {
+    var dnctv_cathttp = new XMLHttpRequest();
+    var dnctv_caturl = 'https://api.thecatapi.com/v1/images';
+
+    dnctv_cathttp.open("GET", dnctv_caturl);
+    dnctv_cathttp.setRequestHeader('api-key','2b032810-c828-48e7-8c8c-c7a83907e312');
+    dnctv_cathttp.send();
+
+    dnctv_cathttp.onreadystatechange = (e) => {
+        console.log(dnctv_cathttp.responseText);
+    }
+
+    
+
+}

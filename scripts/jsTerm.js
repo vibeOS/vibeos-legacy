@@ -1,5 +1,5 @@
 var initJsTerm=(async()=>{
-		var lines = ['this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string'],
+		var lines = ['Welcome to the JS Terminal'],
 			inputBar = new inputbar(0, 0, 'poggers code', (key, str)=>{
 				// onChange(e.key, this.value);
 				

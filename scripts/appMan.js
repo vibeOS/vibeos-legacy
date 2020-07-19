@@ -335,7 +335,7 @@ startEntries.forEach((e,i) => {
 		entry.interactable.x = 160;
 		entry.interactable.y = 26 + i * 25 + index * 25;
 		
-		e.interactable.index = 100;
+		entry.interactable.index = 100;
 	});
 });
 

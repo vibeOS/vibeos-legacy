@@ -6,6 +6,9 @@ var ct_opencodedata = {
     dir: '/scripts/ct.js'
 }
 
+// Random Varibles
+var ok = 'ok';
+
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
 // 2020 07 18
@@ -55,17 +58,11 @@ function ct_getcat() {
 // not done yet, maybe some of you can figure this shit out cause i cant
 // 2020 07 18
 function ct_importprofile() {
-    var ct_profiledata = {
-        name: "unset"
-    }
 
-    var dnctv_profilehttp = new XMLHttpRequest();
-    dnctv_profilehttp.open("GET", 'debug.vosp.json', true);
-    dnctv_profilehttp.responseType = 'json';
-    dnctv_profilehttp.send(); 
-    dnctv_profilehttp.onload = function() {
-        ct_profiledata = dnctv_profilehttp.response;
-    }
+    fetch("https://raw.githubusercontent.com/vibedivde/vibeOS/master/debug.vosp.json?token=ALUVJHBVH6SXNCKKTPDMFWC7CQPRM").then(response => response.text()).then((response) => {
+        var ct_profiledata = JSON.parse(response);
+    })
 
-    return ct_profiledata.version;
+    console.log(ct_profiledata.name+' '+ct_profiledata.type);
+    return ok;
 }

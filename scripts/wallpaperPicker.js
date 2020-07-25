@@ -156,7 +156,7 @@ var wallpapers={
 				
 				wallpapers.images.forEach(loop_thing_img);
 				wallpapers.solids.forEach(loop_thing_solids);
-			});
+			}); 
 		
 		window.closing = ()=>{
 			wallpapers.images.forEach((e,i)=>{

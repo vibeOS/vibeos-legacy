@@ -87,7 +87,7 @@ CanvasRenderingContext2D.prototype.roundRect = function (x,y,width,height,radius
     var rectWidth = width;
     var rectHeight = height;
     var cornerRadius = radius;
-
+ 
     this.lineJoin = "round";
     this.lineWidth = cornerRadius;
     this.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);

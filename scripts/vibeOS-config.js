@@ -149,25 +149,21 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans'
 
 						mctx.textAlign = 'center';
-						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);                  // DIVIDE TITLE HEAR
+						mctx.fillText('Creator & Lead Developer', remainingX + remainingWidth / 2, ele.y + 150);     // DIVIDE TITLE HEAR
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Divide | GitHub: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);                // DIVIDE NAME HERE
+						mctx.fillText('Divide | GitHub: vibedivde', remainingX + remainingWidth / 2, ele.y + 170);   // DIVIDE NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer & Designer', remainingX + remainingWidth / 2, ele.y + 200);                      // CTAETCSH TITLE HERE
+						mctx.fillText('Developer & Designer', remainingX + remainingWidth / 2, ele.y + 200);         // CTAETCSH TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Nathan M. | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);                  // CTAETCSH NAME HERE
+						mctx.fillText('Nathan M. | ctaetcsh.xyz', remainingX + remainingWidth / 2, ele.y + 220);     // CTAETCSH NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                                 // LINUXTERM TITLE HERE
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 250);                    // LINUXTERM TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('LinuxTerm | linuxterm.net', remainingX + remainingWidth / 2, ele.y + 270);                 // LINUXTERM NAME HERE
+						mctx.fillText('LinuxTerm | linuxterm.net', remainingX + remainingWidth / 2, ele.y + 270);    // LINUXTERM NAME HERE
 						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 300);                                 // DUCE TITLE HERE
+						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 300);                    // ELI TITLE HERE
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('SexyDuceDuce | GitHub: shawtylikesmelody', remainingX + remainingWidth / 2, ele.y + 320);  // DUCE NAME HERE
-						mctx.font = '15px Open Sans';
-						mctx.fillText('Developer', remainingX + remainingWidth / 2, ele.y + 350);                                 // ELI TITLE HERE
-						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Eli', remainingX + remainingWidth / 2, ele.y + 370);  // ELI NAME HERE
+						mctx.fillText('Eli', remainingX + remainingWidth / 2, ele.y + 320);                          // ELI NAME HERE
 						
 
 						

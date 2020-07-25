@@ -1,3 +1,14 @@
+/*
+    ctaetcsh's Personal Script
+    For questions, please ask me in Discord
+
+    DO NOT MODIFY WITHOUT PRIOR NOTICE & PERMISSION
+    This script is backed up as it is updated.
+
+    CT OpenCode Data: Available, Syntax Correct
+    Last updated: July 24, 2020
+*/
+
 // CT OpenCode data for this script.
 var ct_opencodedata = {
     project: 'vibeos',
@@ -5,6 +16,9 @@ var ct_opencodedata = {
     file: 'ct',
     dir: '/scripts/ct.js'
 }
+
+// Random Varibles
+var ok = 'ok';
 
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
@@ -48,4 +62,18 @@ function ct_getcat() {
     }
 
     return 'as of 07 18 this does not work';
+}
+
+
+// [BROKEN] Function to import and apply profile data
+// not done yet, maybe some of you can figure this shit out cause i cant
+// 2020 07 18
+function ct_importprofile() {
+
+    fetch("https://raw.githubusercontent.com/vibedivde/vibeOS/master/debug.vosp.json?token=ALUVJHBVH6SXNCKKTPDMFWC7CQPRM").then(response => response.text()).then((response) => {
+        var ct_profiledata = JSON.parse(response);
+    })
+
+    console.log(ct_profiledata.name+' '+ct_profiledata.type);
+    return ok;
 }

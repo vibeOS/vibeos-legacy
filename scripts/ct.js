@@ -1,3 +1,14 @@
+/*
+    ctaetcsh's Personal Script
+    For questions, please ask me in Discord
+
+    DO NOT MODIFY WITHOUT PRIOR NOTICE & PERMISSION
+    This script is backed up as it is updated.
+
+    CT OpenCode Data: Available, Syntax Correct
+    Last updated: July 24, 2020
+*/
+
 // CT OpenCode data for this script.
 var ct_opencodedata = {
     project: 'vibeos',

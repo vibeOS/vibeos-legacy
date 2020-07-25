@@ -58,11 +58,23 @@ CanvasRenderingContext2D.prototype.drawImageURL = function(src, sx , sy, swidth,
 		images[src].src = src;
 
 		images[src].addEventListener('load', ()=>{
-			this.drawImage(images[src], sx, sy, swidth, sheight);
+			try{
+				this.drawImage(images[src], sx, sy, swidth, sheight);
+			}catch(err){
+				console.error(err, images[src]);
+				// this.fillStyle = '#000'
+				// this.fillRect(sx, sy, swidth, sheight);
+			}
 		});
 
 	} else {
-		this.drawImage(images[src], sx, sy, swidth, sheight);
+		try{
+			this.drawImage(images[src], sx, sy, swidth, sheight);
+		}catch(err){
+			console.error(err, images[src]);
+			// this.fillStyle = '#000'
+			// this.fillRect(sx, sy, swidth, sheight);
+		}
 	}
 
 	// image should exist here
@@ -514,11 +526,11 @@ setInterval(()=>{
 	mCanvas.setAttribute('height', msize.h);
 	}
 
-	if(background.value.match(/^(?:[a-z]*?|#\d{3,})$/g) ){ // is color
-		mctx.fillStyle=background.value;
-		mctx.fillRect(0,0,msize.w,msize.h);
+	if(background.value.match(/^#.{3,}$/gi) ){ // is color
+		mctx.fillStyle = background.value;
+		mctx.fillRect(0, 0, msize.w, msize.h);
 	}else{ // is image
-		mctx.drawImageURL('tango/'+background.value, 0, 0, msize.w, msize.h);
+		mctx.drawImageURL('tango/' + background.value, 0, 0, msize.w, msize.h);
 	}
 
 	if(window.outerWidth < msize.w || window.outerHeight < msize.h){ // window is smaller than the current resolution

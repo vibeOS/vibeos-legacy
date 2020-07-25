@@ -2,35 +2,35 @@ var wallpapers={
 		solids : [
 			{
 				name: 'Red',
-				value: 'ff0000'
+				value: '#ff0000'
 			},
 			{
 				name: 'Orange', // ct's favorite
-				value: 'ffa500'
+				value: '#ffa500'
 			},
 			{
 				name: 'Yellow',
-				value: 'ffff00'
+				value: '#ffff00'
 			},
 			{
 				name: 'Green',
-				value: '008000'
+				value: '#008000'
 			},
 			{
 				name: 'Blue',
-				value: '0000ff'
+				value: '#0000ff'
 			},
 			{
 				name: 'Purple',
-				value: '800080'
+				value: '#800080'
 			},
 			{
 				name: 'White',
-				value: 'ffffff'
+				value: '#ffffff'
 			},
 			{
 				name: 'Black',
-				value: '000000'
+				value: '#000000'
 			}
 		],
 		images : [
@@ -50,7 +50,7 @@ var wallpapers={
 				name: 'Test Background'
 			},
 			{
-				value: 'wallpapers/ct1.png',
+				value: 'wallpapers/ct.png',
 				interactable: null,
 				name: 'Garden Tiles (CT)'
 			},
@@ -80,6 +80,25 @@ var wallpapers={
 			e.imageDownscale = await downscale(e.image, 1920 / 15, 1080 / 15);
 		});
 		
+		wallpapers.solids.forEach(async(e,i)=>{
+			e.interactable =  new interactable('desktop_contextBox_' + e.name.toLowerCase().trim(), 1920 / 15, 1080 / 15,
+				emptyFunction,
+				emptyFunction,
+				()=>{
+					// click start
+					
+					background.value = e.value;
+				},
+					
+				()=>{
+					// click end
+					
+				},
+			);
+			
+			e.interactable.index = Object.entries(interactables).length
+		});
+		
 		var window = new cwindow('wallpaper-picker', 50, 50, (ele)=>{
 				// on render
 				
@@ -88,33 +107,55 @@ var wallpapers={
 				
 				mctx.fillText('Images:', ele.x + 20, ele.y + 50)
 				
-				wallpapers.images.forEach((e,i)=>{
-					e.interactable.x = ele.x + 20 + i * (1920 / 15 + 20)
-					e.interactable.y = ele.y + 60
-					
-					e.interactable.width = 1920 / 15
-					e.interactable.height = 1080 / 15
-					
-					if(navigator.userAgent.match(/firefox\//gi)){ // on chrome, the downscale script will return undefined
-						mctx.drawImageURL(e.imageDownscale, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
-					}else{
-						mctx.drawImage(e.image, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height);
+				var loop_thing_img = (e,i,a)=>{
+						e.interactable.x = ele.x + 20 + i * (1920 / 15 + 20)
+						
+						e.interactable.width = 1920 / 15
+						e.interactable.height = 1080 / 15
+						
+						e.interactable.y = ele.y + 60
+						
+						mctx.drawImageURL('tango/' + e.value, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height)
+						
+						mctx.lineJoin = 'miter';
+						mctx.lineWidth = '2';
+						
+						if(e.interactable.hover){
+							mctx.strokeStyle = '#fff'
+							mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+						}
+						
+						if(e.value == background.value){
+							mctx.strokeStyle = '#000'
+							mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+						}
+					},
+					loop_thing_solids = (e,i,a)=>{
+						e.interactable.x = ele.x + 20 + i * 46
+						
+						e.interactable.width = 44
+						e.interactable.height = 44
+						
+						e.interactable.y = ele.y + 60 + (100)
+						mctx.fillStyle = e.value
+						mctx.fillRect(e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height)
+						
+						mctx.lineJoin = 'miter';
+						mctx.lineWidth = '2';
+						
+						if(e.interactable.hover){
+							mctx.strokeStyle = '#fff'
+							mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+						}
+						
+						if(e.value == background.value){
+							mctx.strokeStyle = '#000'
+							mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
+						}
 					}
-					
-					mctx.lineJoin = 'miter';
-					mctx.lineWidth = '2';
-					
-					if(e.interactable.hover){
-						mctx.strokeStyle = '#fff'
-						mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
-					}
-					
-					if(e.value == background.value){
-						mctx.strokeStyle = '#000'
-						mctx.strokeRect(e.interactable.x - 2, e.interactable.y - 2, e.interactable.width + 4, e.interactable.height + 4)
-					}
-					
-				});
+				
+				wallpapers.images.forEach(loop_thing_img);
+				wallpapers.solids.forEach(loop_thing_solids);
 			});
 		
 		window.closing = ()=>{
@@ -125,6 +166,6 @@ var wallpapers={
 		
 		window.title = 'Wallpaper Picker'
 		window.icon = 'apps/24/preferences-desktop-wallpaper.png'
-		window.width = 500
+		window.width = 700
 		window.height = 300
 	}

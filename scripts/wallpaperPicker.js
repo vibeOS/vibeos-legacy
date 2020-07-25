@@ -2,57 +2,57 @@ var wallpapers={
 		solids : [
 			{
 				name: 'Red',
-				value: 'ff0000'
+				value: 'ff0000',
 			},
 			{
 				name: 'Orange', // ct's favorite
-				value: 'ffa500'
+				value: 'ffa500',
 			},
 			{
 				name: 'Yellow',
-				value: 'ffff00'
+				value: 'ffff00',
 			},
 			{
 				name: 'Green',
-				value: '008000'
+				value: '008000',
 			},
 			{
 				name: 'Blue',
-				value: '0000ff'
+				value: '0000ff',
 			},
 			{
 				name: 'Purple',
-				value: '800080'
+				value: '800080',
 			},
 			{
 				name: 'White',
-				value: 'ffffff'
+				value: 'ffffff',
 			},
 			{
 				name: 'Black',
-				value: '000000'
+				value: '000000',
 			}
 		],
 		images : [
 			{
 				value: 'wallpapers/a.png',
 				interactable: null,
-				name: 'Default'
+				name: 'Wave',
 			},
 			{
 				value: 'wallpapers/b.png',
 				interactable: null,
-				name: 'Wave'
+				name: 'Default',
 			},
 			{
 				value: 'wallpapers/c.png',
 				interactable: null,
-				name: 'Test Background'
+				name: 'Test Background',
 			},
 			{
 				value: 'wallpapers/ct1.png',
 				interactable: null,
-				name: 'Garden Tiles (CT)'
+				name: 'Garden Tiles (CT)',
 			},
 		],
 	},

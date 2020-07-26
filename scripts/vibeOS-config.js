@@ -18,6 +18,10 @@ var initSettings = ()=>{
 				'1366x768': new cradio('1366x768', 25, false),
 				'1920x1080': new cradio('1920x1080', 25, false),
 			},
+			programLinks = {
+				'wallpaperpicker': new button('Wallpaper Picker', 125, 25),
+				'future': new button('Future Applet', 125, 25),
+			},
 			
 			activeTab = 'general',
 			
@@ -34,23 +38,41 @@ var initSettings = ()=>{
 						mctx.font = '16px Open Sans';
 						mctx.fillText(`Your Screen Resolution: ${screen.width}x${screen.height}`, remainingX + 16, ele.y + 60)
 						mctx.fillText(`Current Enviornment Resolution: ${msize.w}x${msize.h}`, remainingX + 16, ele.y + 80);
-						mctx.font = 'bold 16px Open Sans';
-						mctx.fillText(`WARNING: Do not set your EnvRes to`, remainingX + 16, ele.y + 100);
-						mctx.fillText(`lower then your ScreenRes!`, remainingX + 16, ele.y + 115);
 						
 						// todo: dropdown menu and radio buttons
 						
-						Object.entries(cradios).forEach((e,i)=>{
+						Object.entries(cradios).forEach((e,i)=>{ // Screen Res Selection
 							if(e[1] == null)return;
 							
 							e[1].this().interactable.x = remainingX + 20
 							
-							e[1].this().interactable.y = ele.y + 130 + i * 30
+							e[1].this().interactable.y = ele.y + 100 + i * 30
 					
 							e[1].this().interactable.index = ele.contentBox.index + 3 + i;
 							
 							e[1].this().render();
 						});
+
+						mctx.fillRect(remainingX + 15, ele.y + 200, remainingWidth - 25, 2); // seperator
+						mctx.textAlign = 'center';
+						mctx.font = 'bold 16px Open Sans';
+						mctx.fillText(`Configuration Applet Shortcuts`, remainingX + remainingWidth / 2, ele.y + 230);		
+						mctx.font = '16px Open Sans';
+						mctx.textAlign = 'start';
+
+						Object.entries(programLinks).forEach((e,i)=>{ // program link buttons (wallpaper)
+							if(e[1] == null)return;
+							
+							e[1].this().interactable.x = remainingX + 16
+							
+							e[1].this().interactable.y = ele.y + 250 + i * 30
+					
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;
+							
+							e[1].this().render();
+						});
+
+
 						
 						break
 					case'accounts':

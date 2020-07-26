@@ -1,5 +1,14 @@
+/*
+	The Wallpaper Picker app has been mostly completed as of July 25.
+	The plan is to incorperate a link to it in the settings app and move
+	onto other peojects until such time to revisit this to add additional
+	functionality. 
+
+	- ctaetcsh
+*/
+
 var wallpapers={
-		solids : [
+		solids : [ // ct: thanks for fixing this divide (7/25)
 			{
 				name: 'Red',
 				value: '#ff0000'
@@ -105,15 +114,16 @@ var wallpapers={
 				mctx.font = '13px Open Sans';
 				mctx.fillStyle = '#000'
 				
-				mctx.fillText('Images:', ele.x + 20, ele.y + 50)
+				mctx.fillText('Wallpapers', ele.x + 20, ele.y + 55) // wallpapers label
+				mctx.fillText('Solid Colors', ele.x + 20, ele.y + 160) // solid colors label
 				
 				var loop_thing_img = (e,i,a)=>{
-						e.interactable.x = ele.x + 20 + i * (1920 / 15 + 20)
+						e.interactable.x = ele.x + 20 + i * (1920 / 15 + 20) // wallpaper previews on x axis
 						
 						e.interactable.width = 1920 / 15
 						e.interactable.height = 1080 / 15
 						
-						e.interactable.y = ele.y + 60
+						e.interactable.y = ele.y + 65 // wallpaper previews on y axis
 						
 						mctx.drawImageURL('tango/' + e.value, e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height)
 						
@@ -131,12 +141,13 @@ var wallpapers={
 						}
 					},
 					loop_thing_solids = (e,i,a)=>{
-						e.interactable.x = ele.x + 20 + i * 46
+						e.interactable.x = ele.x + 20 + i * 46 // s.colors previews on x axis
 						
 						e.interactable.width = 44
 						e.interactable.height = 44
 						
-						e.interactable.y = ele.y + 60 + (100)
+						e.interactable.y = ele.y + 70 + (100) // s.colors previews on y axis
+
 						mctx.fillStyle = e.value
 						mctx.fillRect(e.interactable.x, e.interactable.y, e.interactable.width, e.interactable.height)
 						
@@ -166,6 +177,6 @@ var wallpapers={
 		
 		window.title = 'Wallpaper Picker'
 		window.icon = 'apps/24/preferences-desktop-wallpaper.png'
-		window.width = 700
-		window.height = 300
+		window.width = 620
+		window.height = 220
 	}

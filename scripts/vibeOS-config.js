@@ -223,6 +223,11 @@ var initSettings = ()=>{
 				activeTab = e[0];
 			}
 		});
+
+		Object.entries(programLinks).forEach((e,i)=>{ //ct: wtf i have no idea what im doing
+			// ct: make it so when wallpaper picker button is press, it opens it
+			// ct: pls and thank
+		});
 		
 		Object.entries(cradios).forEach((e,i)=>{
 			if(e[1] == null)return;

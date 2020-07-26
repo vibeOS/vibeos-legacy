@@ -5,9 +5,11 @@
     DO NOT MODIFY WITHOUT PRIOR NOTICE & PERMISSION
     This script is backed up as it is updated.
 
-    CT OpenCode Data: Available, Syntax Correct
-    Last updated: July 24, 2020
+    Last updated: July 25, 2020
 */
+
+//                      this script is basically a lot of random/pointless/useless code
+//                      still dont delete it i might need it later thanks
 
 // CT OpenCode data for this script.
 var ct_opencodedata = {
@@ -19,6 +21,25 @@ var ct_opencodedata = {
 
 // Random Varibles
 var ok = 'ok';
+const urlParams = new URLSearchParams(window.location.search);
+
+// Debugging Quickstart Check (ctsu) 
+//                              MORE FUCKING SHIT THAT DOESNT FUCKING WORK WHY DO I EVEN TRY
+const ctsp = urlParams.get('ctsu');
+if (ctsp == true) {
+    ctsu() 
+} else if (ctsp == false) {
+    ct_log("ctsp found false, ctsu not engaged");
+} else {
+    ct_error("ctsu checker","ctsp found nothing, presumed false, ctsu not engaged",false);
+}
+
+// sets stuff for debugging quickstart (ctsu)
+function ctsu() {
+    msize.w = 1920;
+    msize.h = 1080;
+    background.value = "wallpapers/ct.png";
+}
 
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
@@ -44,6 +65,12 @@ function ct_error(script,reason,alert) {
         console.log("CT: Error was not prompted to user.");
     }
     return 'ok';
+}
+
+
+// alias for console.log
+function ct_log(thing) {
+    console.log(thing);
 }
 
 // [BROKEN] Function to get a cat from the CAT API

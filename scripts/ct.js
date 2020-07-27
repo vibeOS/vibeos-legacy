@@ -112,56 +112,69 @@ function ct_importprofile() {
 // 2020 07 27
 function ct_popupbox(type,msg,script,log) {
     /*
-        type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf).
+        type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf). PARSE AS STRING! "err","inf","wrn"
         msg: Message shown to user, parse as string.
-        script: Script where this popup is running, useful for debugging.
-        !! script may be removed in the future !!
+        script: Script where this popup is running, will be shown to user. (parse as string)
         log: Decides if popup will call ct_error to log the error
         !! do not use ct_popupbox to parse errors, use ct_error instead !!
+        REMINDIERS:
+        Dont put too long of a message
+        Enter your options correctly
     */
 
     switch(type){
         case 'err':
-            var typereadable = "Error";
-            var pubicon = 'status/16/error.png';
+            var typereadable = "Error"; // type of popup as readable text, used in titlebar; "err" = "Error"
+            var pubicon = 'status/16/error.png'; // Icon for popupbox movebar
+            var headertext = "An error occoured at "; // Text for the header of the popup box
             break;
         case 'wrn':
             var typereadable = "Warning";
             var pubicon = 'status/16/important.png';
+            var headertext = " sent a warning."
             break;
         case 'inf':
             var typereadable = "Information";
             var pubicon = 'status/16/info.png';
+            var headertext = " sent information."
             break;
         default:
-            ct_error("ctpopupbox typeswitch","type was not defined correctly",false);
+            ct_error("ctpopupbox typeswitch","type was not defined correctly",false); // happens when you dont enter options correctly
             return 1;
     }
 
-    /*
-    msize.w / 2 // for later: centers popup in middle of screen (i think)
-    msize.h / 2
-    */
-
     var dnctv_ctpopupbox = new cwindow('ctpopupbox', 50, 50, (ele)=>{
-        var remainingX = ele.x + 130,
-            remainingWidth = ele.width - 130; //damnit_divide.jpg
-
         mctx.fillStyle = '#000';
-
+        mctx.textAlign = 'center';
         mctx.font = 'bold 16px Open Sans';
-        if (type == "inf"){
-            mctx.textAlign = 'center';
-            mctx.fillText(`Information from ${script}.`, remainingX + remainingWidth / 2, ele.y + 60);
+        if (type == "err"){
+            mctx.fillText(headertext+script, ele.x + ele.width / 2, ele.y + 60); // if type is error, fill text as header then script var
         } else {
-            mctx.textAlign = 'center';
-            mctx.fillText(`A ${typereadable} occoured at ${script}.`, remainingX + remainingWidth / 2, ele.y + 60);
+            mctx.fillText(script+headertext, ele.x + ele.width / 2, ele.y + 60); // if type is other, fill text as script then header var
         }
         mctx.fillRect(ele.x + 25, ele.y + 80, 450, 2);
         mctx.textAlign = 'start';
-        
         mctx.font = 'italic 16px Open Sans';
-        mctx.fillText(msg, ele.x + 35, ele.y + 150);
+
+        lines = [],
+        blines = [],
+        lineHeight = 16,
+        textSize = 16;
+
+        lines.push(`debug test`);
+        lines.push(msg);
+
+        lines.forEach((e,i)=>{
+            wordWrap(e, ele.width / 7.6).split('\n').forEach((ee,ii)=>{
+                blines.push(ee);
+            });
+        });
+        
+        blines.forEach((e,i)=>{
+            mctx.fillStyle='#000';
+            mctx.font = textSize+'px Open Sans';
+            mctx.fillText(e, ele.x + 35 , window.y + 100 + i*1.5*lineHeight);
+        });
     });
 
     dnctv_ctpopupbox.title = typereadable+" | CT Popup Box";

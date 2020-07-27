@@ -104,3 +104,71 @@ function ct_importprofile() {
     console.log(ct_profiledata.name+' '+ct_profiledata.type);
     return ok;
 }
+
+
+// Function to show a popup box to the user.
+// honestly some of my favorite code because of how well it came together 
+// !! THIS IS STILL WORK IN PROGRESS, FUNCTIONALITY INCOMPLETE + BUGS !!
+// 2020 07 27
+function ct_popupbox(type,msg,script,log) {
+    /*
+        type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf).
+        msg: Message shown to user, parse as string.
+        script: Script where this popup is running, useful for debugging.
+        !! script may be removed in the future !!
+        log: Decides if popup will call ct_error to log the error
+        !! do not use ct_popupbox to parse errors, use ct_error instead !!
+    */
+
+    switch(type){
+        case 'err':
+            var typereadable = "Error";
+            var pubicon = 'status/16/error.png';
+            break;
+        case 'wrn':
+            var typereadable = "Warning";
+            var pubicon = 'status/16/important.png';
+            break;
+        case 'inf':
+            var typereadable = "Information";
+            var pubicon = 'status/16/info.png';
+            break;
+        default:
+            ct_error("ctpopupbox typeswitch","type was not defined correctly",false);
+            return 1;
+    }
+
+    /*
+    msize.w / 2 // for later: centers popup in middle of screen (i think)
+    msize.h / 2
+    */
+
+    var dnctv_ctpopupbox = new cwindow('ctpopupbox', 50, 50, (ele)=>{
+        var remainingX = ele.x + 130,
+            remainingWidth = ele.width - 130; //damnit_divide.jpg
+
+        mctx.fillStyle = '#000';
+
+        mctx.font = 'bold 16px Open Sans';
+        if (type == "inf"){
+            mctx.textAlign = 'center';
+            mctx.fillText(`Information from ${script}.`, remainingX + remainingWidth / 2, ele.y + 60);
+        } else {
+            mctx.textAlign = 'center';
+            mctx.fillText(`A ${typereadable} occoured at ${script}.`, remainingX + remainingWidth / 2, ele.y + 60);
+        }
+        mctx.fillRect(ele.x + 25, ele.y + 80, 450, 2);
+        mctx.textAlign = 'start';
+        
+        mctx.font = 'italic 16px Open Sans';
+        mctx.fillText(msg, ele.x + 35, ele.y + 150);
+    });
+
+    dnctv_ctpopupbox.title = typereadable+" | CT Popup Box";
+    dnctv_ctpopupbox.icon = pubicon;
+    dnctv_ctpopupbox.height = 250;
+    dnctv_ctpopupbox.width = 500;
+
+    return 0;
+
+}

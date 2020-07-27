@@ -18,7 +18,7 @@ var ct_opencodedata = {
     file: 'ct',
     dir: '/scripts/ct.js'
 }
-
+gdfgg
 // Random Varibles
 var ok = 'ok';
 const urlParams = new URLSearchParams(window.location.search);

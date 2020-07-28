@@ -37,7 +37,7 @@ var initSettings = ()=>{
 						mctx.textAlign = 'start';
 						mctx.font = '16px Open Sans';
 						mctx.fillText(`Your Screen Resolution: ${screen.width}x${screen.height}`, remainingX + 16, ele.y + 60)
-						mctx.fillText(`Current Enviornment Resolution: ${msize.w}x${msize.h}`, remainingX + 16, ele.y + 80);
+						mctx.fillText(`Current Environment Resolution: ${msize.w}x${msize.h}`, remainingX + 16, ele.y + 80);
 						
 						// todo: dropdown menu and radio buttons
 						
@@ -77,34 +77,13 @@ var initSettings = ()=>{
 						break
 					case'accounts':
 						mctx.fillStyle = '#000' // font color
-						mctx.font = 'bolder 30px Open Sans' // font and size
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Accounts Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'start';
+						mctx.font = '16px Open Sans' // font and size
+						mctx.fillText('The accounts page is unavailable.', ele.x + 140, ele.y + 50);
 						break
 					case'proxy':
 						mctx.fillStyle = '#000' // font color
-						mctx.font = 'bolder 30px Open Sans' // font and size
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Proxy Placeholder', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'start';
-						
-						
-						Object.entries(switches).forEach((e,i)=>{
-							if(e[1] == null)return;
-							
-							e[1].this().interactable.x = remainingX + 16 + i * 120
-							
-							e[1].this().interactable.y = ele.y + 175
-					
-							e[1].this().interactable.index = ele.contentBox.index + 1 + i;
-							
-							e[1].this().render();
-						});
-						
-						
+						mctx.font = '16px Open Sans' // font and size
+						mctx.fillText('The proxy page is unavailable.', ele.x + 140, ele.y + 50);
 						break
 					case 'sysinfo':
 						mctx.fillStyle = '#000'
@@ -112,8 +91,8 @@ var initSettings = ()=>{
 
 						var progvalues = {
 								name: 'vibeOS',
-								version: 'NA',
-								extra: 'Development Version'
+								version: '1.0',
+								extra: 'Private Beta'
 							},
 						lines = [],
 						blines = [], // temp variable
@@ -124,7 +103,7 @@ var initSettings = ()=>{
 						lines.push(`Platform: ${navigator.platform}`); // platform line 2
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
-						lines.push(`Enviornment Resolution: ${msize.w}x${msize.h}`); // enviornment res line 5
+						lines.push(`Environment Resolution: ${msize.w}x${msize.h}`); // environment res line 5
 						lines.push(`IP Address: ${ip}`); // ip address line 6
 						lines.push(`URL: ${unescape(location.href)}`); // url line 7
 						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8

@@ -1,5 +1,19 @@
 var initTranscript=()=>{
-		var lines = ['this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'i believe the windows height will change automatically to fit this long ass piece of text', 'el pogger?', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string', 'i believe the windows height will change automatically to fit this long ass piece of text', 'el pogger?', 'i believe the windows height will change automatically to fit this long ass piece of text', 'el pogger?', 'okay as of finishing this demo it looks like it works so this can be used as a base for other apps'],
+		var lines = [
+			'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+			 'i believe the windows height will change automatically to fit this long ass piece of text',
+			  'el pogger?',
+			   'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+				'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+				 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+				  'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+				   'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+					'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+					 'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+					  'this is a longggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg string',
+					   'i believe the windows height will change automatically to fit this long ass piece of text',
+						'el pogger?', 'i believe the windows height will change automatically to fit this long ass piece of text',
+						 'el pogger?', 'okay as of finishing this demo it looks like it works so this can be used as a base for other apps'],
 			window=new cwindow('transcript', 600 , 250, (window)=>{
 				// after render
 				

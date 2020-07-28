@@ -105,21 +105,17 @@ function ct_importprofile() {
     return ok;
 }
 
-
+// ct popupbox tester function
+function cttest_popupbox() {ct_popupbox("err","Test popup box.","Tester")};
 // Function to show a popup box to the user.
 // honestly some of my favorite code because of how well it came together 
 // !! THIS IS STILL WORK IN PROGRESS, FUNCTIONALITY INCOMPLETE + BUGS !!
 // 2020 07 27
-function ct_popupbox(type,msg,script,log) {
+function ct_popupbox(type,msg,script) {
     /*
         type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf). PARSE AS STRING! "err","inf","wrn"
         msg: Message shown to user, parse as string.
         script: Script where this popup is running, will be shown to user. (parse as string)
-        log: Decides if popup will call ct_error to log the error
-        !! do not use ct_popupbox to parse errors, use ct_error instead !!
-        REMINDIERS:
-        Dont put too long of a message
-        Enter your options correctly
     */
 
     switch(type){
@@ -156,31 +152,20 @@ function ct_popupbox(type,msg,script,log) {
         mctx.textAlign = 'start';
         mctx.font = 'italic 16px Open Sans';
 
-        lines = [],
-        blines = [],
-        lineHeight = 16,
-        textSize = 16;
-
-        lines.push(`debug test`);
-        lines.push(msg);
-
-        lines.forEach((e,i)=>{
-            wordWrap(e, ele.width / 7.6).split('\n').forEach((ee,ii)=>{
-                blines.push(ee);
-            });
-        });
         
-        blines.forEach((e,i)=>{
-            mctx.fillStyle='#000';
-            mctx.font = textSize+'px Open Sans';
-            mctx.fillText(e, ele.x + 35 , window.y + 100 + i*1.5*lineHeight);
-        });
+
     });
 
+    // properties of titlebar of box
     dnctv_ctpopupbox.title = typereadable+" | CT Popup Box";
     dnctv_ctpopupbox.icon = pubicon;
-    dnctv_ctpopupbox.height = 250;
+    // Size of box
     dnctv_ctpopupbox.width = 500;
+    dnctv_ctpopupbox.height = 250;
+    // setting the location of the box to the center of the enviornment
+    dnctv_ctpopupbox.x = msize.w / 2 - dnctv_ctpopupbox.width / 2;
+    dnctv_ctpopupbox.y = msize.h / 2 - dnctv_ctpopupbox.height / 2;
+
 
     return 0;
 

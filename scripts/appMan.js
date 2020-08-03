@@ -92,7 +92,7 @@ var startEntries = [
 					value: 'Bing',
 					icon: 'mimetypes/16/html.png',
 					func: ()=>{
-						initWebView('[Proxied Webapp] DuckDuckGo', 'mimetypes/16/html.png', 'https://bing.com/', 800, 600, false)
+						initWebView('[Proxied Webapp] Bing', 'mimetypes/16/html.png', 'https://bing.com/', 800, 600, false)
 					},
 				},
 				{

@@ -12,19 +12,15 @@ var mCanvas = document.getElementById('mCanvas'),
 	interactables = {},
 	emptyFunction = ()=>{},
 	hiddenContainer=document.createElement('div'),
-	globalProxy = 'https://ldm.sys32.dev/',
-	ip = '';
+	globalProxy = 'https://ldm.sys32.dev/';
 
+// hidden container for hidden elements!
 document.body.appendChild(hiddenContainer);
+
 hiddenContainer.style.display = 'none';
 hiddenContainer.style.position = 'absolute';
 
 mctx.imageSmoothingEnabled = true;
-
-var ip;
-fetch("https://ifconfig.me/ip").then(response => response.text()).then((response) => {
-  ip = response;
-}) // damnit_eli.jpg
 
 function wordWrap(str, maxWidth) {
 	if(typeof str != 'string')return '';
@@ -533,7 +529,7 @@ setInterval(()=>{
 		mctx.drawImageURL('tango/' + background.value, 0, 0, msize.w, msize.h);
 	}
 
-	if(window.outerWidth < msize.w || window.outerHeight < msize.h){ // window is smaller than the current resolution
+	if(window.innerWidth < msize.w || window.innerHeight < msize.h){ // window is smaller than the current resolution
 		mctx.fillStyle = '#fff';
 		mctx.fillRect(0, 0, msize.w, msize.h);
 
@@ -544,7 +540,7 @@ setInterval(()=>{
 		mctx.fillStyle = '#000';
 		mctx.font = '14px Open Sans';
 
-		mctx.fillText(`Your browser window is smaller than the minimum size of ${msize.w}x${msize.h}! (the window is ${window.outerWidth}x${window.outerHeight})`, window.outerWidth / 2, window.outerHeight / 2 - 14);
+		mctx.fillText(`Your browser window is smaller than the minimum size of ${msize.w}x${msize.h}! (the window is ${window.innerWidth}x${window.innerHeight})`, window.innerWidth / 2, window.innerHeight / 2 - 14);
 
 		mctx.textAlign = 'start';
 	}else{

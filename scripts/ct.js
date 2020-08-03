@@ -58,12 +58,12 @@ function ct_importprofile() {
 
 
 // CT PopupBox Testing function.
-function ctt_popupbox() {ct_popupbox("err","Test popup box.")};
+function ctt_popupbox() {ct_popupbox("err","Test popup box. The quick brown fox jumps over the lazy dog. Something something that is really long. Sprinkles on kittens and raindrops on noses something idk. Test popup box. The quick brown fox jumps over the lazy dog. Something something that is really long. Sprinkles on kittens and raindrops on noses something idk. Test popup box. The quick brown fox jumps over the lazy dog. Something something that is really long. Sprinkles on kittens and raindrops on noses something idk.")};
 
 // Function to show a popup box to the user.
 // Must be completed by PrB2, almost to a working state.
 // 2020 08 03
-function ct_popupbox(type,msg) {
+function ct_popupbox(type,l1,l2,l3) {
     /*
         type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf). PARSE AS STRING! "err","inf","wrn"
         msg: Message shown to user, parse as string.
@@ -89,7 +89,7 @@ function ct_popupbox(type,msg) {
 
     var dnctv_ctpopupbox = new cwindow('ctpopupbox', 50, 50, (ele)=>{
         var blines = [], // temp
-            clines = [msg];
+            clines = [l1,l2,l3];
         var textSize = 16;
         var lineHeight = 18;
 				
@@ -102,7 +102,7 @@ function ct_popupbox(type,msg) {
 		blines.forEach((e,i)=>{
 			mctx.fillStyle='#000';
 			mctx.font = textSize+'px Open Sans';
-			mctx.fillText(e, dnctv_ctpopupbox.x + 20 , dnctv_ctpopupbox.y + 50 + i*lineHeight);
+			mctx.fillText(e, dnctv_ctpopupbox.x + 20 , dnctv_ctpopupbox.y + 60 + i*lineHeight);
 		});
 				
 		var newHeight = textSize + 12 + blines.length * lineHeight;
@@ -114,10 +114,8 @@ function ct_popupbox(type,msg) {
     dnctv_ctpopupbox.title = typereadable+" | CT PopupBox";
     dnctv_ctpopupbox.icon = pubicon;
     // Size of box
-    dnctv_ctpopupbox.width = 500;
-    dnctv_ctpopupbox.height = 250;
-    // something divide says was important
-    dnctv_ctpopupbox.bgcolor = '#fff';
+    dnctv_ctpopupbox.width = 400;
+    dnctv_ctpopupbox.minHeight = 100;
     // setting the location of the box to the center of the enviornment
     dnctv_ctpopupbox.x = msize.w / 2 - dnctv_ctpopupbox.width / 2;
     dnctv_ctpopupbox.y = msize.h / 2 - dnctv_ctpopupbox.height / 2;

@@ -128,14 +128,9 @@ var startEntries = [
 					},
 				},
 				{
-					value: 'Basic render task',
+					value: 'Transcript',
 					icon: 'mimetypes/16/text-x-generic.png',
 					func: initTranscript,
-				},
-				{
-					value: 'ctsu',
-					icon: 'apps/16/cs-screen.png',
-					func: ctsu,
 				},
 			],
 		},

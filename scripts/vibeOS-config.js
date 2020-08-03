@@ -3,7 +3,7 @@ var initSettings = ()=>{
 				general: new button('General', 100, 50),
 				accounts: new button('Accounts', 100, 50),
 				proxy: new button('Proxy', 100, 50),
-				sysinfo: new button('System Info', 100, 50),
+				sysinfo: new button('Env. Info', 100, 50),
 				about: new button('About', 100, 50),
 			},
 			screenResButtons = {
@@ -20,7 +20,6 @@ var initSettings = ()=>{
 			},
 			programLinks = {
 				'wallpaperpicker': new button('Wallpaper Picker', 125, 25),
-				'future': new button('Future Applet', 125, 25),
 			},
 			
 			activeTab = 'general',
@@ -54,11 +53,7 @@ var initSettings = ()=>{
 						});
 
 						mctx.fillRect(remainingX + 15, ele.y + 200, remainingWidth - 25, 2); // seperator
-						mctx.textAlign = 'center';
-						mctx.font = 'bold 16px Open Sans';
-						mctx.fillText(`Configuration Applet Shortcuts`, remainingX + remainingWidth / 2, ele.y + 230);		
-						mctx.font = '16px Open Sans';
-						mctx.textAlign = 'start';
+						mctx.fillText(`Looking for something?`, ele.x + 150 , ele.y + 230);		
 
 						Object.entries(programLinks).forEach((e,i)=>{ // program link buttons (wallpaper)
 							if(e[1] == null)return;
@@ -91,15 +86,15 @@ var initSettings = ()=>{
 
 						var progvalues = {
 								name: 'vibeOS',
-								version: '1.0',
-								extra: 'Private Beta'
+								version: 'PrD',
+								extra: ''
 							},
 						lines = [],
 						blines = [], // temp variable
 						lineHeight = 16,
 						textSize = 15;
 
-						lines.push(`Version: ${progvalues.version} ${progvalues.extra}`); // version line 1
+						lines.push(`Version: ${progvalues.name} ${progvalues.version} ${progvalues.extra}`); // version line 1
 						lines.push(`Platform: ${navigator.platform}`); // platform line 2
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4

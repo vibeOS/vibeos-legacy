@@ -205,9 +205,9 @@ class cwindow {
 
 			renq.push(this.renderFunc);
 
-			// this.contentBox.index = Object.entries(interactables).length;
-			// this.titleBar.index = Object.entries(interactables).length + 1;
-			// this.closeButton.index = Object.entries(interactables).length + 2;
+			this.contentBox.index = Object.entries(interactables).length;
+			this.titleBar.index = Object.entries(interactables).length + 1;
+			this.closeButton.index = Object.entries(interactables).length + 2;
 		}
 
 		this.titleBar = new interactable(id + '_titlebar', this.width, 30, ()=>{

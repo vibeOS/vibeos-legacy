@@ -140,20 +140,26 @@ function ct_popupbox(type,msg,script) {
     }
 
     var dnctv_ctpopupbox = new cwindow('ctpopupbox', 50, 50, (ele)=>{
-        mctx.fillStyle = '#000';
-        mctx.textAlign = 'center';
-        mctx.font = 'bold 16px Open Sans';
-        if (type == "err"){
-            mctx.fillText(headertext+script, ele.x + ele.width / 2, ele.y + 60); // if type is error, fill text as header then script var
-        } else {
-            mctx.fillText(script+headertext, ele.x + ele.width / 2, ele.y + 60); // if type is other, fill text as script then header var
-        }
-        mctx.fillRect(ele.x + 25, ele.y + 80, 450, 2);
-        mctx.textAlign = 'start';
-        mctx.font = 'italic 16px Open Sans';
-
-        
-
+        var blines = [], // temp
+            clines = [msg];
+        var textSize = 13;
+        var lineHeight = 16;
+				
+		clines.forEach((e,i)=>{
+			wordWrap(e, dnctv_ctpopupbox.width / 7.2).split('\n').forEach((ee,ii)=>{
+				blines.push(ee);
+			});
+		});
+				
+		blines.forEach((e,i)=>{
+			mctx.fillStyle='#000';
+			mctx.font = textSize+'px Open Sans';
+			mctx.fillText(e, dnctv_ctpopupbox.x + 20 , dnctv_ctpopupbox.y + 50 + i*lineHeight);
+		});
+				
+		var newHeight = textSize + 12 + blines.length * lineHeight;
+		if(dnctv_ctpopupbox.minHeight <= newHeight)dnctv_ctpopupbox.height = newHeight
+		else dnctv_ctpopupbox.height = dnctv_ctpopupbox.minHeight
     });
 
     // properties of titlebar of box

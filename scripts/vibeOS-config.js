@@ -99,7 +99,6 @@ var initSettings = ()=>{
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
 						lines.push(`Environment Resolution: ${msize.w}x${msize.h}`); // environment res line 5
-						lines.push(`IP Address: ${ip}`); // ip address line 6
 						lines.push(`URL: ${unescape(location.href)}`); // url line 7
 						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8
 						

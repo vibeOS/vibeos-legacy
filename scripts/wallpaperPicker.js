@@ -8,38 +8,31 @@
 */
 
 var wallpapers={
-		solids : [ // ct: thanks for fixing this divide (7/25)
+		solids : [
 			{
-				name: 'Red',
-				value: '#ff0000'
+				value: '#FF8C00'
 			},
 			{
-				name: 'Orange', // ct's favorite
-				value: '#ffa500'
+				
+				value: '#E81123'
 			},
 			{
-				name: 'Yellow',
-				value: '#ffff00'
+				value: '#9A0089'
 			},
 			{
-				name: 'Green',
-				value: '#008000'
+				value: '#10893E'
 			},
 			{
-				name: 'Blue',
-				value: '#0000ff'
+				value: '#018574'
 			},
 			{
-				name: 'Purple',
-				value: '#800080'
+				value: '#2D7D9A'
 			},
 			{
-				name: 'White',
-				value: '#ffffff'
+				value: '#0063B1'
 			},
 			{
-				name: 'Black',
-				value: '#000000'
+				value: '#4A5459'
 			}
 		],
 		images : [
@@ -67,7 +60,7 @@ var wallpapers={
 	},
 	initWallpaperPicker = ()=>{
 		wallpapers.images.forEach(async(e,i)=>{
-			e.interactable =  new interactable('desktop_contextBox_' + e.value.toLowerCase().trim(), 1920 / 15, 1080 / 15,
+			e.interactable =  new interactable('desktop_contextBox_' + e.value.toLowerCase().trim() + Date.now(), 1920 / 15, 1080 / 15,
 				emptyFunction,
 				emptyFunction,
 				()=>{
@@ -90,7 +83,7 @@ var wallpapers={
 		});
 		
 		wallpapers.solids.forEach(async(e,i)=>{
-			e.interactable =  new interactable('desktop_contextBox_' + e.name.toLowerCase().trim(), 1920 / 15, 1080 / 15,
+			e.interactable =  new interactable('desktop_contextBox_' + e.value.trim() + Date.now(), 1920 / 15, 1080 / 15,
 				emptyFunction,
 				emptyFunction,
 				()=>{
@@ -108,7 +101,7 @@ var wallpapers={
 			e.interactable.index = Object.entries(interactables).length
 		});
 		
-		var window = new cwindow('wallpaper-picker', 50, 50, (ele)=>{
+		var window = new cwindow('wallpaper-picker' + Date.now(), 50, 50, (ele)=>{
 				// on render
 				
 				mctx.font = '13px Open Sans';
@@ -118,6 +111,8 @@ var wallpapers={
 				mctx.fillText('Solid Colors', ele.x + 20, ele.y + 160) // solid colors label
 				
 				var loop_thing_img = (e,i,a)=>{
+						e.interactable.index = ele.contentBox.index + 1
+						
 						e.interactable.x = ele.x + 20 + i * (1920 / 15 + 20) // wallpaper previews on x axis
 						
 						e.interactable.width = 1920 / 15
@@ -141,6 +136,8 @@ var wallpapers={
 						}
 					},
 					loop_thing_solids = (e,i,a)=>{
+						e.interactable.index = ele.contentBox.index + 1
+						
 						e.interactable.x = ele.x + 20 + i * 46 // s.colors previews on x axis
 						
 						e.interactable.width = 44

@@ -8,9 +8,6 @@
     Last updated: July 25, 2020
 */
 
-//                      this script is basically a lot of random/pointless/useless code
-//                      still dont delete it i might need it later thanks
-
 // CT OpenCode data for this script.
 var ct_opencodedata = {
     project: 'vibeos',
@@ -21,25 +18,6 @@ var ct_opencodedata = {
 
 // Random Varibles
 var ok = 'ok';
-const urlParams = new URLSearchParams(window.location.search);
-
-// Debugging Quickstart Check (ctsu) 
-//                              MORE FUCKING SHIT THAT DOESNT FUCKING WORK WHY DO I EVEN TRY
-const ctsp = urlParams.get('ctsu');
-if (ctsp == true) {
-    ctsu() 
-} else if (ctsp == false) {
-    ct_log("ctsp found false, ctsu not engaged");
-} else {
-    ct_error("ctsu checker","ctsp found nothing, presumed false, ctsu not engaged",false);
-}
-
-// sets stuff for debugging quickstart (ctsu)
-function ctsu() {
-    msize.w = 1920;
-    msize.h = 1080;
-    background.value = "wallpapers/ct.png";
-}
 
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
@@ -68,27 +46,23 @@ function ct_error(script,reason,alert) {
 }
 
 
-// alias for console.log
-function ct_log(thing) {
-    console.log(thing);
-}
-
 // [BROKEN] Function to get a cat from the CAT API
 // This shit doesnt work because i suck with HTTP requests
 // 2020 07 18
 function ct_getcat() {
-    var dnctv_cathttp = new XMLHttpRequest();
-    var dnctv_caturl = 'https://api.thecatapi.com/v1/images';
+    const ctgc_headers = new Headers({
+        'x-api-key': '2b032810-c828-48e7-8c8c-c7a83907e312',
+    });
+    const ctgc_request = new Request('https://api.thecatapi.com/v1/images', {
+        method: 'GET',
+        headers: ctgc_headers,
+        mode: 'cors',
+        cache: 'default',
+    });
+    fetch(ctgc_request)
+        .then(response => response.JSON())
+        .then(console.log(response))
 
-    dnctv_cathttp.open("GET", dnctv_caturl);
-    dnctv_cathttp.setRequestHeader('api-key','2b032810-c828-48e7-8c8c-c7a83907e312'); // pls no steal api key thank
-    dnctv_cathttp.send();
-
-    dnctv_cathttp.onreadystatechange = (e) => {
-        console.log(dnctv_cathttp.responseText);
-    }
-
-    return 'as of 07 18 this does not work';
 }
 
 
@@ -111,7 +85,7 @@ function cttest_popupbox() {ct_popupbox("err","Test popup box.","Tester")};
 // honestly some of my favorite code because of how well it came together 
 // !! THIS IS STILL WORK IN PROGRESS, FUNCTIONALITY INCOMPLETE + BUGS !!
 // 2020 07 27
-function ct_popupbox(type,msg,script) {
+function ct_popupbox(type,msg) {
     /*
         type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf). PARSE AS STRING! "err","inf","wrn"
         msg: Message shown to user, parse as string.
@@ -122,17 +96,14 @@ function ct_popupbox(type,msg,script) {
         case 'err':
             var typereadable = "Error"; // type of popup as readable text, used in titlebar; "err" = "Error"
             var pubicon = 'status/16/error.png'; // Icon for popupbox movebar
-            var headertext = "An error occoured at "; // Text for the header of the popup box
             break;
         case 'wrn':
             var typereadable = "Warning";
             var pubicon = 'status/16/important.png';
-            var headertext = " sent a warning."
             break;
         case 'inf':
             var typereadable = "Information";
             var pubicon = 'status/16/info.png';
-            var headertext = " sent information."
             break;
         default:
             ct_error("ctpopupbox typeswitch","type was not defined correctly",false); // happens when you dont enter options correctly
@@ -142,8 +113,8 @@ function ct_popupbox(type,msg,script) {
     var dnctv_ctpopupbox = new cwindow('ctpopupbox', 50, 50, (ele)=>{
         var blines = [], // temp
             clines = [msg];
-        var textSize = 13;
-        var lineHeight = 16;
+        var textSize = 16;
+        var lineHeight = 18;
 				
 		clines.forEach((e,i)=>{
 			wordWrap(e, dnctv_ctpopupbox.width / 7.2).split('\n').forEach((ee,ii)=>{
@@ -163,11 +134,13 @@ function ct_popupbox(type,msg,script) {
     });
 
     // properties of titlebar of box
-    dnctv_ctpopupbox.title = typereadable+" | CT Popup Box";
+    dnctv_ctpopupbox.title = typereadable+" | CT PopupBox";
     dnctv_ctpopupbox.icon = pubicon;
     // Size of box
     dnctv_ctpopupbox.width = 500;
     dnctv_ctpopupbox.height = 250;
+    // something divide says was important
+    dnctv_ctpopupbox.bgcolor = '#fff';
     // setting the location of the box to the center of the enviornment
     dnctv_ctpopupbox.x = msize.w / 2 - dnctv_ctpopupbox.width / 2;
     dnctv_ctpopupbox.y = msize.h / 2 - dnctv_ctpopupbox.height / 2;

@@ -5,19 +5,12 @@
     DO NOT MODIFY WITHOUT PRIOR NOTICE & PERMISSION
     This script is backed up as it is updated.
 
-    Last updated: July 25, 2020
+    Last updated: August 3, 2020
 */
 
-// CT OpenCode data for this script.
-var ct_opencodedata = {
-    project: 'vibeos',
-    lang: 'javascript',
-    file: 'ct',
-    dir: '/scripts/ct.js'
-}
-
-// Random Varibles
+// Random
 var ok = 'ok';
+console.log("Loaded ct.js");
 
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
@@ -33,22 +26,9 @@ function ct_test() {
     return 'Successful';
 }
 
-// Function to process errors depending on severtiy
-// 2020 07 18
-function ct_error(script,reason,alert) {
-    console.error('CT: Error occoured at '+script+' with reason: '+reason);
-    if (alert == true) {
-        alert("An error occoured in "+script+". Check the console for details.");
-    } else {
-        console.log("CT: Error was not prompted to user.");
-    }
-    return 'ok';
-}
-
-
-// [BROKEN] Function to get a cat from the CAT API
-// This shit doesnt work because i suck with HTTP requests
-// 2020 07 18
+// Function to get a url to a cat (along with other data).
+// This function does not work pending a fix by Duce
+// 2020 08 03
 function ct_getcat() {
     const ctgc_headers = new Headers({
         'x-api-key': '2b032810-c828-48e7-8c8c-c7a83907e312',
@@ -70,26 +50,23 @@ function ct_getcat() {
 // not done yet, maybe some of you can figure this shit out cause i cant
 // 2020 07 18
 function ct_importprofile() {
-
-    fetch("https://raw.githubusercontent.com/vibedivde/vibeOS/master/debug.vosp.json?token=ALUVJHBVH6SXNCKKTPDMFWC7CQPRM").then(response => response.text()).then((response) => {
-        var ct_profiledata = JSON.parse(response);
-    })
-
-    console.log(ct_profiledata.name+' '+ct_profiledata.type);
-    return ok;
+    fetch('https://hastebin.com/raw/mojohavode') // testing json
+        .then(response => response.json())
+        .then(data => console.log(data))
 }
 
-// ct popupbox tester function
-function cttest_popupbox() {ct_popupbox("err","Test popup box.","Tester")};
+
+
+// CT PopupBox Testing function.
+function ctt_popupbox() {ct_popupbox("err","Test popup box.")};
+
 // Function to show a popup box to the user.
-// honestly some of my favorite code because of how well it came together 
-// !! THIS IS STILL WORK IN PROGRESS, FUNCTIONALITY INCOMPLETE + BUGS !!
-// 2020 07 27
+// Must be completed by PrB2, almost to a working state.
+// 2020 08 03
 function ct_popupbox(type,msg) {
     /*
         type: Type of popup; Can be Error (err), Warning (wrn) or Information (inf). PARSE AS STRING! "err","inf","wrn"
         msg: Message shown to user, parse as string.
-        script: Script where this popup is running, will be shown to user. (parse as string)
     */
 
     switch(type){
@@ -106,7 +83,7 @@ function ct_popupbox(type,msg) {
             var pubicon = 'status/16/info.png';
             break;
         default:
-            ct_error("ctpopupbox typeswitch","type was not defined correctly",false); // happens when you dont enter options correctly
+            console.error("Did not parse type of popupbox correctly when called!"); // happens when you dont enter options correctly
             return 1;
     }
 

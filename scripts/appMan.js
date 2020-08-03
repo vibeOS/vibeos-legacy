@@ -61,7 +61,11 @@ var startEntries = [
 			icon: 'categories/16/applications-office.png',
 			type: 'folder',
 			entries: [
-				
+				{
+					value: 'textEditor',
+					icon: 'categories/16/applications-office.png',
+					func: initTextEditor,
+				},
 			],
 		},
 		{
@@ -117,14 +121,14 @@ var startEntries = [
 
 						var demoWindow = new cwindow('demo-window', 50, 50, (ele)=>{
 								
-							});
+						});
 
 						demoWindow.title = 'spicy!';
 						demoWindow.width = 500;
 						demoWindow.height = 250;
 
 						demoWindow.x = 600;
-						demoWindow.y = 300
+						demoWindow.y = 300;
 					},
 				},
 				{

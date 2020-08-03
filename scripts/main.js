@@ -9,6 +9,7 @@ var mCanvas = document.getElementById('mCanvas'),
 	images = {},
 	cursor = {img: 'pointer', grab: {} },
 	background = {value : 'wallpapers/a.png'},
+	wallpaperBusiness = ()=>{},
 	interactables = {},
 	emptyFunction = ()=>{},
 	hiddenContainer=document.createElement('div'),
@@ -519,16 +520,15 @@ setInterval(()=>{
 	}
 
 	if(mCanvas.getAttribute('height') != msize.h){
-	mCanvas.setAttribute('height', msize.h);
+		mCanvas.setAttribute('height', msize.h);
 	}
-
-	if(background.value.match(/^#.{3,}$/gi) ){ // is color
-		mctx.fillStyle = background.value;
-		mctx.fillRect(0, 0, msize.w, msize.h);
-	}else{ // is image
-		mctx.drawImageURL('tango/' + background.value, 0, 0, msize.w, msize.h);
+	
+	try{
+		wallpaperBusiness();
+	}catch(err){
+		mctx.drawImageURL('tango/wallpapers/a.png', 0, 0, msize.w, msize.h);
 	}
-
+	
 	if(window.innerWidth < msize.w || window.innerHeight < msize.h){ // window is smaller than the current resolution
 		mctx.fillStyle = '#fff';
 		mctx.fillRect(0, 0, msize.w, msize.h);

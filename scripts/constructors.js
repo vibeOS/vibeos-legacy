@@ -494,12 +494,14 @@ class cPrompt {
 			
 			// button crap
 			
+			this.window.contentBox.index = 200000
+			
 			this.buttons.forEach((entry,index)=>{
 				entry[0].interactable.x = this.window.x + this.window.width - entry[0].interactable.width - 10 - index * 120
 				
 				entry[0].interactable.y = this.window.y + this.window.height - 40
 		
-				entry[0].interactable.index = this.window.contentBox.index + 3 + index;
+				entry[0].interactable.index = 200005
 				
 				entry[0].render();
 			});

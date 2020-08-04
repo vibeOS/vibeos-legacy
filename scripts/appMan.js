@@ -61,11 +61,11 @@ var startEntries = [
 			icon: 'categories/16/applications-office.png',
 			type: 'folder',
 			entries: [
-				{
-					/*value: 'Text Editor',
+				/*{
+					value: 'Text Editor',
 					icon: 'categories/16/applications-office.png',
-					func: initTextEditor,*/ // Commented out by ctaetcsh as it breaks appman.
-				},
+					func: initTextEditor,
+				},*/ // Commented out by ctaetcsh as it breaks appman.
 			],
 		},
 		{

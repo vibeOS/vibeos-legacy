@@ -62,9 +62,9 @@ var startEntries = [
 			type: 'folder',
 			entries: [
 				{
-					value: 'textEditor',
+					/*value: 'Text Editor',
 					icon: 'categories/16/applications-office.png',
-					func: initTextEditor,
+					func: initTextEditor,*/ // Commented out by ctaetcsh as it breaks appman.
 				},
 			],
 		},

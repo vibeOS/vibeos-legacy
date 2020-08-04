@@ -27,22 +27,25 @@ function ct_test() {
 }
 
 // Function to get a url to a cat (along with other data).
-// This function does not work pending a fix by Duce
+// Run this function and it will set the values of the object ct_getcat_return.
+// In this varible contains .url, which is the image url; .id, which is the
+// image ID from The Cat API; as well as .height and .width, for, you know.
 // 2020 08 03
 function ct_getcat() {
-    const ctgc_headers = new Headers({
+    let ctgc_headers = new Headers({
         'x-api-key': '2b032810-c828-48e7-8c8c-c7a83907e312',
     });
-    const ctgc_request = new Request('https://api.thecatapi.com/v1/images', {
+    let ctgc_request = new Request('https://api.thecatapi.com/v1/images/search', {
         method: 'GET',
         headers: ctgc_headers,
         mode: 'cors',
         cache: 'default',
     });
     fetch(ctgc_request)
-        .then(response => response.JSON())
-        .then(console.log(response))
-
+        .then(function (response) {return response.json()})
+        .then(json => {
+            ct_getcat_return = json[0];
+        })
 }
 
 

@@ -11,6 +11,7 @@
 // Random
 var ok = 'ok';
 console.log("Loaded ct.js");
+ct_getcat(); // easiest fix to make cpaitc work
 
 // Fast way to initalize a webview for testing. DO NOT USE THIS IN SCRIPTS!
 // This is only for usage in the Javascript terminal.
@@ -25,6 +26,21 @@ function ct_initweb(url,proxy) {
 function ct_test() {
     return 'Successful';
 }
+
+
+initcpaitc = ()=> {cpaitc()};
+function cpaitc() {
+    ct_getcat();
+    initWebView(
+        'CPAITC (Internet Cat Picture System) | ID: '+ct_getcat_return.id,
+        'apps/16/pix.png',
+        ct_getcat_return.url, 
+        ct_getcat_return.width + 30, 
+        ct_getcat_return.height + 30, 
+        false
+    );
+}
+
 
 // Function to get a url to a cat (along with other data).
 // Run this function and it will set the values of the object ct_getcat_return.

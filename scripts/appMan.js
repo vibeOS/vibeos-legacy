@@ -46,6 +46,11 @@ var startEntries = [
 					icon: 'apps/16/internet-web-browser.png',
 					func: initBrowser,
 				},
+				{
+					value: 'CPAITC',
+					icon: 'apps/16/pix.png',
+					func: initcpaitc,
+				},
 			],
 		},
 		{

@@ -1,10 +1,65 @@
 # vibeOS
-## Functional interface and 
-### its basically a fucking os in your browser
 
-![Screenshot](preview/thumbnail1.png?raw=true "Screenshot")
+![Screenshot](preview/readmecover.png?raw=true)
+*Pictured: vibeOS PrD running at 1080p.*
 
-Edit index.html to include any scripts or apps
-scripts/ contains all apps and stuff™
+---
 
-documentation on cele and cwin constructors coming soon™
+vibeOS is a JavaScript based Desktop Enviornment that runs in your browser. It can run applications made in JavaScript using our custom Constructor or load web applications with our WebView soulution. 
+
+This repository contains the current source code for vibeOS. It does not need to be compiled, just extracted and `index.html` opened. It can also be deployed on a Web Server, for easy access. **vibeOS is entirely portable, requiring no server backend.**
+
+| Prod. Codename 	| Description         	| Status          	|
+|----------------	|---------------------	|-----------------	|
+| PrD            	| Private Development 	| Current         	|
+| PrB1           	| Private Beta 1      	| Finished        	|
+| PrB2           	| Private Beta 2      	| Finished        	|
+| PuB            	| Public Beta         	| Awaiting Launch 	|
+| PuPre          	| Public Pre-Release  	| Not in Scope    	|
+| PuRe           	| Public Release      	| Not in Scope    	|
+---
+
+## Documentation
+
+At this time, documentation for vibeOS has not been created. Documentation will be available sometime before Public Pre-Release (PuPre).
+
+---
+
+## Contributing
+
+If you would like to contribute to vibeOS, feel free to make a Pull Request with your changes and we will take a look. If you want to join our team, get in touch.
+
+## Bug Reports & Feedback
+
+If you encounter a bug or problem with vibeOS, do not hesitate to open an [Issue](https://github.com/vibedivde/vibeOS/issues). If said bug is of a critical nature, please get in touch as soon as possible.
+
+Feedback & Suggestions are welcome!
+
+---
+
+## Contact
+
+The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411` or join our Discord Server.
+
+Additionally, you can email `vibeos.contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.
+
+---
+
+## Credits
+
+| GitHub     	| Name                  	| Title                         	|
+|------------	|-----------------------	|-------------------------------	|
+| @vibedivde 	| The Mysterious Divide 	| Creator & Lead Developer      	|
+| @ctaetcsh  	| Nathan M. (ctaetcsh)  	| Developer, Designer & Manager 	|
+| @deopdeop  	| Ryan W. (LinuxTerm)   	| Developer                     	|
+| N/A        	| Alexandria O. (Eli)   	| Developer                     	|
+| @shawtylikeamelody        	| SexyDuceDuce          	| Developer                     	|
+
+Additionally, thank you to our Beta Testers:
+```
+Alfias
+ShadowFr0st
+IStealYourMemes
+Nautica
+Hat
+```

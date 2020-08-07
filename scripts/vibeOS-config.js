@@ -198,6 +198,12 @@ var initSettings = ()=>{
 		});
 
 		Object.entries(programLinks).forEach((e,i)=>{ //ct: wtf i have no idea what im doing
+			if(e[1] == null)return;
+			
+			e[1].this().interactable.clickend = ()=>{
+				if(e[1].this().interactable.hover != true)return;
+				initWallpaperPicker();
+			}
 			// ct: make it so when wallpaper picker button is press, it opens it
 			// ct: pls and thank
 		});

@@ -11,12 +11,12 @@ console.log("Loaded jst_standardutils.js");
 
 // vsu_about()
 // Returns information about the Enviornment
-// from vibeOS-config.js's progvalues.
 function vsu_about() {
-    //ct: currently just returns values, in future will push seperate lines
-    return `${progvalues.name} ${progvalues.version} ${progvalues.extra} | ${location.href} | Current User: NA`;
+    return `${aboutenv.name} ${aboutenv.version} ${aboutenv.extra}
+HREF: ${location.href}
+Current User: NA`;
 }
-
+// apologies for this utterly retarded shit
 
 // vsu_clock()
 // Returns Time and Date.

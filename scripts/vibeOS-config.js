@@ -84,17 +84,12 @@ var initSettings = ()=>{
 						mctx.fillStyle = '#000'
 						mctx.font = '15px Open Sans'
 
-						progvalues = {
-							name: 'vibeOS',
-							version: 'PrD',
-							extra: ''
-						},
 						lines = [],
 						blines = [], // temp variable
 						lineHeight = 16,
 						textSize = 15;
 
-						lines.push(`Version: ${progvalues.name} ${progvalues.version} ${progvalues.extra}`); // version line 1
+						lines.push(`Version: ${aboutenv.name} ${aboutenv.version} ${aboutenv.extra}`); // version line 1
 						lines.push(`Platform: ${navigator.platform}`); // platform line 2
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
@@ -197,15 +192,13 @@ var initSettings = ()=>{
 			}
 		});
 
-		Object.entries(programLinks).forEach((e,i)=>{ //ct: wtf i have no idea what im doing
+		Object.entries(programLinks).forEach((e,i)=>{
 			if(e[1] == null)return;
 			
 			e[1].this().interactable.clickend = ()=>{
 				if(e[1].this().interactable.hover != true)return;
 				initWallpaperPicker();
 			}
-			// ct: make it so when wallpaper picker button is press, it opens it
-			// ct: pls and thank
 		});
 		
 		Object.entries(cradios).forEach((e,i)=>{

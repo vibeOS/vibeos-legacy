@@ -84,11 +84,11 @@ var initSettings = ()=>{
 						mctx.fillStyle = '#000'
 						mctx.font = '15px Open Sans'
 
-						var progvalues = {
-								name: 'vibeOS',
-								version: 'PrD',
-								extra: ''
-							},
+						progvalues = {
+							name: 'vibeOS',
+							version: 'PrD',
+							extra: ''
+						},
 						lines = [],
 						blines = [], // temp variable
 						lineHeight = 16,

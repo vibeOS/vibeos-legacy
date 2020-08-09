@@ -16,7 +16,7 @@ This repository contains the current source code for vibeOS. It does not need to
 | PrB2           	| Private Beta 2      	| Finished        	|
 | PuB            	| Public Beta         	| Awaiting Launch 	|
 | PuPre          	| Public Pre-Release  	| Not in Scope    	|
-| PuRe           	| Public Release      	| Not in Scope    	|
+| Pure           	| Public Release      	| Not in Scope    	|
 ---
 
 ## Documentation

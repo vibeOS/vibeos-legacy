@@ -1,5 +1,5 @@
 var initJsTerm=(async()=>{
-		var lines = ['Welcome to the JS Terminal'],
+		var lines = ['vibeOS JavaScript Terminal | Run vsu_help() for commands.'],
 			inputBar = new inputbar(0, 0, 'poggers code', (key, str)=>{
 				// onChange(e.key, this.value);
 				

@@ -1,5 +1,6 @@
 # vibeOS
 
+![Logo](tango/vibeos.gif)
 ![Screenshot](preview/readmecover.png?raw=true)
 *Pictured: vibeOS PrD running at 1080p.*
 

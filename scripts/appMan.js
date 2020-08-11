@@ -464,7 +464,7 @@ highRenq.push(()=>{
 	mctx.fillStyle='#F2F2F2';
 	mctx.font = '13px Open Sans';
 	mctx.fillText('Applications', applications.x + 23, applications.y + 17);
-	mctx.drawImageURL('tango/vibeos.gif', applications.x + 3, applications.y + 5, 15, 15);
+	mctx.drawImageURL('tango/applications-button.png', applications.x + 3, applications.y + 5, 15, 15);
 });
 
 var timeBox = new interactable(mainID + 'timeBox', 75, 24,

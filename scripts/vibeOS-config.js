@@ -89,13 +89,13 @@ var initSettings = ()=>{
 						lineHeight = 16,
 						textSize = 15;
 
-						lines.push(`Version: ${aboutenv.name} ${aboutenv.version} ${aboutenv.extra}`); // version line 1
-						lines.push(`Platform: ${navigator.platform}`); // platform line 2
-						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`); // screen res line 3
-						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`); // window res line 4
-						lines.push(`Environment Resolution: ${msize.w}x${msize.h}`); // environment res line 5
-						lines.push(`URL: ${unescape(location.href)}`); // url line 7
-						lines.push(`User Agent: ${navigator.userAgent}`); // useragent line 8
+						lines.push(`Version: PuB`);
+						lines.push(`Platform: ${navigator.platform}`); 
+						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`);
+						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`);
+						lines.push(`Environment Resolution: ${msize.w}x${msize.h}`);
+						lines.push(`URL: ${unescape(location.href)}`);
+						lines.push(`User Agent: ${navigator.userAgent}`);
 						
 						lines.forEach((e,i)=>{
 							wordWrap(e, remainingWidth / 7.6).split('\n').forEach((ee,ii)=>{
@@ -115,25 +115,18 @@ var initSettings = ()=>{
 						
 						// main title
 
+						
+
 						mctx.fillStyle = '#000' // font color
 						mctx.font = 'bolder 30px Open Sans' // font and size
-						
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('vibeOS', remainingX + remainingWidth / 2, ele.y + 75);
-						mctx.textAlign = 'start';
-						
-						// description
-						
-						mctx.fillStyle = '#000'
-						mctx.font = 'italic 13px Open Sans' // we need to make the font a bit smaller and have italics
-						
-						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Basically a fucking OS in your web browser', remainingX + remainingWidth / 2, ele.y + 110);
+						mctx.drawImageURL('tango/vibeos.gif', remainingX + remainingWidth / 2 - 25, ele.y + 50, 50, 50);
+						mctx.fillText('vibeOS Public Beta', remainingX + remainingWidth / 2, ele.y + 130);
 						mctx.textAlign = 'start';
 						
 						// black line seperating text
 						
-						mctx.fillRect(remainingX + 15, ele.y + 125, remainingWidth - 25, 2);
+						mctx.fillRect(remainingX + 15, ele.y + 150, remainingWidth - 25, 2);
 						
 						mctx.fillStyle = '#000'
 						mctx.font = '15px Open Sans'

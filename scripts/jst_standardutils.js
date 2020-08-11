@@ -9,15 +9,6 @@
 */
 console.log("Loaded jst_standardutils.js"); 
 
-// vsu_about()
-// Returns information about the Enviornment
-function vsu_about() {
-    return `${aboutenv.name} ${aboutenv.version} ${aboutenv.extra}
-HREF: ${location.href}
-Current User: NA`;
-}
-// apologies for this utterly retarded shit
-
 // vsu_clock()
 // Returns Time and Date.
 // --> Section 1: Vars
@@ -40,7 +31,7 @@ function vsu_clock() {
 // vsu_help()
 // Basic help function
 function vsu_help() {
-    return "vsu_about(), vsu_clock(), vsu_help(), vsu_simon()";
+    return "vsu_clock(), vsu_help(), vsu_simon()";
 }
 
 // vsu_simon(msg)

@@ -53,8 +53,6 @@ Additionally, you can email `vibeos.contact@ctaetcsh.xyz`. Communications are ma
 | @vibedivde 	| The Mysterious Divide 	| Creator & Lead Developer      	|
 | @ctaetcsh  	| Nathan M. (ctaetcsh)  	| Developer, Designer & Manager 	|
 | @deopdeop  	| Ryan W. (LinuxTerm)   	| Developer                     	|
-| N/A        	| Alexandria O. (Eli)   	| Developer                     	|
-| @shawtylikeamelody        	| SexyDuceDuce          	| Developer                     	|
 
 Additionally, thank you to our Beta Testers:
 ```

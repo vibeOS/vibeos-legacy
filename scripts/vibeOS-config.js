@@ -28,9 +28,15 @@ var initSettings = ()=>{
 			},
 			accLoadInput = new inputbar( 0, 0, 'Profile URL', (key, str)=>{
 				//something here, used for accounts page
+			},
+			submit_str =>{
+				// submit_str is equal to submitted value
 			}),
 			accChangeNameInput = new inputbar( 0, 0, 'New Name', (key, str)=>{
 				//FUCK
+			},
+			submit_str =>{
+				// submit_str is equal to submitted value
 			}),
 			accChangeName = {
 				'changename': new button('Change', 75, 30),

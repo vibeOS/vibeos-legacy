@@ -21,6 +21,29 @@ var initSettings = ()=>{
 			programLinks = {
 				'wallpaperpicker': new button('Wallpaper Picker', 125, 25),
 			},
+
+			// Things for the accounts tab
+			accLoadProf = {
+				'loadprofile': new button('Load', 75, 30),
+			},
+			accLoadInput = new inputbar( 0, 0, 'Profile URL', (key, str)=>{
+				//something here, used for accounts page
+			}),
+			accChangeNameInput = new inputbar( 0, 0, 'New Name', (key, str)=>{
+				//FUCK
+			}),
+			accChangeName = {
+				'changename': new button('Change', 75, 30),
+			},
+			accExportProf = {
+				'exportprof': new button('Export', 75, 30),
+			},
+			accClearData = {
+				'cleardata': new button('Clear Data & Reload', 150, 30),
+			},
+			accResetAll = {
+				'resetall': new button('Reset vibeOS', 150, 30),
+			},
 			
 			activeTab = 'general',
 			
@@ -73,7 +96,86 @@ var initSettings = ()=>{
 					case'accounts':
 						mctx.fillStyle = '#000' // font color
 						mctx.font = '16px Open Sans' // font and size
-						mctx.fillText('The accounts page is unavailable.', ele.x + 140, ele.y + 50);
+						mctx.fillText('Enter the URL to your profile to load settings', ele.x + 145, ele.y + 55);
+						mctx.fillText('and apps. File upload currently unsupported.', ele.x + 145, ele.y + 75);
+						accLoadInput.interactable.x = ele.x + 145;
+						accLoadInput.interactable.y = ele.y + 90;
+						accLoadInput.render();
+
+						Object.entries(accLoadProf).forEach((e,i)=>{ 
+							if(e[1] == null)return;
+							e[1].this().interactable.x = remainingX + 275 //x
+							e[1].this().interactable.y = ele.y + 90 + i * 30 //y
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;							
+							e[1].this().render();
+						});
+
+						mctx.fillStyle = '#000' // font color
+						mctx.font = '16px Open Sans' // font and size
+						mctx.fillText('Current:', ele.x + 145, ele.y + 150);
+						mctx.font = 'bold 16px Open Sans'
+						mctx.fillText('NOT LOADED', ele.x + 220, ele.y + 150);
+
+						//br
+						mctx.fillRect(remainingX + 15, ele.y + 170, remainingWidth - 25, 2);
+						//br
+
+						mctx.fillStyle = '#000' // font color
+						mctx.font = '16px Open Sans' // font and size
+						mctx.fillText('Change Profile name:', ele.x + 145, ele.y + 200);
+						accChangeNameInput.interactable.x = ele.x + 145;
+						accChangeNameInput.interactable.y = ele.y + 213;
+						accChangeNameInput.render();
+
+						Object.entries(accChangeName).forEach((e,i)=>{ 
+							if(e[1] == null)return;
+							e[1].this().interactable.x = remainingX + 275 //x
+							e[1].this().interactable.y = ele.y + 213 + i * 30 //y
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;							
+							e[1].this().render();
+						});
+
+						mctx.fillStyle = '#000' // font color
+						mctx.font = '16px Open Sans' // font and size
+						mctx.fillText('Status:', ele.x + 145, ele.y + 270);
+						mctx.font = 'bold 16px Open Sans'
+						mctx.fillText('NOT MODIFIED', ele.x + 220, ele.y + 270);
+
+						Object.entries(accExportProf).forEach((e,i)=>{ 
+							if(e[1] == null)return;
+							e[1].this().interactable.x = remainingX + 275 //x
+							e[1].this().interactable.y = ele.y + 250 + i * 30 //y
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;							
+							e[1].this().render();
+						});
+
+						mctx.fillStyle = '#000' // font color
+						mctx.font = 'italic 16px Open Sans' // font and size
+						mctx.textAlign = 'center';
+						mctx.fillText('1c57cb5c-eb43-4ef1-8005-a516cea5085c', remainingX + remainingWidth / 2, ele.y + 310);
+
+						//br
+						mctx.fillRect(remainingX + 15, ele.y + 330, remainingWidth - 25, 2);
+						//br
+
+						Object.entries(accClearData).forEach((e,i)=>{ 
+							if(e[1] == null)return;
+							e[1].this().interactable.x = remainingX + 27 //x
+							e[1].this().interactable.y = ele.y + 350 + i * 30 //y
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;							
+							e[1].this().render();
+						});
+
+						Object.entries(accResetAll).forEach((e,i)=>{ 
+							if(e[1] == null)return;
+							e[1].this().interactable.x = remainingX + 195 //x
+							e[1].this().interactable.y = ele.y + 350 + i * 30 //y
+							e[1].this().interactable.index = ele.contentBox.index + 3 + i;							
+							e[1].this().render();
+						});
+
+
+
 						break
 					case'proxy':
 						mctx.fillStyle = '#000' // font color
@@ -268,6 +370,12 @@ var initSettings = ()=>{
 		
 		window.width = 500
 		window.height = 418
+
+		accLoadInput.interactable.width = 250;
+		accLoadInput.interactable.height = 30;
+		accChangeNameInput.interactable.width = 250;
+		accChangeNameInput.interactable.height = 30;
+		
 		
 		window.icon = 'categories/24/package_settings.png'
 		window.title = 'vibeOS Settings'

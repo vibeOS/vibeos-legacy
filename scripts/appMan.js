@@ -104,13 +104,6 @@ var startEntries = [
 						initWebView('[Proxied Webapp] Bing', 'mimetypes/16/html.png', 'https://bing.com/', 800, 600, false)
 					},
 				},
-				{
-					value: 'Discord (broken)', //ct: honestly fuck this shit, divide fix this
-					icon: 'mimetypes/16/html.png',
-					func: ()=>{
-						initWebView('[Proxied Webapp] Discord', 'mimetypes/16/html.png', 'https://discord.com/login', 800, 600, true)
-					},
-				},
 			],
 		},
 		{

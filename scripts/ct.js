@@ -63,7 +63,10 @@ function ct_getcat() {
             ct_getcat_return = json[0];
         })
 }
-
+function ctt_getcat() {
+    ct_getcat()
+    return ct_getcat_return;
+}
 
 // [BROKEN] Function to import and apply profile data
 // not done yet, maybe some of you can figure this shit out cause i cant

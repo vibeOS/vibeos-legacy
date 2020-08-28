@@ -30,12 +30,14 @@ var initSettings = ()=>{
 				//something here, used for accounts page
 			},
 			submit_str =>{
+				accLoadInput.value = '';
 				// submit_str is equal to submitted value
 			}),
 			accChangeNameInput = new inputbar( 0, 0, 'New Name', (key, str)=>{
 				//FUCK
 			},
 			submit_str =>{
+				accChangeNameInput.value = '';
 				// submit_str is equal to submitted value
 			}),
 			accChangeName = {
@@ -381,6 +383,8 @@ var initSettings = ()=>{
 		accLoadInput.interactable.height = 30;
 		accChangeNameInput.interactable.width = 250;
 		accChangeNameInput.interactable.height = 30;
+		accLoadInput.interactable.index = window.contentBox.index + 1;
+
 		
 		
 		window.icon = 'categories/24/package_settings.png'

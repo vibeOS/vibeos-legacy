@@ -24,7 +24,7 @@ function ct_initweb(url,proxy) {
 // Function to test that ct.js loaded successfully, used for debugging.
 // 2020 07 18
 function ct_test() {
-    return 'Successful';
+    return ok;
 }
 
 

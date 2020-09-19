@@ -33,7 +33,13 @@ var startEntries = [
 			icon: 'categories/16/applications-graphics.png',
 			type: 'folder',
 			entries: [
-				
+				{
+					value: 'Nsvg',
+					icon: 'apps/16/cs-color.png',
+					func: ()=>{
+						initWebView('Nsvg for vibeOS', 'apps/16/cs-color.png', 'appfiles/nsvg/ctloader.html', 1000, 800, false)
+					},
+				}
 			],
 		},
 		{

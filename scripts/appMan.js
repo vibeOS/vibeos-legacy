@@ -35,9 +35,9 @@ var startEntries = [
 			entries: [
 				{
 					value: 'Nsvg',
-					icon: 'apps/16/cs-color.png',
+					icon: 'mimetypes/16/svg.png',
 					func: ()=>{
-						initWebView('Nsvg for vibeOS', 'apps/16/cs-color.png', 'appfiles/nsvg/ctloader.html', 1000, 800, false)
+						initWebView('Nsvg for vibeOS', 'mimetypes/16/svg.png', 'appfiles/nsvg/ctloader.html', 1000, 800, false)
 					},
 				}
 			],
@@ -56,7 +56,7 @@ var startEntries = [
 					value: 'CPAITC',
 					icon: 'apps/16/pix.png',
 					func: initcpaitc,
-				},
+				}
 			],
 		},
 		{
@@ -139,6 +139,20 @@ var startEntries = [
 					value: 'Transcript',
 					icon: 'mimetypes/16/text-x-generic.png',
 					func: initTranscript,
+				},
+			],
+		},
+		{
+			value: 'Games',
+			icon: 'categories/16/applications-games.png',
+			type: 'folder',
+			entries: [
+				{
+					value: '2048',
+					icon: 'categories/16/applications-games.png',
+					func: ()=>{
+						initWebView('2048', 'categories/16/applications-games.png', 'appfiles/2048/index.html', 550, 800, false)
+					},
 				},
 			],
 		},

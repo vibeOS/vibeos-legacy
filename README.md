@@ -1,6 +1,5 @@
 # vibeOS
 
-![Logo](tango/vibeos.gif)
 ![Screenshot](preview/readmecover.png?raw=true)
 *Pictured: vibeOS PrD running at 1080p.*
 
@@ -12,10 +11,10 @@ This repository contains the current source code for vibeOS. It does not need to
 
 | Prod. Codename 	| Description         	| Status          	|
 |----------------	|---------------------	|-----------------	|
-| PrD            	| Private Development 	| Current         	|
+| PrD            	| Private Development 	| Finished        	|
 | PrB1           	| Private Beta 1      	| Finished        	|
 | PrB2           	| Private Beta 2      	| Finished        	|
-| PuB            	| Public Beta         	| Awaiting Launch 	|
+| PuB            	| Public Beta         	| Current 	        |
 | PuPre          	| Public Pre-Release  	| Not in Scope    	|
 | Pure           	| Public Release      	| Not in Scope    	|
 ---

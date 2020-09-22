@@ -154,6 +154,13 @@ var startEntries = [
 						initWebView('2048', 'categories/16/applications-games.png', 'appfiles/2048/index.html', 550, 800, false)
 					},
 				},
+				{
+					value: 'Tetris',
+					icon: 'categories/16/applications-games.png',
+					func: ()=>{
+						initWebView('Tetris', 'categories/16/applications-games.png', 'appfiles/tetris/index.html', 760, 740, false)
+					},
+				},
 			],
 		},
 	],

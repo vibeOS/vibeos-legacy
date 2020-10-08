@@ -146,3 +146,57 @@ function ct_popupbox(type,l1,l2,l3) {
     return 0;
 
 }
+
+// Auto-Resolution Function
+// Finds the ideal resolution for any given monitor
+
+function ctAutoRes() {
+    switch(screen.width) {
+        case 1280:
+            msize.w = 1280;
+            msize.h = 720;
+            break;
+        case 1366:
+            msize.w = 1366;
+            msize.h = 768;
+            if(screen.availHeight < msize.h) {
+                resetRes()
+            }
+            break;
+        case 1920:
+            msize.w = 1920;
+            msize.h = 1080;
+            if(screen.availHeight < msize.h) {
+                resetRes()
+            }
+            break;
+        default:
+            console.log("Auto Resolution could not find valid resolution for this monitor!");
+            break;
+    }
+}
+function resetRes(size) {
+    switch(size) {
+        case "720p":
+            msize.w = 1280;
+            msize.h = 720;
+            break;
+        case "768p":
+            msize.w = 1366;
+            msize.h = 720;
+            break;
+        case "1080p":
+            msize.w = 1920;
+            msize.h = 1080;
+            break;
+        default:
+            msize.w = 1280;
+            msize.h = 720;
+            break;
+    }
+    if(size == undefined) {
+        console.log("Reset resolution to default.");
+    } else {
+        console.log("Reset resolution to "+size);
+    }
+}

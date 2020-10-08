@@ -52,9 +52,24 @@ var wallpapers={
 				name: 'Test Background'
 			},
 			{
-				value: 'wallpapers/ct.png',
+				value: 'wallpapers/GardenTilesCT.png',
 				interactable: null,
 				name: 'Garden Tiles (CT)'
+			},
+			{
+				value: 'wallpapers/SysYABranded.png',
+				interactable: null,
+				name: 'SysYA_Branded'
+			},
+			{
+				value: 'wallpapers/SysYA.png',
+				interactable: null,
+				name: 'SysYA'
+			},
+			{
+				value: 'wallpapers/SysYADark.png',
+				interactable: null,
+				name: 'SysYA_Dark'
 			},
 		],
 	},
@@ -174,6 +189,6 @@ var wallpapers={
 		
 		window.title = 'Wallpaper Picker'
 		window.icon = 'apps/24/preferences-desktop-wallpaper.png'
-		window.width = 620
+		window.width = 1060
 		window.height = 220
 	}

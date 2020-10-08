@@ -13,7 +13,12 @@ var startEntries = [
 					value: 'Wallpaper Picker',
 					icon: 'apps/24/preferences-desktop-wallpaper.png',
 					func: initWallpaperPicker,
-				}
+				},
+				{
+					value: 'Auto Resolution',
+					icon: 'devices/16/monitor.png',
+					func: ctAutoRes,
+				},
 			],
 		},
 		{
@@ -159,6 +164,13 @@ var startEntries = [
 					icon: 'categories/16/applications-games.png',
 					func: ()=>{
 						initWebView('Tetris', 'categories/16/applications-games.png', 'appfiles/tetris/index.html', 760, 740, false)
+					},
+				},
+				{
+					value: 'Breakout',
+					icon: 'categories/16/applications-games.png',
+					func: ()=>{
+						initWebView('Tetris', 'categories/16/applications-games.png', 'appfiles/breakout/index.html', 700, 570, false)
 					},
 				},
 			],

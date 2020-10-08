@@ -247,9 +247,9 @@ var initSettings = ()=>{
 						mctx.font = '15px Open Sans'
 						mctx.fillText('with help from', remainingX + 15, ele.y + 225);
 						mctx.font = 'bold 15px Open Sans';
-						mctx.fillText('Eli', remainingX + 15, ele.y + 250);   // DIVIDE NAME HERE
-						mctx.fillText('SexyDuceDuce', remainingX + 15, ele.y + 275);     // CTAETCSH NAME HERE
-						mctx.fillText('Cat Lady', remainingX + 15, ele.y + 300);    // LINUXTERM NAME HERE
+						mctx.fillText('Eli', remainingX + 15, ele.y + 250);   
+						mctx.fillText('SexyDuceDuce', remainingX + 15, ele.y + 275);     
+						mctx.fillText('Cat Lady', remainingX + 15, ele.y + 300);    
 						mctx.fillText('IStealYourMemes', remainingX + 15, ele.y + 325);
 						mctx.font = '15px Open Sans'
 						mctx.textAlign = 'center'; // use these for near perfect centering

@@ -21,7 +21,7 @@ This repository contains the current source code for vibeOS. It does not need to
 
 ## Documentation
 
-At this time, documentation for vibeOS has not been created. Documentation will be available sometime before Public Pre-Release (PuPre).
+Some documentation is avaiable inside vibeOS (under System Docs) however full documentation is yet to be written.
 
 ---
 
@@ -39,7 +39,7 @@ Feedback & Suggestions are welcome!
 
 ## Contact
 
-The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411` or join our Discord Server.
+The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411`.
 
 Additionally, you can email `vibeos.contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.
 

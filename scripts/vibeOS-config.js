@@ -199,7 +199,7 @@ var initSettings = ()=>{
 						lineHeight = 16,
 						textSize = 15;
 
-						lines.push(`Version: PuB`);
+						lines.push(`Version: PuB 2.0 (GitHub Source)`);
 						lines.push(`Platform: ${navigator.platform}`); 
 						lines.push(`Screen Resolution: ${screen.width}x${screen.height}`);
 						lines.push(`Window Resolution: ${screen.availWidth}x${screen.availHeight}`);

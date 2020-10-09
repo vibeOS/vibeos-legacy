@@ -175,6 +175,23 @@ var startEntries = [
 				},
 			],
 		},
+		{
+			value: 'System Docs',
+			icon: 'mimetypes/16/text-x-generic.png',
+			type: 'folder',
+			entries: [
+				{
+					value: 'vibeOS Licence',
+					icon: 'mimetypes/16/text-x-generic.png',
+					func: initLicenceViewer,
+				},
+				{
+					value: 'vibeOS Readme',
+					icon: 'mimetypes/16/text-x-generic.png',
+					func: initReadmeViewer,
+				},
+			],
+		},
 	],
 	mainID = 'desktop',
 	startOpen = false,

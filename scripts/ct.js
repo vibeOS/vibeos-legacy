@@ -200,3 +200,135 @@ function resetRes(size) {
         console.log("Reset resolution to "+size);
     }
 }
+
+
+var initLicenceViewer=()=>{
+    var lines = [
+        'vibeOS License (BSD 3)',
+        'Introduced: AUGUST 8, 2020 | Last Revised: AUGUST 8, 2020',
+        ' ',
+        'vibeOS is licensed under the BSD 3-Clause License.',
+        'vibeOS Development Team is the organization which develops and maintains the vibeOS Source Code.',
+        ' ',
+        'The following are members of the vibeOS Development team as of the printed "Last Revised" date above.',
+        '  * Divide',
+        '  * Nathan Mendenhall (ctaetcsh) <contact@ctaetcsh.xyz>',
+        '  * Ryan Wilson (LinuxTerm) <contact@linuxterm.net>',
+        ' ',
+        'Copyright 2020 vibeOS Development Team',
+        ' ',
+        'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:',
+        '1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.',
+        '2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.',
+        '3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.',
+        ' ',
+        'THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.'
+
+    ],
+        window=new cwindow('licenceviewer', 600 , 250, (window)=>{
+            // after render
+            
+            var blines = [], // temp
+                clines = [];
+            
+            clines = lines;
+            
+            clines.forEach((e,i)=>{
+                wordWrap(e, window.width / 7.2).split('\n').forEach((ee,ii)=>{
+                    blines.push(ee);
+                });
+            });
+            
+            blines.forEach((e,i)=>{
+                // if(clines.length >= window.height / textSize - 4 + (textSize - lineHeight) )clines.shift();
+                mctx.fillStyle='#000';
+                mctx.font = textSize+'px Open Sans';
+                mctx.fillText(e, window.x + 15 , window.y + 50 + i*lineHeight);
+            });
+            
+            var newHeight = textSize + 12 + blines.length * lineHeight;
+            if(window.minHeight <= newHeight)window.height = newHeight
+            else window.height = window.minHeight
+        }),
+        textSize = 14,
+        lineHeight = 16;
+    
+    window.width = 700;
+    window.minHeight = 400;
+    
+    window.x = msize.w / 2 - window.width / 2; // center of screen
+    window.y = msize.h / 2 - window.height / 2; // middle of screen
+    
+    window.icon = 'mimetypes/24/text-x-generic.png';
+    
+    window.title = 'vibeOS Licence';
+    
+    window.bgColor = 'white'
+}
+
+var initReadmeViewer=()=>{
+    var lines = [
+        'vibeOS Readme',
+        ' ',
+        '> About vibeOS',
+        'vibeOS is a JavaScript based Desktop Enviornment that runs in your browser. It can run applications made in JavaScript using our custom Constructor or load web applications with our WebView soulution. ',
+        'This repository contains the current source code for vibeOS. It does not need to be compiled, just extracted and index.html opened. It can also be deployed on a Web Server, for easy access. vibeOS is entirely portable, requiring no server backend.',
+        ' ',
+        '> Contributing',
+        'If you would like to contribute to vibeOS, feel free to make a Pull Request with your changes and we will take a look. If you want to join our team, get in touch.',
+        ' ',
+        '> Bug Reports & Feedback',
+        'If you encounter a bug or problem with vibeOS, do not hesitate to open an Issue on our GitHub (https://github.com/vibedivde/vibeOS/issues). If said bug is of a critical nature, please get in touch as soon as possible.',
+        'Feedback & Suggestions are welcome!',
+        ' ',
+        '> Contact',
+        'The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411` or join our Discord Server.',
+        'Additionally, you can email `vibeos.contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.',
+        ' ',
+        '>  Credits',
+        'Creator: Divide',
+        'Developers: ctaetcsh, LinuxTerm, sexyduceduce',
+        'Assistance: Cat Lady, Eli, IStealYourMemes',
+        'Beta Testers: Alfias, ShadowFr0st, IStealYourMemes, Nautica, Hat'
+
+    ],
+        window=new cwindow('readmeviewer', 600 , 250, (window)=>{
+            // after render
+            
+            var blines = [], // temp
+                clines = [];
+            
+            clines = lines;
+            
+            clines.forEach((e,i)=>{
+                wordWrap(e, window.width / 7.2).split('\n').forEach((ee,ii)=>{
+                    blines.push(ee);
+                });
+            });
+            
+            blines.forEach((e,i)=>{
+                // if(clines.length >= window.height / textSize - 4 + (textSize - lineHeight) )clines.shift();
+                mctx.fillStyle='#000';
+                mctx.font = textSize+'px Open Sans';
+                mctx.fillText(e, window.x + 15 , window.y + 50 + i*lineHeight);
+            });
+            
+            var newHeight = textSize + 12 + blines.length * lineHeight;
+            if(window.minHeight <= newHeight)window.height = newHeight
+            else window.height = window.minHeight
+        }),
+        textSize = 14,
+        lineHeight = 16;
+    
+    window.width = 700;
+    window.minHeight = 400;
+    
+    window.x = msize.w / 2 - window.width / 2; // center of screen
+    window.y = msize.h / 2 - window.height / 2; // middle of screen
+    
+    window.icon = 'mimetypes/24/text-x-generic.png';
+    
+    window.title = 'vibeOS Readme';
+    
+    window.bgColor = 'white'
+}

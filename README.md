@@ -41,7 +41,7 @@ Feedback & Suggestions are welcome!
 
 The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411`.
 
-Additionally, you can email `vibeos.contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.
+Additionally, you can email `contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.
 
 ---
 

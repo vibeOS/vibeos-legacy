@@ -230,7 +230,7 @@ var initSettings = ()=>{
 						mctx.fillStyle = '#000' // font color
 						mctx.font = 'bolder 30px Open Sans' // font and size
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('vibeOS Public Beta', remainingX + remainingWidth / 2, ele.y + 75);
+						mctx.fillText('vibeOS Legacy', remainingX + remainingWidth / 2, ele.y + 75);
 						mctx.textAlign = 'start';
 						
 						// black line seperating text
@@ -242,8 +242,8 @@ var initSettings = ()=>{
 						mctx.fillText('vibeOS was created by', remainingX + 15, ele.y + 125);
 						mctx.font = 'bold 15px Open Sans';
 						mctx.fillText('Divide (@vibedivde)', remainingX + 15, ele.y + 150);   // DIVIDE NAME HERE
-						mctx.fillText('Nathan M. (@ctaetcsh)', remainingX + 15, ele.y + 175);     // CTAETCSH NAME HERE
-						mctx.fillText('Ryan W. (@LinuxTerm)', remainingX + 15, ele.y + 200);    // LINUXTERM NAME HERE
+						mctx.fillText('Nathan R. (@ctaetcsh)', remainingX + 15, ele.y + 175);     // CTAETCSH NAME HERE
+						//mctx.fillText('Ryan W. (@LinuxTerm)', remainingX + 15, ele.y + 200);    // LINUXTERM NAME HERE
 						mctx.font = '15px Open Sans'
 						mctx.fillText('with help from', remainingX + 15, ele.y + 225);
 						mctx.font = 'bold 15px Open Sans';
@@ -253,7 +253,7 @@ var initSettings = ()=>{
 						mctx.fillText('IStealYourMemes', remainingX + 15, ele.y + 325);
 						mctx.font = '15px Open Sans'
 						mctx.textAlign = 'center'; // use these for near perfect centering
-						mctx.fillText('Copyright 2020 vibeOS Development Team', remainingX + remainingWidth / 2, ele.y + 405);
+						mctx.fillText('Copyright (C) 2020-2021 vibeOS Development Team', remainingX + remainingWidth / 2, ele.y + 405);
 						mctx.fillText('vibeOS is Open Source Software', remainingX + remainingWidth / 2, ele.y + 425);
 						mctx.textAlign = 'start';
 

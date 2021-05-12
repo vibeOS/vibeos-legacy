@@ -1,5 +1,7 @@
 # vibeOS
 
+### Important: vibeOS Legacy has been deprecated since 2021. No fruther revisions will be made beyond repository maintenance. Issues and PRs are accepted, but are unlikely to be fixed, reviewed or merged.
+
 ![Screenshot](preview/readmecover.png?raw=true)
 *Pictured: vibeOS PrD running at 1080p.*
 
@@ -9,39 +11,21 @@ vibeOS is a JavaScript based Desktop Enviornment that runs in your browser. It c
 
 This repository contains the current source code for vibeOS. It does not need to be compiled, just extracted and `index.html` opened. It can also be deployed on a Web Server, for easy access. **vibeOS is entirely portable, requiring no server backend.**
 
-| Prod. Codename 	| Description         	| Status          	|
-|----------------	|---------------------	|-----------------	|
-| PrD            	| Private Development 	| Finished        	|
-| PrB1           	| Private Beta 1      	| Finished        	|
-| PrB2           	| Private Beta 2      	| Finished        	|
-| PuB            	| Public Beta         	| Current 	        |
-| PuPre          	| Public Pre-Release  	| Not in Scope    	|
-| Pure           	| Public Release      	| Not in Scope    	|
----
-
-## Documentation
-
-Some documentation is avaiable inside vibeOS (under System Docs) however full documentation is yet to be written.
-
 ---
 
 ## Contributing
 
-If you would like to contribute to vibeOS, feel free to make a Pull Request with your changes and we will take a look. If you want to join our team, get in touch.
+If you would like to contribute to vibeOS, feel free to make a Pull Request with your changes and we will take a look. If you want to join our team, get in touch. Note: Pull Requests may not be reviewed or merged.
 
 ## Bug Reports & Feedback
 
-If you encounter a bug or problem with vibeOS, do not hesitate to open an [Issue](https://github.com/vibedivde/vibeOS/issues). If said bug is of a critical nature, please get in touch as soon as possible.
-
-Feedback & Suggestions are welcome!
+As vibeOS Legacy is considered deprecated, you are free to create Issues on the GitHub but they are not going to be worked on. Non-org members are free to create Pull Requests with fixes to issues that they reference in their PR.
 
 ---
 
 ## Contact
 
-The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#8411`.
-
-Additionally, you can email `contact@ctaetcsh.xyz`. Communications are managed by ctaetcsh under Divide.
+The easiest way to get in touch is via Discord. Send a friend request to `ctaetcsh#7777`.
 
 ---
 
@@ -51,7 +35,6 @@ Additionally, you can email `contact@ctaetcsh.xyz`. Communications are managed b
 |------------	|-----------------------	|-------------------------------	|
 | @vibedivde 	| The Mysterious Divide 	| Creator & Lead Developer      	|
 | @ctaetcsh  	| Nathan M. (ctaetcsh)  	| Developer, Designer & Manager 	|
-| @deopdeop  	| Ryan W. (LinuxTerm)   	| Developer                     	|
 
 Additionally, thank you to our Beta Testers:
 ```

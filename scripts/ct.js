@@ -294,3 +294,6 @@ var initReadmeViewer=()=>{
     
     window.bgColor = 'white'
 }
+
+
+ct_popupbox("wrn","vibeOS Legacy has been deprecated since 2021.","No more support will be provided for it.","See the GitHub Repo for more information.")
